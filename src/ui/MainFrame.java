@@ -1,8 +1,6 @@
 package ui;
 import java.awt.*;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 
@@ -19,7 +17,7 @@ public class MainFrame {
     }
     
     public void createAndShow(){
-        frame = new JFrame("Đặt Vé Xe");
+    	frame = new JFrame("Đặt Vé Xe");
         icon = new ImageIcon("images/iconb.png");
         frame.setIconImage(icon.getImage());
         frame.setSize(600,400);
@@ -38,6 +36,8 @@ public class MainFrame {
         textLogo.setIcon(new ImageIcon(new ImageIcon("images/logo.png").getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT)));
         
         MatteBorder border = new MatteBorder(0, 0, 1, 0, new Color(35,126,212));
+        MatteBorder borderNav = new MatteBorder(0, 0, 1, 0, new Color(227, 228, 231));
+        MatteBorder borderSignIn = new MatteBorder(0, 1, 0, 0, new Color(227, 228, 231));
         logo = new JPanel();
         logo.setPreferredSize(new Dimension(200, 60));
         logo.setBorder(border);
@@ -46,25 +46,31 @@ public class MainFrame {
         logo.setBackground(new Color(0,115,211));
         selectTicket.setBackground(new Color(9,114,201));
         info.setBackground(new Color(255,255,0));
+        borderSignIn.getBaseline(signInPanel, 1, 40);
         
-        signInPanel= new JPanel();
-        signInPanel.setLayout(new BoxLayout(signInPanel, BoxLayout.X_AXIS));
+        signInPanel= new JPanel(new GridBagLayout());
         navbar = new JPanel(new BorderLayout());
         slideBar = new JPanel(new BorderLayout());
         booking = new JPanel(new BorderLayout());
         body = new JPanel(new BorderLayout());
         signIn = new JButton("Đăng nhập");
         
-        navbar.setBackground(Color.red);
+        
+        signInPanel.setBorder(borderSignIn);
+        signInPanel.setPreferredSize(new Dimension(120, 60));
+        signInPanel.setBackground(new Color(242, 243, 245));
+        navbar.setBorder(borderNav);
+        navbar.setBackground(new Color(242, 243, 245));
         navbar.setPreferredSize(new Dimension(200, 60));
         slideBar.setBackground(new Color(0,105,192));
-        booking.setBackground(new Color(242,243,245));
+        booking.setBackground(new Color(226, 228, 233));
+        signIn.setBackground(new Color(0,115,211));
+        signIn.setForeground(Color.white);
+        
         slideBar.add(lb1);
         booking.add(lb2);
         logo.add(textLogo);
         info.add(imageLogo);
-        signIn.setVerticalAlignment(JLabel.CENTER);
-        
         
         signInPanel.add(signIn);
         booking.add(navbar, BorderLayout.NORTH);
@@ -76,8 +82,8 @@ public class MainFrame {
         body.add(slideBar, BorderLayout.WEST);
         body.add(booking, BorderLayout.CENTER);
         
-        frame.add(body);
         frame.setVisible(true);
+        frame.add(body);
     }
     
     
