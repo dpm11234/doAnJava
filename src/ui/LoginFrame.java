@@ -14,7 +14,7 @@ import java.awt.*;
  */
 public class LoginFrame extends JFrame {
     public LoginFrame() {
-        this.setTitle("Login");
+        this.setTitle("Login Test");
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
