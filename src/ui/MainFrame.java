@@ -40,6 +40,8 @@ import javax.imageio.ImageIO;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
 
 public class MainFrame extends JFrame {
 
@@ -132,21 +134,13 @@ public class MainFrame extends JFrame {
     }
 
     public void createAndShow() {
-
-        try {
-          Image imgBg = null;
-//          imgBg = ImageIO.read(new URL("images/background.png"));
+        
         frame = new JFrame("Vé Vi Vu");
         icon = new ImageIcon("images/iconb.png");
         frame.setIconImage(icon.getImage());
         frame.setSize(900, 500);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        } catch (Exception exp) {
-          exp.printStackTrace();
-        }
-//        Image imgBg = null;
-//        String imgBg = "images/background.png";
 
         lb1 = new JLabel("Panel 1");
         lb2 = new JLabel("Panel 2");
@@ -429,26 +423,41 @@ public class MainFrame extends JFrame {
 //        ImageIcon iconBackground = new ImageIcon("images/background.png");
         JLabel thumb = new JLabel();
 //        thumb.add(new ImagePanel(img));
-        thumb.setIcon(new ImageIcon(new ImageIcon("images/background.png").getImage().getScaledInstance(630, 440, Image.SCALE_DEFAULT)));
+//        thumb.setIcon(new ImageIcon(new ImageIcon("images/background.png").getImage().getScaledInstance(630, 440, Image.SCALE_DEFAULT)));
         bgMain = new JPanel(new BorderLayout());
-//        bgMain.add(new ImagePanel(imgBg));
-        System.out.println(bgMain.getWidth() - 1);
+
+        try {
+            Image img = null;
+            img = ImageIO.read(new File("images/background.png"));
+            bgMain.add(new ImagePanel(img));
+            System.out.println(bgMain.getWidth() - 1);
+        } catch (IOException | HeadlessException exp) {
+            exp.printStackTrace();
+        }
 //        thumb.getWidth();
-        bgMain.add(thumb);
+//            bgMain.add(thumb);
 
-        booking.add(navbar, BorderLayout.NORTH);
-        navbar.add(signInPanel, BorderLayout.EAST);
-        booking.add(bgMain, BorderLayout.CENTER);
+            booking.add(navbar, BorderLayout.NORTH);
+            navbar.add(signInPanel, BorderLayout.EAST);
+            booking.add(bgMain, BorderLayout.CENTER);
 
-        slideBar.add(logo, BorderLayout.NORTH);
-        slideBar.add(selectTicket, BorderLayout.CENTER);
-        slideBar.add(info, BorderLayout.SOUTH);
+            slideBar.add(logo, BorderLayout.NORTH);
+            slideBar.add(selectTicket, BorderLayout.CENTER);
+            slideBar.add(info, BorderLayout.SOUTH);
 
-        body.add(slideBar, BorderLayout.WEST);
-        body.add(booking, BorderLayout.CENTER);
+            body.add(slideBar, BorderLayout.WEST);
+            body.add(booking, BorderLayout.CENTER);
 
-        frame.setVisible(true);
-        frame.add(body);
+            frame.setVisible(true);
+            frame.add(body);
+
+//            JFrame frame = new JFrame("Testing");
+//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            frame.setLayout(new BorderLayout());
+//            frame.add(new ImagePanel(img));
+//            frame.pack();
+//            frame.setLocationRelativeTo(null);
+//            frame.setVisible(true);
     }
 
     public void handleEvent() {
