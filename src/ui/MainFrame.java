@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
     static JLabel lb1, lb2, textLogo, textInfo, textSelect, textSelectSpace, textSelectTo, textSelectSpaceTo, datePickerSpace, leftAlignDatePicker, rightAlignDatePicker;
     static JButton signIn, changeButton;
     ImageIcon icon;
-    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An"};
+    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
     static JComboBox c1, c2;
 
     static boolean checkClickJCompoBox1, checkClickJCompoBox2;
