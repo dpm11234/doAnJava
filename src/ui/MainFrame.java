@@ -69,7 +69,7 @@ import ui.Panel.Main.ButtonShowCompoBox;
 public class MainFrame extends JFrame {
 
     private JFrame frame;
-    private JPanel body, slideBar, booking, logo, selectTicket, areaSelect, info, selectFrom, selectTo, loginFormPanel, mainPanel;
+    private JPanel body, slideBar, booking, logo, selectTicket, areaSelect, info, selectFrom, selectTo, loginFormPanel, mainPanel, ticketPanel;
     static JLabel lb1, lb2, textLogo, textInfo, textSelect, textSelectSpace, textSelectTo, textSelectSpaceTo, datePickerSpace, leftAlignDatePicker, rightAlignDatePicker;
     static JButton changeButton;
     ImageIcon icon;
@@ -80,7 +80,8 @@ public class MainFrame extends JFrame {
     private NavbarPanel navbarPanel;
     BackgroudMain bgMain;
     static boolean checkClickJCompoBox1, checkClickJCompoBox2;
-
+    int currentTo, currentFrom;
+    
     public MainFrame() {
         createAndShow();
     }
@@ -303,6 +304,8 @@ public class MainFrame extends JFrame {
         bgMain = new BackgroudMain();
         DatePicker datePicker = new DatePicker();
         mainPanel = new JPanel();
+        
+        ticketPanel = new JPanel();
         
         textLogo = new JLabel("<html><font style='font-size: 16px; font-family: \"Trebuchet MS\", Helvetica, sans-serif' color='white'> VÉ VI VU</font></html>", SwingConstants.CENTER);
         Font fontTextInfo = new Font("SansSerif", Font.BOLD, 14);
@@ -828,6 +831,11 @@ public class MainFrame extends JFrame {
 //                body.repaint();
 //            }
 //        });
+
+
+        
+        // Xử lý sự kiện
+
         loginPanel.getbtnLogin().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -837,6 +845,54 @@ public class MainFrame extends JFrame {
                 mainPanel.repaint();
             }
         });
+        
+        buttonLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.remove(loginFormPanel);
+                ticketPanel = new JPanel();
+                ticketPanel.add(new JButton("Test"));
+                mainPanel.add(ticketPanel);
+                mainPanel.validate();
+                mainPanel.repaint();
+            }
+        });
+        
+        currentFrom = c1.getSelectedIndex();
+        currentTo = c2.getSelectedIndex();
+        
+        c1.addActionListener(new ActionListener() {
+//            final int selected = c1.getSelectedIndex();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = c1.getSelectedIndex();
+                if(selected != currentFrom) {
+                    mainPanel.remove(bgMain);
+                    ticketPanel.add(new JButton("Test"));
+                    mainPanel.add(ticketPanel);
+                    mainPanel.validate();
+                    mainPanel.repaint();
+                    currentFrom = selected;
+                }
+            }
+            
+        });
+        
+        c2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selected = c2.getSelectedIndex();
+                if(selected != currentFrom) {
+                    mainPanel.remove(bgMain);
+                    ticketPanel.add(new JButton("Test"));
+                    mainPanel.add(ticketPanel);
+                    mainPanel.validate();
+                    mainPanel.repaint();
+                    currentTo = selected;
+                }
+            }
+        });
+        
         
         frame.setVisible(true);
         frame.add(body);
