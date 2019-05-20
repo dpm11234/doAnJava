@@ -62,14 +62,5 @@ public class LoginPanel extends JPanel {
     public JButton getbtnLogin() {
         return btnLogin;
     }
-    
-//    public void handleEvent() {
-//        btnLogin.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                frame.dispose();
-//                new LoginFrame();
-//            }
-//        });
-///    }
+
 }
