@@ -23,10 +23,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
-import javax.swing.plaf.ComboBoxUI;
-import javax.swing.plaf.basic.BasicArrowButton;
-import javax.swing.plaf.basic.BasicComboBoxUI;
-import javax.swing.plaf.metal.MetalComboBoxButton;
+//import javax.swing.plaf.ComboBoxUI;
+//import javax.swing.plaf.basic.BasicArrowButton;
+//import javax.swing.plaf.basic.BasicComboBoxUI;
+//import javax.swing.plaf.metal.MetalComboBoxButton;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -40,8 +40,25 @@ import javax.imageio.ImageIO;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Graphics;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Area;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.Border;
+import javax.swing.text.JTextComponent;
+import org.jdesktop.swingx.JXTextField;
 
 public class MainFrame extends JFrame {
 
@@ -99,13 +116,17 @@ public class MainFrame extends JFrame {
 
         private Image img;
         private Image scaled;
-
-        public ImagePanel(String img) {
-            this(new ImageIcon(img).getImage());
-        }
+        private int x = 0;
+        private int y = 0;
 
         public ImagePanel(Image img) {
             this.img = img;
+        }
+
+        public ImagePanel(Image img, int x, int y) {
+            this.img = img;
+            this.x = x;
+            this.y = y;
         }
 
         @Override
@@ -122,8 +143,11 @@ public class MainFrame extends JFrame {
 
         @Override
         public Dimension getPreferredSize() {
-            return img == null ? new Dimension(200, 200) : new Dimension(
-                    img.getWidth(this), img.getHeight(this));
+            if (x != 0 && y != 0) {
+                return img == null ? new Dimension(200, 200) : new Dimension(x, y);
+            } else {
+                return img == null ? new Dimension(200, 200) : new Dimension(img.getWidth(this), img.getHeight(this));
+            }
         }
 
         @Override
@@ -133,12 +157,152 @@ public class MainFrame extends JFrame {
         }
     }
 
+    class ImageButton extends JButton {
+
+        private static final long serialVersionUID = 1L;
+
+        private Image img;
+        private Image scaled;
+        private int x = 0;
+        private int y = 0;
+
+        public ImageButton(Image img) {
+            this.img = img;
+        }
+
+        public ImageButton(Image img, int x, int y) {
+            this.img = img;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public void invalidate() {
+            super.invalidate();
+            int width = getWidth();
+            int height = getHeight();
+            System.out.println(width);
+
+            if (width > 0 && height > 0) {
+                scaled = img.getScaledInstance(getWidth(), getHeight(),
+                        Image.SCALE_SMOOTH);
+            }
+        }
+
+        @Override
+        public Dimension getPreferredSize() {
+            if (x != 0 && y != 0) {
+                return img == null ? new Dimension(200, 200) : new Dimension(x, y);
+            } else {
+                return img == null ? new Dimension(200, 200) : new Dimension(img.getWidth(this), img.getHeight(this));
+            }
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            g.drawImage(scaled, 0, 0, null);
+        }
+    }
+
+    class RoundedCornerBorder extends AbstractBorder {
+
+        int r;
+
+        public RoundedCornerBorder(int r) {
+            this.r = r;
+        }
+        private final Color ALPHA_ZERO = new Color(0x0, true);
+
+        @Override
+        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//            System.out.println(this.r);
+            Shape border = getBorderShape(x, y, width - 1, height - 1, this.r);
+            g2.setPaint(ALPHA_ZERO);
+            Area corner = new Area(new Rectangle2D.Double(x, y, width, height));
+            corner.subtract(new Area(border));
+            g2.fill(corner);
+            g2.setPaint(new Color(230, 230, 230));
+            g2.draw(border);
+            g2.dispose();
+        }
+
+        public Shape getBorderShape(int x, int y, int w, int h, int r) {
+//            int r = 20; //h / 2;
+            return new RoundRectangle2D.Double(x, y, w, h, r, r);
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c) {
+            return new Insets(4, 8, 4, 8);
+        }
+
+        @Override
+        public Insets getBorderInsets(Component c, Insets insets) {
+            insets.set(4, 8, 4, 8);
+            return insets;
+        }
+    }
+
+    class JPanelInput extends JPanel {
+
+        int r;
+
+        JPanelInput(int r) {
+            this.r = r;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            if (!isOpaque() && getBorder() instanceof RoundedCornerBorder) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setPaint(getBackground());
+                g2.fill(((RoundedCornerBorder) getBorder()).getBorderShape(
+                        0, 0, getWidth() - 1, getHeight() - 1, this.r));
+                g2.dispose();
+                setBorder(new RoundedCornerBorder(this.r));
+            }
+            super.paintComponent(g);
+        }
+
+        @Override
+        public void updateUI() {
+            super.updateUI();
+            setOpaque(false);
+            setBorder(new RoundedCornerBorder(this.r));
+        }
+    }
+
+    public static boolean openWebpage(URI uri) {
+        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+            try {
+                desktop.browse(uri);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public static boolean openWebpage(URL url) {
+        try {
+            return openWebpage(url.toURI());
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public void createAndShow() {
-        
+
         frame = new JFrame("Vé Vi Vu");
         icon = new ImageIcon("images/iconb.png");
         frame.setIconImage(icon.getImage());
-        frame.setSize(900, 500);
+        frame.setSize(1200, 600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -426,38 +590,309 @@ public class MainFrame extends JFrame {
 //        thumb.setIcon(new ImageIcon(new ImageIcon("images/background.png").getImage().getScaledInstance(630, 440, Image.SCALE_DEFAULT)));
         bgMain = new JPanel(new BorderLayout());
 
+//        try {
+//            Image img = null;
+//            img = ImageIO.read(new File("images/background.png"));
+//            JPanel BgHello = new ImagePanel(img);
+//            bgMain.add(BgHello);
+//            System.out.println(bgMain.getWidth() - 1);
+//        } catch (IOException | HeadlessException exp) {
+//            exp.printStackTrace();
+//        }
+        JPanel loginBg = new JPanel();
         try {
-            Image img = null;
-            img = ImageIO.read(new File("images/background.png"));
-            bgMain.add(new ImagePanel(img));
-            System.out.println(bgMain.getWidth() - 1);
+            Image imgLogin = null;
+            imgLogin = ImageIO.read(new File("images/loginbackground.png"));
+            loginBg = new ImagePanel(imgLogin);
+            loginBg.setLayout(new GridLayout(1, 0));
+            bgMain.add(loginBg);
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }
-//        thumb.getWidth();
-//            bgMain.add(thumb);
 
-            booking.add(navbar, BorderLayout.NORTH);
-            navbar.add(signInPanel, BorderLayout.EAST);
-            booking.add(bgMain, BorderLayout.CENTER);
+        JPanel loginFormLayout = new JPanel(new GridBagLayout());
+        loginFormLayout.setPreferredSize(new Dimension(230, 300));
+        loginFormLayout.setBackground(new Color(255, 255, 255));
 
-            slideBar.add(logo, BorderLayout.NORTH);
-            slideBar.add(selectTicket, BorderLayout.CENTER);
-            slideBar.add(info, BorderLayout.SOUTH);
+        JPanel loginForm = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 15));
+        loginForm.setPreferredSize(new Dimension(230, 300));
+        loginForm.setBackground(new Color(255, 255, 255));
 
-            body.add(slideBar, BorderLayout.WEST);
-            body.add(booking, BorderLayout.CENTER);
+        // Tạo JTextField + Custom Style
+        JTextField user = new JTextField(26);
+        MatteBorder borderInputLogin = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
+        user.setBorder(borderInputLogin);
+        user.setText("Tài Khoản");
+        user.setForeground(new Color(180, 180, 180));
+        Font fontInputLogin = new Font("SansSerif", Font.BOLD, 14);
+        user.setFont(fontInputLogin);
+        user.setPreferredSize(new Dimension(230, 40));
+        user.setBackground(new Color(230, 230, 230));
 
-            frame.setVisible(true);
-            frame.add(body);
+        // Tạo placeholder cho JTextField
+        // Đưa con trỏ về đầu JTextField khi Focus
+        user.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                Object source = e.getSource();
+                if (source instanceof JTextComponent) {
+                    JTextComponent comp = (JTextComponent) source;
+                    comp.setCaretPosition(0);
+                }
+            }
+        });
 
-//            JFrame frame = new JFrame("Testing");
-//            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            frame.setLayout(new BorderLayout());
-//            frame.add(new ImagePanel(img));
-//            frame.pack();
-//            frame.setLocationRelativeTo(null);
-//            frame.setVisible(true);
+        // Ẩn hiện placeholder
+        user.addKeyListener(new KeyAdapter() {
+            int countKey = 0;
+            boolean checkKey = false;
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if ("".equals(user.getText())) {
+
+                } else {
+                    if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                        System.out.println(e.getKeyCode());
+                        checkKey = true;
+                    }
+                }
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if ("".equals(user.getText())) {
+                    user.setText("Tài Khoản");
+                    user.setForeground(new Color(192, 192, 192));
+                    Object source = e.getSource();
+                    if (source instanceof JTextComponent) {
+                        JTextComponent comp = (JTextComponent) source;
+                        comp.setCaretPosition(0);
+                    }
+                    countKey = 0;
+                    checkKey = false;
+                } else {
+                    if (!checkKey) {
+                        if (countKey == 0) {
+                            user.setText("");
+                            user.setForeground(new Color(104, 104, 104));
+                            countKey = 1;
+                        }
+                    } else {
+                        checkKey = false;
+                    }
+                }
+            }
+        });
+
+        // Block (khóa) con trỏ khi hiện placeholder
+        user.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if ("Tài Khoản".equals(user.getText())) {
+                    Object source = e.getSource();
+                    if (source instanceof JTextComponent) {
+                        JTextComponent comp = (JTextComponent) source;
+                        comp.setCaretPosition(0);
+                    }
+                }
+            }
+        });
+        // End placeholder
+
+        // Tạo icon cho JTextField
+        JPanel inputUser = new JPanelInput(25);
+        inputUser.setLayout(new BorderLayout());
+        inputUser.setBackground(new Color(230, 230, 230));
+        inputUser.setPreferredSize(new Dimension(230, 40));
+        JLabel imageUser = new JLabel();
+        imageUser.setPreferredSize(new Dimension(32, 40));
+        imageUser.setIcon(new ImageIcon(new ImageIcon("images/user.png").getImage().getScaledInstance(22, 15, Image.SCALE_DEFAULT)));
+        inputUser.add(imageUser, BorderLayout.WEST);
+        inputUser.add(user, BorderLayout.CENTER);
+
+        // Tạo JTextField + Custom Style
+        JPasswordField textPass = new JPasswordField();
+        MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
+        textPass.setBorder(borderInputLogin);
+        textPass.setText("Mật Khẩu");
+        textPass.setForeground(new Color(180, 180, 180));
+        Font fontInputPass = new Font("SansSerif", Font.BOLD, 14);
+        textPass.setFont(fontInputLogin);
+        textPass.setPreferredSize(new Dimension(230, 40));
+        textPass.setBackground(new Color(230, 230, 230));
+
+        // Tạo placeholder cho JTextField
+        // Đưa con trỏ về đầu JTextField khi Focus
+        textPass.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                Object source = e.getSource();
+                if (source instanceof JTextComponent) {
+                    JTextComponent comp = (JTextComponent) source;
+                    comp.setCaretPosition(0);
+                }
+            }
+        });
+
+        // Ẩn hiện placeholder
+        textPass.addKeyListener(new KeyAdapter() {
+            int countKey = 0;
+            boolean checkKey = false;
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if ("".equals(textPass.getText())) {
+
+                } else {
+                    if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+                        System.out.println(e.getKeyCode());
+                        checkKey = true;
+                    }
+                }
+            }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if ("".equals(textPass.getText())) {
+                    textPass.setText("Mật Khẩu");
+                    textPass.setForeground(new Color(192, 192, 192));
+                    Object source = e.getSource();
+                    if (source instanceof JTextComponent) {
+                        JTextComponent comp = (JTextComponent) source;
+                        comp.setCaretPosition(0);
+                    }
+                    countKey = 0;
+                    checkKey = false;
+                } else {
+                    if (!checkKey) {
+                        if (countKey == 0) {
+                            textPass.setText("");
+                            textPass.setForeground(new Color(104, 104, 104));
+                            countKey = 1;
+                        }
+                    } else {
+                        checkKey = false;
+                    }
+                }
+            }
+        });
+
+        // Block (khóa) con trỏ khi hiện placeholder
+        textPass.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if ("Mật Khẩu".equals(textPass.getText())) {
+                    Object source = e.getSource();
+                    if (source instanceof JTextComponent) {
+                        JTextComponent comp = (JTextComponent) source;
+                        comp.setCaretPosition(0);
+                    }
+                }
+            }
+        });
+        // End placeholder
+
+        // Tạo icon cho JTextField
+        JPanel inputPass = new JPanelInput(25);
+        inputPass.setLayout(new BorderLayout());
+        inputPass.setBackground(new Color(230, 230, 230));
+        inputPass.setPreferredSize(new Dimension(230, 40));
+        JLabel imagePass = new JLabel();
+        imagePass.setPreferredSize(new Dimension(34, 40));
+        imagePass.setIcon(new ImageIcon(new ImageIcon("images/pass2.png").getImage().getScaledInstance(28, 16, Image.SCALE_DEFAULT)));
+        inputPass.add(imagePass, BorderLayout.WEST);
+        inputPass.add(textPass, BorderLayout.CENTER);
+
+        // Title Login
+        JLabel titleLogin = new JLabel("Đăng Nhập Quản Trị");
+        Font fontTitleLogin = new Font("SansSerif", Font.BOLD, 20);
+        titleLogin.setFont(fontTitleLogin);
+        titleLogin.setVerticalAlignment(JLabel.CENTER);
+        titleLogin.setHorizontalAlignment(JLabel.CENTER);
+        titleLogin.setPreferredSize(new Dimension(230, 40));
+
+        // Button Login
+        JPanel buttonLoginPanel = new JPanel(new GridBagLayout());
+        try {
+            Image imgButtonLogin = null;
+            imgButtonLogin = ImageIO.read(new File("images/buttonlogin.png"));
+            buttonLoginPanel = new ImagePanel(imgButtonLogin, 230, 40);
+            buttonLoginPanel.setPreferredSize(new Dimension(230, 40));
+        } catch (IOException | HeadlessException exp) {
+            exp.printStackTrace();
+        }
+
+        JButton buttonLogin = new JButton("Đăng Nhập");
+        buttonLogin.setPreferredSize(new Dimension(230, 30));
+        buttonLogin.setBackground(new Color(0, 0, 0, 0));
+        buttonLogin.setForeground(Color.white);
+        buttonLogin.setRolloverEnabled(false);
+        buttonLogin.setBorderPainted(false);
+        buttonLogin.setFocusPainted(false);
+        buttonLogin.setContentAreaFilled(false);
+        buttonLoginPanel.add(buttonLogin);
+        buttonLoginPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        // JLable đăng ký
+        JLabel regLinkSpace = new JLabel("");
+        regLinkSpace.setPreferredSize(new Dimension(230, 20));
+        
+        
+        JLabel regLink = new JLabel("Đăng ký trở thành nhà xe  →");
+        Font fontRegLink = new Font("SansSerif", Font.ITALIC, 14);
+        regLink.setFont(fontRegLink);
+        regLink.setPreferredSize(new Dimension(230, 20));
+        regLink.setForeground(new Color(26, 126, 218));
+        regLink.setVerticalAlignment(JLabel.CENTER);
+        regLink.setHorizontalAlignment(JLabel.CENTER);
+        regLink.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        regLink.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    Desktop.getDesktop().browse(new URI("https://www.google.com"));
+                } catch (IOException | URISyntaxException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        // Thêm input JTextField vào form
+        loginForm.add(titleLogin);
+        loginForm.add(inputUser);
+        loginForm.add(inputPass);
+        loginForm.add(buttonLoginPanel);
+        loginForm.add(regLinkSpace);
+        loginForm.add(regLink);
+
+        JPanel loginAlign = new JPanel(new BorderLayout());
+        JPanel loginAlignSpace = new JPanel(new BorderLayout());
+        loginAlignSpace.setBackground(new Color(255, 255, 255));
+        JLabel loginSpaceLeft = new JLabel();
+        loginSpaceLeft.setPreferredSize(new Dimension(120, 40));
+        loginAlignSpace.add(loginSpaceLeft, BorderLayout.WEST);
+        loginAlignSpace.add(loginForm, BorderLayout.CENTER);
+
+        loginFormLayout.add(loginAlignSpace);
+
+        JPanel loginSpace = new JPanel(new BorderLayout());
+        loginSpace.setBackground(new Color(200, 12, 223, 0));
+        loginBg.add(loginFormLayout);
+        loginBg.add(loginSpace);
+
+        booking.add(navbar, BorderLayout.NORTH);
+        navbar.add(signInPanel, BorderLayout.EAST);
+        booking.add(bgMain, BorderLayout.CENTER);
+
+        slideBar.add(logo, BorderLayout.NORTH);
+        slideBar.add(selectTicket, BorderLayout.CENTER);
+        slideBar.add(info, BorderLayout.SOUTH);
+
+        body.add(slideBar, BorderLayout.WEST);
+        body.add(booking, BorderLayout.CENTER);
+
+        frame.setVisible(true);
+        frame.add(body);
     }
 
     public void handleEvent() {
