@@ -8,14 +8,16 @@ package ui.Panel.Main;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
  *
  * @author Duong Mau
  */
-public class ImageButton extends JPanel {
-    private static final long serialVersionUID = 1L;
+public class ImageButton extends JButton {
+
+        private static final long serialVersionUID = 1L;
 
         private Image img;
         private Image scaled;
@@ -59,4 +61,4 @@ public class ImageButton extends JPanel {
             super.paintComponent(g);
             g.drawImage(scaled, 0, 0, null);
         }
-}
+    }

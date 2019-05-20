@@ -13,11 +13,11 @@ import javax.swing.border.MatteBorder;
  *
  * @author Duong Mau
  */
-public class LoginPanel extends JPanel {
+public class BackLoginPanel extends JPanel {
 
     final MatteBorder borderSignIn;
     private JButton btnLogin, btnBackLogin;
-    public LoginPanel() {
+    public BackLoginPanel() {
         borderSignIn = new MatteBorder(0, 0, 0, 0, new Color(227, 228, 231));
         borderSignIn.getBaseline(this, 1, 40);
         
@@ -29,7 +29,7 @@ public class LoginPanel extends JPanel {
     }
     
     public void addControls() {
-        btnLogin = new JButton("Đăng nhập");
+        btnLogin = new JButton("Quay Về");
         
         btnLogin.setBackground(new Color(0, 115, 211));
         btnLogin.setForeground(Color.white);
@@ -43,33 +43,7 @@ public class LoginPanel extends JPanel {
         this.add(btnLogin);
     }
     
-    public void addBack() {
-        btnBackLogin = new JButton("Quay Về");
-        
-        btnBackLogin.setBackground(new Color(0, 115, 211));
-        btnBackLogin.setForeground(Color.white);
-        btnBackLogin.setRolloverEnabled(false);
-        btnBackLogin.setBorderPainted(false);
-        btnBackLogin.setFocusPainted(false);
-        btnBackLogin.setIcon(new ImageIcon(new ImageIcon("images/login2.png").getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT)));
-        btnBackLogin.setIconTextGap(10);
-        btnBackLogin.setPreferredSize(new Dimension(120, 30));
-        
-        this.remove(btnLogin);
-        this.add(btnBackLogin);
-    }
-    
     public JButton getbtnLogin() {
         return btnLogin;
     }
-    
-//    public void handleEvent() {
-//        btnLogin.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent ae) {
-//                frame.dispose();
-//                new LoginFrame();
-//            }
-//        });
-///    }
 }

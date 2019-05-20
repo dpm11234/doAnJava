@@ -23,10 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
-//import javax.swing.plaf.ComboBoxUI;
-//import javax.swing.plaf.basic.BasicArrowButton;
-//import javax.swing.plaf.basic.BasicComboBoxUI;
-//import javax.swing.plaf.metal.MetalComboBoxButton;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -58,27 +54,23 @@ import java.net.URISyntaxException;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.text.JTextComponent;
-import org.jdesktop.swingx.JXTextField;
-import ui.Panel.Main.BackgroudMain;
 
+// import UI
+
+import ui.Panel.Main.BackgroudMain;
 import ui.Panel.Main.LoginPanel;
 import ui.Panel.Main.NavbarPanel;
 import ui.Panel.Main.DatePicker;
 import ui.Panel.Main.ButtonShowCompoBox;
+import ui.Panel.Main.ImageButton;
+import ui.Panel.Main.ImagePanel;
+import ui.Panel.Main.JPanelInput;
+import ui.Panel.Main.BackLoginPanel;
 
 public class MainFrame extends JFrame {
 
     private JFrame frame;
-    private JPanel body, slideBar, booking, logo, selectTicket, areaSelect, info, selectFrom, selectTo, loginFormPanel, mainPanel, ticketPanel;
-    static JLabel lb1, lb2, textLogo, textInfo, textSelect, textSelectSpace, textSelectTo, textSelectSpaceTo, datePickerSpace, leftAlignDatePicker, rightAlignDatePicker;
-    static JButton changeButton;
-    ImageIcon icon;
     String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
-    static JComboBox c1, c2;
-
-    private LoginPanel loginPanel;
-    private NavbarPanel navbarPanel;
-    BackgroudMain bgMain;
     static boolean checkClickJCompoBox1, checkClickJCompoBox2;
     int currentTo, currentFrom;
     
@@ -86,239 +78,40 @@ public class MainFrame extends JFrame {
         createAndShow();
     }
 
-  
-
     public void removeArrowCompoBox(Component[] component) {
         for (int i = 0; i < component.length; i++) {
             if (component[i] instanceof JButton) {
                 JButton button = (JButton) component[i];
                 button.setPreferredSize(new Dimension(0, 0));
                 button.setVisible(false);
-//                button.setIcon(new ImageIcon(new ImageIcon("images/login2.png").getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT)));
-            }
-
-        }
-    }
-
-    class ImagePanel extends JPanel {
-
-        private static final long serialVersionUID = 1L;
-
-        private Image img;
-        private Image scaled;
-        private int x = 0;
-        private int y = 0;
-
-        public ImagePanel(Image img) {
-            this.img = img;
-        }
-
-        public ImagePanel(Image img, int x, int y) {
-            this.img = img;
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public void invalidate() {
-            super.invalidate();
-            int width = getWidth();
-            int height = getHeight();
-
-            if (width > 0 && height > 0) {
-                scaled = img.getScaledInstance(getWidth(), getHeight(),
-                        Image.SCALE_SMOOTH);
             }
         }
-
-        @Override
-        public Dimension getPreferredSize() {
-            if (x != 0 && y != 0) {
-                return img == null ? new Dimension(200, 200) : new Dimension(x, y);
-            } else {
-                return img == null ? new Dimension(200, 200) : new Dimension(img.getWidth(this), img.getHeight(this));
-            }
-        }
-
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(scaled, 0, 0, null);
-        }
-    }
-
-    class ImageButton extends JButton {
-
-        private static final long serialVersionUID = 1L;
-
-        private Image img;
-        private Image scaled;
-        private int x = 0;
-        private int y = 0;
-
-        public ImageButton(Image img) {
-<<<<<<< HEAD
-=======
-            this.img = img;
-        }
-
-        public ImageButton(Image img, int x, int y) {
->>>>>>> a85794317e2777d43b4ec467457c4aa57f6c4ef5
-            this.img = img;
-            this.x = x;
-            this.y = y;
-        }
-
-        public ImageButton(Image img, int x, int y) {
-            this.img = img;
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public void invalidate() {
-            super.invalidate();
-            int width = getWidth();
-            int height = getHeight();
-            System.out.println(width);
-
-            if (width > 0 && height > 0) {
-                scaled = img.getScaledInstance(getWidth(), getHeight(),
-                        Image.SCALE_SMOOTH);
-            }
-        }
-
-        @Override
-        public Dimension getPreferredSize() {
-            if (x != 0 && y != 0) {
-                return img == null ? new Dimension(200, 200) : new Dimension(x, y);
-            } else {
-                return img == null ? new Dimension(200, 200) : new Dimension(img.getWidth(this), img.getHeight(this));
-            }
-        }
-
-        @Override
-        public void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.drawImage(scaled, 0, 0, null);
-        }
-    }
-
-    class RoundedCornerBorder extends AbstractBorder {
-
-        int r;
-
-        public RoundedCornerBorder(int r) {
-            this.r = r;
-        }
-        private final Color ALPHA_ZERO = new Color(0x0, true);
-
-        @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            Graphics2D g2 = (Graphics2D) g.create();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//            System.out.println(this.r);
-            Shape border = getBorderShape(x, y, width - 1, height - 1, this.r);
-            g2.setPaint(ALPHA_ZERO);
-            Area corner = new Area(new Rectangle2D.Double(x, y, width, height));
-            corner.subtract(new Area(border));
-            g2.fill(corner);
-            g2.setPaint(new Color(230, 230, 230));
-            g2.draw(border);
-            g2.dispose();
-        }
-
-        public Shape getBorderShape(int x, int y, int w, int h, int r) {
-//            int r = 20; //h / 2;
-            return new RoundRectangle2D.Double(x, y, w, h, r, r);
-        }
-
-        @Override
-        public Insets getBorderInsets(Component c) {
-            return new Insets(4, 8, 4, 8);
-        }
-
-        @Override
-        public Insets getBorderInsets(Component c, Insets insets) {
-            insets.set(4, 8, 4, 8);
-            return insets;
-        }
-    }
-
-    class JPanelInput extends JPanel {
-
-        int r;
-
-        JPanelInput(int r) {
-            this.r = r;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            if (!isOpaque() && getBorder() instanceof RoundedCornerBorder) {
-                Graphics2D g2 = (Graphics2D) g.create();
-                g2.setPaint(getBackground());
-                g2.fill(((RoundedCornerBorder) getBorder()).getBorderShape(
-                        0, 0, getWidth() - 1, getHeight() - 1, this.r));
-                g2.dispose();
-                setBorder(new RoundedCornerBorder(this.r));
-            }
-            super.paintComponent(g);
-        }
-
-        @Override
-        public void updateUI() {
-            super.updateUI();
-            setOpaque(false);
-            setBorder(new RoundedCornerBorder(this.r));
-        }
-    }
-
-    public static boolean openWebpage(URI uri) {
-        Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
-        if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
-            try {
-                desktop.browse(uri);
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
-    }
-
-    public static boolean openWebpage(URL url) {
-        try {
-            return openWebpage(url.toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 
     public void createAndShow() {
 
         frame = new JFrame("Vé Vi Vu");
-        icon = new ImageIcon("images/iconb.png");
+        ImageIcon icon = new ImageIcon("images/iconb.png");
         frame.setIconImage(icon.getImage());
         frame.setSize(1200, 600);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        lb1 = new JLabel("Panel 1");
-        lb2 = new JLabel("Panel 2");
+        JLabel lb1 = new JLabel("Panel 1");
+        JLabel lb2 = new JLabel("Panel 2");
         
-        loginPanel = new LoginPanel();
-        navbarPanel = new NavbarPanel();
-        bgMain = new BackgroudMain();
+        LoginPanel loginPanel = new LoginPanel();
+        BackLoginPanel loginBackPanel = new BackLoginPanel();
+        NavbarPanel navbarPanel = new NavbarPanel();
+        BackgroudMain bgMain = new BackgroudMain();
         DatePicker datePicker = new DatePicker();
-        mainPanel = new JPanel();
+        JPanel mainPanel = new JPanel();
         
-        ticketPanel = new JPanel();
+        JPanel ticketPanel = new JPanel();
         
-        textLogo = new JLabel("<html><font style='font-size: 16px; font-family: \"Trebuchet MS\", Helvetica, sans-serif' color='white'> VÉ VI VU</font></html>", SwingConstants.CENTER);
+        JLabel textLogo = new JLabel("<html><font style='font-size: 16px; font-family: \"Trebuchet MS\", Helvetica, sans-serif' color='white'> VÉ VI VU</font></html>", SwingConstants.CENTER);
         Font fontTextInfo = new Font("SansSerif", Font.BOLD, 14);
-        textInfo = new JLabel("© Phát triển bởi Gocodee!");
+        JLabel textInfo = new JLabel("© Phát triển bởi Gocodee!");
         textInfo.setFont(fontTextInfo);
         textInfo.setForeground(new Color(9, 114, 201));
         textInfo.setPreferredSize(new Dimension(270, 30));
@@ -331,31 +124,31 @@ public class MainFrame extends JFrame {
         MatteBorder border = new MatteBorder(0, 0, 1, 0, new Color(35, 126, 212));
         MatteBorder borderNav = new MatteBorder(0, 0, 1, 0, new Color(227, 228, 231));
         MatteBorder borderSignIn = new MatteBorder(0, 0, 0, 0, new Color(227, 228, 231));
-        logo = new JPanel();
+        JPanel logo = new JPanel();
         logo.setPreferredSize(new Dimension(270, 60));
         textLogo.setPreferredSize(new Dimension(220, 50));
         textLogo.setVerticalAlignment(JLabel.CENTER);
         logo.setBorder(border);
-        selectTicket = new JPanel(new BorderLayout());
-        info = new JPanel();
+        JPanel selectTicket = new JPanel(new BorderLayout());
+        JPanel info = new JPanel();
         logo.setBackground(new Color(0, 115, 211));
         selectTicket.setBackground(new Color(9, 114, 201));
         info.setBackground(new Color(255, 255, 255));
         info.setPreferredSize(new Dimension(270, 40));
 
-        selectFrom = new JPanel(new BorderLayout());
-        selectTo = new JPanel(new BorderLayout());
-        slideBar = new JPanel(new BorderLayout());
-        booking = new JPanel(new BorderLayout());
-        body = new JPanel(new BorderLayout());
-        areaSelect = new JPanel(new GridLayout(0, 1));
+        JPanel selectFrom = new JPanel(new BorderLayout());
+        JPanel selectTo = new JPanel(new BorderLayout());
+        JPanel slideBar = new JPanel(new BorderLayout());
+        JPanel booking = new JPanel(new BorderLayout());
+        JPanel body = new JPanel(new BorderLayout());
+        JPanel areaSelect = new JPanel(new GridLayout(0, 1));
 
 
         MatteBorder borderPicker = new MatteBorder(0, 0, 0, 0, new Color(26, 126, 218));
 
 
-        c1 = new JComboBox(list);
-        c2 = new JComboBox(list);
+        JComboBox c1 = new JComboBox(list);
+        JComboBox c2 = new JComboBox(list);
 
         selectFrom.setBackground(new Color(26, 126, 218));
         selectTo.setBackground(new Color(26, 126, 218));
@@ -367,18 +160,18 @@ public class MainFrame extends JFrame {
         info.add(textInfo);
 
 
-        textSelect = new JLabel("<html><font color='#5898DD'>Từ</font></html>");
+        JLabel textSelect = new JLabel("<html><font color='#5898DD'>Từ</font></html>");
         textSelect.setPreferredSize(new Dimension(50, 50));
         textSelect.setHorizontalAlignment(JLabel.CENTER);
 
-        textSelectSpace = new JLabel("");
+        JLabel textSelectSpace = new JLabel("");
         textSelectSpace.setPreferredSize(new Dimension(20, 50));
 
-        textSelectTo = new JLabel("<html><font color='#5898DD'>Đến</font></html>");
+        JLabel textSelectTo = new JLabel("<html><font color='#5898DD'>Đến</font></html>");
         textSelectTo.setPreferredSize(new Dimension(50, 50));
         textSelectTo.setHorizontalAlignment(JLabel.CENTER);
 
-        textSelectSpaceTo = new JLabel("");
+        JLabel textSelectSpaceTo = new JLabel("");
         textSelectSpaceTo.setPreferredSize(new Dimension(20, 50));
 
         c1.setPreferredSize(new Dimension(90, 50));
@@ -812,7 +605,7 @@ public class MainFrame extends JFrame {
         loginBg.add(loginFormLayout);
         loginBg.add(loginSpace);
         
-        loginFormPanel = new JPanel();
+        JPanel loginFormPanel = new JPanel();
         loginFormPanel.setLayout(new BorderLayout());
         
         loginFormPanel.add(loginBg, BorderLayout.CENTER);
@@ -849,9 +642,30 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainPanel.remove(bgMain);
+                mainPanel.remove(ticketPanel);
+                navbarPanel.remove(loginPanel);
+                navbarPanel.add(loginBackPanel, BorderLayout.EAST);
                 mainPanel.add(loginFormPanel, BorderLayout.CENTER);
                 mainPanel.validate();
                 mainPanel.repaint();
+                navbarPanel.validate();
+                navbarPanel.repaint();
+            }
+        });
+        
+        loginBackPanel.getbtnLogin().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.remove(loginFormPanel);
+                mainPanel.remove(ticketPanel);
+                navbarPanel.remove(loginBackPanel);
+                BackLoginPanel loginBackPanel = new BackLoginPanel();
+                navbarPanel.add(loginPanel, BorderLayout.EAST);
+                mainPanel.add(bgMain, BorderLayout.CENTER);
+                mainPanel.validate();
+                mainPanel.repaint();
+                navbarPanel.validate();
+                navbarPanel.repaint();
             }
         });
         
@@ -859,7 +673,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainPanel.remove(loginFormPanel);
-                ticketPanel = new JPanel();
+                JPanel ticketPanel = new JPanel();
                 ticketPanel.add(new JButton("Test"));
                 mainPanel.add(ticketPanel);
                 mainPanel.validate();
