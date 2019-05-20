@@ -54,6 +54,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.text.JTextComponent;
@@ -681,7 +682,7 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 if(login()) {
                     mainPanel.remove(loginFormPanel);
-                    ticketPanel = new JPanel();
+                    JPanel ticketPanel = new JPanel();
                     ticketPanel.add(new JButton("Test"));
                     mainPanel.add(ticketPanel);
                     mainPanel.validate();
