@@ -27,10 +27,14 @@ import javax.swing.border.MatteBorder;
 //import javax.swing.plaf.basic.BasicArrowButton;
 //import javax.swing.plaf.basic.BasicComboBoxUI;
 //import javax.swing.plaf.metal.MetalComboBoxButton;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 import javax.swing.JFormattedTextField.AbstractFormatter;
+
+import bus.NhaXeBUS;
+import dto.NhaXeDTO;
 import org.jdatepicker.impl.*;
 import org.jdatepicker.util.*;
 import org.jdatepicker.*;
@@ -81,7 +85,9 @@ public class MainFrame extends JFrame {
     BackgroudMain bgMain;
     static boolean checkClickJCompoBox1, checkClickJCompoBox2;
     int currentTo, currentFrom;
-    
+
+    private JTextField user;
+    private JPasswordField textPass;
     public MainFrame() {
         createAndShow();
     }
@@ -542,7 +548,8 @@ public class MainFrame extends JFrame {
         loginForm.setBackground(new Color(255, 255, 255));
 
         // Tạo JTextField + Custom Style
-        JTextField user = new JTextField(26);
+//        JTextField user = new JTextField(26);
+        user = new JTextField(26);
         MatteBorder borderInputLogin = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         user.setBorder(borderInputLogin);
         user.setText("Tài Khoản");
@@ -634,7 +641,8 @@ public class MainFrame extends JFrame {
         inputUser.add(user, BorderLayout.CENTER);
 
         // Tạo JTextField + Custom Style
-        JPasswordField textPass = new JPasswordField();
+//        JPasswordField textPass = new JPasswordField();
+        textPass = new JPasswordField();
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         textPass.setBorder(borderInputLogin);
         textPass.setText("Mật Khẩu");
@@ -840,6 +848,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainPanel.remove(bgMain);
+                mainPanel.remove(ticketPanel);
                 mainPanel.add(loginFormPanel, BorderLayout.CENTER);
                 mainPanel.validate();
                 mainPanel.repaint();
@@ -849,12 +858,16 @@ public class MainFrame extends JFrame {
         buttonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainPanel.remove(loginFormPanel);
-                ticketPanel = new JPanel();
-                ticketPanel.add(new JButton("Test"));
-                mainPanel.add(ticketPanel);
-                mainPanel.validate();
-                mainPanel.repaint();
+                if(login()) {
+                    mainPanel.remove(loginFormPanel);
+                    ticketPanel = new JPanel();
+                    ticketPanel.add(new JButton("Test"));
+                    mainPanel.add(ticketPanel);
+                    mainPanel.validate();
+                    mainPanel.repaint();
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Tài khoản hoặc mật khẩu không đúng");
+                }
             }
         });
         
@@ -897,8 +910,28 @@ public class MainFrame extends JFrame {
         frame.setVisible(true);
         frame.add(body);
     }
-    
-    
+
+    public boolean login() {
+
+        ArrayList<NhaXeDTO> dsNhaXe = new ArrayList<>();
+        dsNhaXe = NhaXeBUS.nhaXeAll();
+
+        NhaXeDTO nhaXe;
+
+        for(NhaXeDTO nx : dsNhaXe) {
+            nhaXe = nx;
+            if(nhaXe.getUsername().equals(user.getText())) {
+                System.out.println("Dung user name");
+                System.out.println("Pass: " + textPass.getText());
+                if(nhaXe.getPassword().equals(textPass.getText())) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     public static void main(String[] args) {
         new MainFrame();
