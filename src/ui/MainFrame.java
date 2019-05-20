@@ -163,16 +163,7 @@ public class MainFrame extends JFrame {
         private int y = 0;
 
         public ImageButton(Image img) {
-<<<<<<< HEAD
-=======
             this.img = img;
-        }
-
-        public ImageButton(Image img, int x, int y) {
->>>>>>> a85794317e2777d43b4ec467457c4aa57f6c4ef5
-            this.img = img;
-            this.x = x;
-            this.y = y;
         }
 
         public ImageButton(Image img, int x, int y) {
@@ -180,6 +171,12 @@ public class MainFrame extends JFrame {
             this.x = x;
             this.y = y;
         }
+
+//        public ImageButton(Image img, int x, int y) {
+//            this.img = img;
+//            this.x = x;
+//            this.y = y;
+//        }
 
         @Override
         public void invalidate() {
