@@ -1,6 +1,16 @@
 package dto;
 
+import java.io.FileInputStream;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+import java.util.Base64;
+import javax.crypto.Cipher;
+
 public class NhaXeDTO {
+
     private String maNX;
     private String tenNX;
     private String diaChi;
@@ -41,7 +51,7 @@ public class NhaXeDTO {
     }
 
     public String getPassword() {
-        return password;
+        return decrypt(password);
     }
 
     public void setPassword(String password) {
@@ -54,5 +64,57 @@ public class NhaXeDTO {
 
     public void setSoTuyen(int soTuyen) {
         this.soTuyen = soTuyen;
+    }
+
+    public static String encrypt(String str) {
+        String temp = null;
+        try {
+            // Đọc file chứa public key
+            FileInputStream fis = new FileInputStream("key/publicKey.rsa");
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            fis.close();
+
+            // Tạo public key
+            X509EncodedKeySpec spec = new X509EncodedKeySpec(b);
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            PublicKey pubKey = factory.generatePublic(spec);
+
+            // Mã hoá dữ liệu
+            Cipher c = Cipher.getInstance("RSA");
+            c.init(Cipher.ENCRYPT_MODE, pubKey);
+            byte encryptOut[] = c.doFinal(str.getBytes());
+            temp = Base64.getEncoder().encodeToString(encryptOut);
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return temp;
+    }
+
+    public static String decrypt(String str) {
+        String temp = null;
+        try {
+            // Đọc file chứa private key
+            FileInputStream fis = new FileInputStream("key/privateKey.rsa");
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+            fis.close();
+
+            // Tạo private key
+            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(b);
+            KeyFactory factory = KeyFactory.getInstance("RSA");
+            PrivateKey priKey = factory.generatePrivate(spec);
+
+            // Giải mã dữ liệu
+            Cipher c = Cipher.getInstance("RSA");
+            c.init(Cipher.DECRYPT_MODE, priKey);
+            byte decryptOut[] = c.doFinal(Base64.getDecoder().decode(
+                    str));
+            temp = new String(decryptOut);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return temp;
     }
 }

@@ -364,15 +364,18 @@ public class Login extends JPanel {
         dsNhaXe = NhaXeBUS.nhaXeAll();
 
         NhaXeDTO nhaXe;
-
         for(NhaXeDTO nx : dsNhaXe) {
             nhaXe = nx;
             if(nhaXe.getUsername().equals(user.getText())) {
                 System.out.println("Dung user name");
                 System.out.println("Pass: " + textPass.getText());
                 if(nhaXe.getPassword().equals(textPass.getText())) {
+                    System.out.println("Pass dung!");
                     return true;
                 }
+                else{
+                    System.out.println("Pass sai!"); 
+               }
             }
         }
 
