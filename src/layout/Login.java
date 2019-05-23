@@ -379,15 +379,6 @@ public class Login extends JPanel {
             }
         });
 
-        btnBackLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                areaPanel.remove(dashboard);
-                areaPanel.validate();
-                areaPanel.repaint();
-            }
-        });
-
     }
     
     public boolean login() {

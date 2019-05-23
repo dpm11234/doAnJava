@@ -14,7 +14,7 @@ import static util.Session.ssMaNX;
 public class NavLogout extends JPanel {
 
     final MatteBorder borderLogout;
-    static JButton btnLogout;
+//    static JButton btnLogout;
 
     public NavLogout() {
         borderLogout = new MatteBorder(0, 0, 0, 0, new Color(227, 228, 231));
@@ -27,30 +27,30 @@ public class NavLogout extends JPanel {
     }
 
     public void addControls() {
-        btnLogout = new JButton("Đăng xuất");
+//        btnLogout = new JButton("Đăng xuất");
+//
+//        btnLogout.setBackground(new Color(0, 115, 211));
+//        btnLogout.setForeground(Color.white);
+//        btnLogout.setRolloverEnabled(false);
+//        btnLogout.setBorderPainted(false);
+//        btnLogout.setFocusPainted(false);
+//        btnLogout.setIcon(new ImageIcon(new ImageIcon("images/back.png").getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT)));
+//        btnLogout.setIconTextGap(10);
+//        btnLogout.setPreferredSize(new Dimension(120, 30));
 
-        btnLogout.setBackground(new Color(0, 115, 211));
-        btnLogout.setForeground(Color.white);
-        btnLogout.setRolloverEnabled(false);
-        btnLogout.setBorderPainted(false);
-        btnLogout.setFocusPainted(false);
-        btnLogout.setIcon(new ImageIcon(new ImageIcon("images/back.png").getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT)));
-        btnLogout.setIconTextGap(10);
-        btnLogout.setPreferredSize(new Dimension(120, 30));
+//        this.add(btnLogout);
 
-        this.add(btnLogout);
-
-        btnLogout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                isLogin = false;
-                ssMaNX = null;
-                navbar.remove(navLogout);
-                navbar.add(navLogin, BorderLayout.EAST);
-                navbar.validate();
-                navbar.repaint();
-            }
-        });
+//        btnLogout.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                isLogin = false;
+//                ssMaNX = null;
+//                navbar.remove(navLogout);
+//                navbar.add(navLogin, BorderLayout.EAST);
+//                navbar.validate();
+//                navbar.repaint();
+//            }
+//        });
     }
 
 }

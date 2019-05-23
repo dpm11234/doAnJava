@@ -15,7 +15,8 @@ import static layout.Content.areaPanel;
 import static layout.Content.home;
 import static layout.Content.login;
 import static layout.Content.navbar;
-import static layout.Navbar.*;
+import static layout.Navbar.navLogin;
+import static layout.Navbar.navBackHome;
 import static layout.SelectTicket.listTicket;
 import static util.Session.isLogin;
 
@@ -54,11 +55,13 @@ public class NavBackHome extends JPanel{
         btnBackLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                System.out.println("start");
                 areaPanel.remove(login);
                 areaPanel.remove(listTicket);
                 areaPanel.add(home, BorderLayout.CENTER);
                 navbar.remove(navBackHome);
-                navbar.add(navLogout, BorderLayout.EAST);
+                navbar.add(navLogin, BorderLayout.EAST);
+                System.out.println("end");
                 areaPanel.validate();
                 areaPanel.repaint();
                 navbar.validate();

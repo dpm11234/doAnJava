@@ -81,32 +81,7 @@ public class Dashboard extends JPanel {
 //        UIManager.put("ScrollBar.thumbShadow", new Color(0, 0, 0, 0));
 //        UIManager.put("ScrollBar.width", 16);
         UIManager.put("control", new Color(0, 0, 0, 0));
-
-//        Container cp = getContentPane();
-        // cp.setLayout( new BorderLayout()) ; not needed as container default is BorderLayout
         JPanel jp = new JPanel();
-
-//        try {
-//            Image img = null;
-//            img = ImageIO.read(new File("images/bg/hihi.png"));
-//            hi = new ImageScroll(img);
-//            hi.setPreferredSize(new Dimension(790, 300));
-//            hi.setBorder(borderInputPass);
-//            //this.add(new ImagePanel(img));
-////            jp.add(hi);
-//        } catch (IOException | HeadlessException exp) {
-//            exp.printStackTrace();
-//        }
-//        try {
-//            Image img = null;
-//            img = ImageIO.read(new File("images/bg/hihi.png"));
-//            ka = new ImagePanel(img, 790, 300);
-//            ka.setPreferredSize(new Dimension(790, 500));
-//            ka.setLayout(new GridLayout(20, 50, 40, 3));
-//            ka.setBorder(borderInputPass);
-//        } catch (IOException | HeadlessException exp) {
-//            exp.printStackTrace();
-//        }
         JPanel ka = new JPanel();
         ka.setPreferredSize(new Dimension(790, 399));
         ka.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
@@ -124,30 +99,14 @@ public class Dashboard extends JPanel {
 //                ka.add(new JButton("Button " + j));
 //            }
 //        }
-//        int v = ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
-//        int h = ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
-//
-//        JScrollPane js = new JScrollPane(jp, v, h);
         JViewport viewport = new JViewport();
         viewport.setView(ka);
         JScrollPane hi = new JScrollPane();
-//        JPanel hi = new JPanel();
         hi.setViewport(viewport);
         hi.setPreferredSize(new Dimension(810, 500));
         hi.setBorder(borderInputPass);
         hi.setOpaque(false);
         hi.getViewport().setOpaque(false);
-//        js.set(false);
-//        hi.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
-//            public void adjustmentValueChanged(AdjustmentEvent e) {
-//                e.getAdjustable().setValue(e.getAdjustable().getMaximum());
-//                System.out.println("sẻe");
-//                UIManager.put("ScrollBar.background", new Color(0, 0, 0));
-//                js.getViewport().setOpaque(false);
-//                js.setContentAreaFilled(false);
-//                js.setBackground(new Color(0, 0, 0, 0));
-//            }
-//        });
 
         hi.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
             @Override
@@ -164,13 +123,8 @@ public class Dashboard extends JPanel {
         
         JLabel spaceScorll = new JLabel();
         spaceScorll.setPreferredSize(new Dimension(810, 10));
-
-//        cp.add(js, BorderLayout.CENTER);
         bgDashboard.add(selectTicketPanel);
         bgDashboard.add(spaceScorll);
-//        bgDashboard.add(ticket);
-//        bgDashboard.add(ticket2);
-//        bgDashboard.add(js, BorderLayout.CENTER);
 
         bgDashboard.add(hi);
     }

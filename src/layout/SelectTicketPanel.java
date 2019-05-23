@@ -105,6 +105,8 @@ public class SelectTicketPanel extends JPanel {
         showCompoBox1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
+                areaPanel.validate();
+                areaPanel.repaint();
                 //then you know that is attached to this button
                 if (!checkClickJCompoBox1) {
                     c1.setPopupVisible(true);
@@ -158,6 +160,8 @@ public class SelectTicketPanel extends JPanel {
         showCompoBox2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
+                areaPanel.validate();
+                areaPanel.repaint();
                 //then you know that is attached to this button
                 if (!checkClickJCompoBox2) {
                     c2.setPopupVisible(true);
@@ -212,9 +216,11 @@ public class SelectTicketPanel extends JPanel {
         
         listTicket = new ListTicket();
         
-//        c1.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
+        c1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                areaPanel.validate();
+                areaPanel.repaint();
 //                int selected = c1.getSelectedIndex();
 //                if(selected != currentFrom) {
 //                    areaPanel.remove(home);
@@ -224,13 +230,15 @@ public class SelectTicketPanel extends JPanel {
 //                    areaPanel.repaint();
 //                    currentFrom = selected;
 //                }
-//            }
-//            
-//        });
+            }
+            
+        });
         
-//        c2.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
+        c2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                areaPanel.validate();
+                areaPanel.repaint();
 //                int selected = c2.getSelectedIndex();
 //                if(selected != currentFrom) {
 //                    areaPanel.remove(home);
@@ -240,8 +248,8 @@ public class SelectTicketPanel extends JPanel {
 //                    areaPanel.repaint();
 //                    currentTo = selected;
 //                }
-//            }
-//        });
+            }
+        });
     }
     
     public void removeArrowCompoBox(Component[] component) {
