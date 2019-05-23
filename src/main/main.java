@@ -8,9 +8,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 
 // import Layout
-
-import layout.SlideBar;
 import layout.Content;
+import layout.SlideBarMain;
 
 public class main extends JFrame {
 
@@ -34,26 +33,25 @@ public class main extends JFrame {
         
         
         JPanel body = new JPanel(new BorderLayout());
-        SlideBar slideBar = new SlideBar();
+        SlideBarMain slideBarMain = new SlideBarMain();
         Content content = new Content();
         
         // Clear biến check khi click ra ngoài JPanel
         body.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                slideBar.changeSelectC1();
-                slideBar.changeSelectC2();
+                slideBarMain.changeSelectC1();
+                slideBarMain.changeSelectC2();
             }
         });
 
-        body.add(slideBar, BorderLayout.WEST);
+        body.add(slideBarMain, BorderLayout.WEST);
         body.add(content, BorderLayout.CENTER);
         
         
         frame.setVisible(true);
         frame.add(body);
     }
-
 
     public static void main(String[] args) {
         new main();

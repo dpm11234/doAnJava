@@ -20,22 +20,22 @@ public class DatePicker extends JPanel {
     JPanel alignDatePicker;
     JButton changeButton;
     
-    public DatePicker() {
+    public DatePicker(int heightSpace) {
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(26, 126, 218));
         this.setPreferredSize(new Dimension(120, 60));
 
-        addControls();
+        addControls(heightSpace);
     }
     
-    public void addControls() {
+    public void addControls(int heightSpace) {
         
         MatteBorder borderPicker = new MatteBorder(0, 0, 0, 0, new Color(26, 126, 218));        
         
         leftAlignDatePicker = new JLabel("");
         rightAlignDatePicker = new JLabel("");
         datePickerSpace = new JLabel("");
-        datePickerSpace.setPreferredSize(new Dimension(120, 20));
+        datePickerSpace.setPreferredSize(new Dimension(120, heightSpace));
         leftAlignDatePicker.setPreferredSize(new Dimension(50, 25));
         rightAlignDatePicker.setPreferredSize(new Dimension(15, 25));
         
@@ -78,6 +78,7 @@ public class DatePicker extends JPanel {
         changeButton.setPreferredSize(new Dimension(15, 15));
         changeButton.setBackground(new Color(26, 126, 218));
         changeButton.setBorder(borderPicker);
+        changeButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         datePicker.getJFormattedTextField().setPreferredSize(new Dimension(120, 30));
         datePicker.getJFormattedTextField().setBackground(new Color(0xeaeaea));
         datePicker.getJFormattedTextField().setText(day + '-' + month + '-' + year);

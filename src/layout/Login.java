@@ -41,7 +41,13 @@ import static layout.Content.areaPanel;
 import static layout.Content.login;
 import createUI.ImagePanel;
 import createUI.JPanelInput;
+import static layout.Content.navbar;
 import layout.Dashboard;
+import static layout.Navbar.navIsLogin;
+import static layout.Navbar.navBackHome;
+import static layout.SlideBar.menuDashboard;
+import static layout.SlideBarMain.slideBar;
+import static layout.SlideBar.selectTicket;
 
 /**
  *
@@ -52,6 +58,7 @@ public class Login extends JPanel {
     private JPasswordField textPass;
     private JFrame frame;
     static Dashboard dashboard;
+    static JLabel hello, spaceHello;
     
     public Login() {
         this.setLayout(new BorderLayout());
@@ -346,11 +353,28 @@ public class Login extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(login()) {
+                    menuDashboard = new MenuDashboard();
+                    hello = new JLabel("Xin chào nhà xe: HiHi");
+                    spaceHello = new JLabel();
+                    spaceHello.setPreferredSize(new Dimension(20, 50));
+                    Font fontHello = new Font("SansSerif", Font.BOLD, 15);
+                    hello.setFont(fontHello);
                     dashboard = new Dashboard();
                     areaPanel.remove(login);
-                    areaPanel.add(dashboard);
+                    areaPanel.add(dashboard, BorderLayout.CENTER);
+                    navbar.remove(navBackHome);
+                    navbar.add(navIsLogin, BorderLayout.EAST);
+                    navbar.add(hello, BorderLayout.CENTER);
+                    navbar.add(spaceHello, BorderLayout.WEST);
+                    slideBar.remove(selectTicket);
+                    slideBar.add(menuDashboard, BorderLayout.CENTER);
                     areaPanel.validate();
                     areaPanel.repaint();
+                    navbar.validate();
+                    navbar.repaint();
+                    slideBar.validate();
+                    slideBar.repaint();
+                    System.out.println("hihi");
                 } else {
                     JOptionPane.showMessageDialog(frame, "Tài khoản hoặc mật khẩu không đúng");
                 }

@@ -18,6 +18,7 @@ public class ImagePanel extends JPanel {
 
         public ImagePanel(Image img) {
             this.img = img;
+            this.setBackground(new Color(255, 0, 0, 0));
         }
 
         public ImagePanel(Image img, int x, int y) {

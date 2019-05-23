@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import layout.Navbar;
 import layout.Home;
 import layout.Login;
+import layout.Dashboard;
 
 /**
  *
@@ -19,6 +20,7 @@ public class Content extends JPanel {
     static JPanel areaPanel;
     static Home home;
     static Login login;
+    static Dashboard dashboard;
     
     public Content() {
         this.setLayout(new BorderLayout());
@@ -30,6 +32,7 @@ public class Content extends JPanel {
         navbar = new Navbar();
         home = new Home();
         login = new Login();
+        dashboard = new Dashboard();
         
         areaPanel.add(home, BorderLayout.CENTER);
         

@@ -14,19 +14,23 @@ import static layout.SelectTicket.checkClickJCompoBox1;
 import static layout.SelectTicket.checkClickJCompoBox2;
 import static layout.SelectTicket.c1;
 import static layout.SelectTicket.c2;
+import layout.MenuDashboard;
 
 /**
  *
  * @author my pc
  */
 public class SlideBar extends JPanel {
+    static MenuDashboard menuDashboard;
+    static SelectTicket selectTicket;
     public SlideBar(){
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(0, 105, 192));
         
         Info info = new Info();
         Logo logo = new Logo();
-        SelectTicket selectTicket = new SelectTicket();
+        selectTicket = new SelectTicket();
+        menuDashboard = new MenuDashboard();
         
         this.add(logo, BorderLayout.NORTH);
         this.add(selectTicket, BorderLayout.CENTER);

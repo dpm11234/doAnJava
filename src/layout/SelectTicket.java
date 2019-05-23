@@ -168,7 +168,7 @@ public class SelectTicket extends JPanel {
         c2.getEditor().getEditorComponent().setForeground(new Color(255, 255, 255));
         c2.setFont(fontJCompoBox);
         
-        DatePicker datePicker = new DatePicker();
+        DatePicker datePicker = new DatePicker(20);
         
         // add các thành phần
         
