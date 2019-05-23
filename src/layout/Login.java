@@ -13,14 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -42,6 +35,11 @@ import static layout.Content.login;
 import createUI.ImagePanel;
 import createUI.JPanelInput;
 import layout.Dashboard;
+import util.Session;
+
+import static layout.NavBackHome.btnBackLogin;
+import static util.Session.isLogin;
+import static util.Session.ssMaNX;
 
 /**
  *
@@ -356,6 +354,16 @@ public class Login extends JPanel {
                 }
             }
         });
+
+        btnBackLogin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                areaPanel.remove(dashboard);
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
+
     }
     
     public boolean login() {
@@ -367,10 +375,13 @@ public class Login extends JPanel {
         for(NhaXeDTO nx : dsNhaXe) {
             nhaXe = nx;
             if(nhaXe.getUsername().equals(user.getText())) {
-                System.out.println("Dung user name");
-                System.out.println("Pass: " + textPass.getText());
+//                System.out.println("Dung user name");
+//                System.out.println("Pass: " + textPass.getText());
                 if(nhaXe.getPassword().equals(textPass.getText())) {
-                    System.out.println("Pass dung!");
+//                    System.out.println("Pass dung!");
+                    isLogin = true;
+                    Session.ssMaNX = nhaXe.getMaNX();
+                    System.out.println(ssMaNX);
                     return true;
                 }
                 else{

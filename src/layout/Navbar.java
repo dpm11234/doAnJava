@@ -18,7 +18,8 @@ import layout.NavBackHome;
 public class Navbar extends JPanel{
     static NavLogin navLogin;
     static NavBackHome navBackHome;
-    
+    static NavLogout navLogout;
+
     public Navbar() {
         MatteBorder borderNav = new MatteBorder(0, 0, 1, 0, new Color(227, 228, 231));
 
@@ -29,6 +30,7 @@ public class Navbar extends JPanel{
         
         navLogin = new NavLogin();
         navBackHome = new NavBackHome();
+        navLogout = new NavLogout();
         this.add(navLogin, BorderLayout.EAST);
     }
 }
