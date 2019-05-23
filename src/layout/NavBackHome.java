@@ -15,9 +15,9 @@ import static layout.Content.areaPanel;
 import static layout.Content.home;
 import static layout.Content.login;
 import static layout.Content.navbar;
-import static layout.Navbar.navBackHome;
-import static layout.Navbar.navLogin;
+import static layout.Navbar.*;
 import static layout.SelectTicket.listTicket;
+import static util.Session.isLogin;
 
 /**
  *
@@ -58,7 +58,7 @@ public class NavBackHome extends JPanel{
                 areaPanel.remove(listTicket);
                 areaPanel.add(home, BorderLayout.CENTER);
                 navbar.remove(navBackHome);
-                navbar.add(navLogin, BorderLayout.EAST);
+                navbar.add(navLogout, BorderLayout.EAST);
                 areaPanel.validate();
                 areaPanel.repaint();
                 navbar.validate();

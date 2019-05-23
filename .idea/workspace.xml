@@ -3,16 +3,30 @@
   <component name="ChangeListManager">
     <list default="true" id="14e3f3f5-e4cd-4cfa-9210-5065ff24b5e4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/ui/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/ui/MainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/ui/MainFrame$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ui/MainFrame$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/ui/MainFrame$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ui/MainFrame$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/ui/MainFrame$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ui/MainFrame$15.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/ui/MainFrame$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ui/MainFrame$16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/classes/ui/MainFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ui/MainFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/do-an-java.iml" beforeDir="false" afterPath="$PROJECT_DIR$/do-an-java.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Panel/Main/LoginPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Panel/Main/LoginPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/dto/NhaXeDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dto/NhaXeDTO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/Login$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/Login$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/NavBackHome$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/NavBackHome$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/NavBackHome.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/NavBackHome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/NavLogin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/NavLogin$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/NavLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/NavLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Login.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Login.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/NavBackHome$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/NavBackHome$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/NavLogin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/NavLogin$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/NavLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/NavLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/layout/Navbar.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/layout/Navbar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/NavBackHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/NavBackHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/NavLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/NavLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Navbar.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -27,75 +41,127 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ui/MainFrame.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dao/NhaXeDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="860" column="9" lean-forward="true" selection-start-line="860" selection-start-column="9" selection-end-line="860" selection-end-column="9" />
+            <state relative-caret-position="550">
+              <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2880#2881#0" expanded="true" />
-                <element signature="e#2911#2912#0" expanded="true" />
-                <element signature="e#14434#14435#0" expanded="true" />
-                <element signature="e#14494#14495#0" expanded="true" />
-                <element signature="e#14616#14617#0" expanded="true" />
-                <element signature="e#14676#14677#0" expanded="true" />
-                <element signature="e#34980#34981#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/Panel/Main/LoginPanel.java">
+        <entry file="file://$PROJECT_DIR$/src/layout/NavBackHome.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="213">
+              <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/layout/NavLogout.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="506">
+              <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ui/LoginFrame.java">
+        <entry file="file://$PROJECT_DIR$/src/layout/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="233">
+              <caret line="382" column="52" selection-start-line="382" selection-start-column="52" selection-end-line="382" selection-end-column="52" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3032#3384#0" expanded="true" />
+                <element signature="e#3383#3384#0" expanded="true" />
+                <element signature="e#4978#5405#0" expanded="true" />
+                <element signature="e#5404#5405#0" expanded="true" />
+                <element signature="e#6748#7100#0" expanded="true" />
+                <element signature="e#7099#7100#0" expanded="true" />
+                <element signature="e#8725#9155#0" expanded="true" />
+                <element signature="e#9154#9155#0" expanded="true" />
+                <element signature="e#11785#12134#0" expanded="true" />
+                <element signature="e#12133#12134#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/util/Session.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="88">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+              <folding>
+                <element signature="e#99#100#0" expanded="true" />
+                <element signature="e#130#131#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dto/NhaXeDTO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="115">
+              <caret line="101" column="15" selection-start-line="101" selection-start-column="15" selection-end-line="101" selection-end-column="15" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#506#507#0" expanded="true" />
+                <element signature="e#533#534#0" expanded="true" />
+                <element signature="e#573#574#0" expanded="true" />
+                <element signature="e#605#606#0" expanded="true" />
+                <element signature="e#637#638#0" expanded="true" />
+                <element signature="e#665#666#0" expanded="true" />
+                <element signature="e#707#708#0" expanded="true" />
+                <element signature="e#741#742#0" expanded="true" />
+                <element signature="e#774#775#0" expanded="true" />
+                <element signature="e#803#804#0" expanded="true" />
+                <element signature="e#847#848#0" expanded="true" />
+                <element signature="e#883#884#0" expanded="true" />
+                <element signature="e#918#919#0" expanded="true" />
+                <element signature="e#949#950#0" expanded="true" />
+                <element signature="e#997#998#0" expanded="true" />
+                <element signature="e#1037#1038#0" expanded="true" />
+                <element signature="e#1072#1073#0" expanded="true" />
+                <element signature="e#1112#1113#0" expanded="true" />
+                <element signature="e#1160#1161#0" expanded="true" />
+                <element signature="e#1200#1201#0" expanded="true" />
+                <element signature="e#1231#1232#0" expanded="true" />
+                <element signature="e#1261#1262#0" expanded="true" />
+                <element signature="e#1304#1305#0" expanded="true" />
+                <element signature="e#1342#1343#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-477">
               <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/NhaXeDAO.java">
+        <entry file="file://$PROJECT_DIR$/src/layout/Navbar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#192#202#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util/DataAccessHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bus/NhaXeBUS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#139#140#0" expanded="true" />
-                <element signature="e#160#161#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="169">
+              <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -121,8 +187,20 @@
         <option value="$PROJECT_DIR$/src/bus/NhaXeBUS.java" />
         <option value="$PROJECT_DIR$/src/ui/Panel/Main/LoginPanel.java" />
         <option value="$PROJECT_DIR$/src/ui/MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/layout/NavLogin.java" />
+        <option value="$PROJECT_DIR$/src/layout/Navbar.java" />
+        <option value="$PROJECT_DIR$/src/layout/NavBackHome.java" />
+        <option value="$PROJECT_DIR$/src/util/Session.java" />
+        <option value="$PROJECT_DIR$/src/layout/Login.java" />
+        <option value="$PROJECT_DIR$/src/layout/NavLogout.java" />
       </list>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand />
+      <select />
+    </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
@@ -150,7 +228,13 @@
               <item name="do-an-java" type="b2602c69:ProjectViewProjectNode" />
               <item name="do-an-java" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="do-an-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="do-an-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="do-an-java" type="b2602c69:ProjectViewProjectNode" />
@@ -160,8 +244,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -183,7 +267,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MainFrame">
+  <component name="RunManager" selected="Application.main">
     <configuration name="DataAccessHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="util.DataAccessHelper" />
       <module name="do-an-java" />
@@ -210,8 +294,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.main" />
+      <module name="do-an-java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.main" />
         <item itemvalue="Application.MainFrame" />
         <item itemvalue="Application.DataAccessHelper" />
       </list>
@@ -234,7 +332,7 @@
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26308724" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -243,7 +341,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39664805" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.39664805" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -256,53 +354,19 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven" order="7" weight="0.3295302" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/dto/NhaXeDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#228#229#0" expanded="true" />
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#359#360#0" expanded="true" />
-            <element signature="e#387#388#0" expanded="true" />
-            <element signature="e#429#430#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#496#497#0" expanded="true" />
-            <element signature="e#525#526#0" expanded="true" />
-            <element signature="e#569#570#0" expanded="true" />
-            <element signature="e#605#606#0" expanded="true" />
-            <element signature="e#640#641#0" expanded="true" />
-            <element signature="e#671#672#0" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
-            <element signature="e#759#760#0" expanded="true" />
-            <element signature="e#794#795#0" expanded="true" />
-            <element signature="e#825#826#0" expanded="true" />
-            <element signature="e#873#874#0" expanded="true" />
-            <element signature="e#913#914#0" expanded="true" />
-            <element signature="e#944#945#0" expanded="true" />
-            <element signature="e#974#975#0" expanded="true" />
-            <element signature="e#1017#1018#0" expanded="true" />
-            <element signature="e#1055#1056#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/NhaXeDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="35" column="23" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+        <state relative-caret-position="550">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#192#202#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -316,43 +380,138 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bus/NhaXeBUS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="176">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#139#140#0" expanded="true" />
             <element signature="e#160#161#0" expanded="true" />
+            <element signature="e#202#203#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/LoginFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/ui/LoginFrame.java" />
+    <entry file="file://$PROJECT_DIR$/src/ui/Panel/Main/LoginPanel.java" />
+    <entry file="file://$PROJECT_DIR$/src/ui/MainFrame.java" />
+    <entry file="file://$PROJECT_DIR$/src/layout/Logo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="134">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/NavLogin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/Dashboard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dto/NhaXeDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="101" column="15" selection-start-line="101" selection-start-column="15" selection-end-line="101" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#605#606#0" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+            <element signature="e#665#666#0" expanded="true" />
+            <element signature="e#707#708#0" expanded="true" />
+            <element signature="e#741#742#0" expanded="true" />
+            <element signature="e#774#775#0" expanded="true" />
+            <element signature="e#803#804#0" expanded="true" />
+            <element signature="e#847#848#0" expanded="true" />
+            <element signature="e#883#884#0" expanded="true" />
+            <element signature="e#918#919#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+            <element signature="e#997#998#0" expanded="true" />
+            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#1072#1073#0" expanded="true" />
+            <element signature="e#1112#1113#0" expanded="true" />
+            <element signature="e#1160#1161#0" expanded="true" />
+            <element signature="e#1200#1201#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1261#1262#0" expanded="true" />
+            <element signature="e#1304#1305#0" expanded="true" />
+            <element signature="e#1342#1343#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-477">
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/Panel/Main/LoginPanel.java">
+    <entry file="file://$PROJECT_DIR$/src/layout/Navbar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="169">
+          <caret line="32" column="36" selection-start-line="32" selection-start-column="36" selection-end-line="32" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ui/MainFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/util/Session.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="860" column="9" lean-forward="true" selection-start-line="860" selection-start-column="9" selection-end-line="860" selection-end-column="9" />
+        <state relative-caret-position="88">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+          <folding>
+            <element signature="e#99#100#0" expanded="true" />
+            <element signature="e#130#131#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="382" column="52" selection-start-line="382" selection-start-column="52" selection-end-line="382" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2880#2881#0" expanded="true" />
-            <element signature="e#2911#2912#0" expanded="true" />
-            <element signature="e#14434#14435#0" expanded="true" />
-            <element signature="e#14494#14495#0" expanded="true" />
-            <element signature="e#14616#14617#0" expanded="true" />
-            <element signature="e#14676#14677#0" expanded="true" />
-            <element signature="e#34980#34981#0" expanded="true" />
+            <element signature="e#3032#3384#0" expanded="true" />
+            <element signature="e#3383#3384#0" expanded="true" />
+            <element signature="e#4978#5405#0" expanded="true" />
+            <element signature="e#5404#5405#0" expanded="true" />
+            <element signature="e#6748#7100#0" expanded="true" />
+            <element signature="e#7099#7100#0" expanded="true" />
+            <element signature="e#8725#9155#0" expanded="true" />
+            <element signature="e#9154#9155#0" expanded="true" />
+            <element signature="e#11785#12134#0" expanded="true" />
+            <element signature="e#12133#12134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/NavBackHome.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="60" column="32" selection-start-line="60" selection-start-column="32" selection-end-line="60" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/NavLogout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

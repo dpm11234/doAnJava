@@ -18,7 +18,6 @@ import static layout.Content.navbar;
 import static layout.Navbar.navBackHome;
 import static layout.Navbar.navLogin;
 import static layout.SelectTicket.listTicket;
-
 /**
  *
  * @author my pc
@@ -67,6 +66,8 @@ public class NavLogin extends JPanel {
                 navbar.repaint();
             }
         });
+
+
     }
 
     public JButton getbtnLogin() {
