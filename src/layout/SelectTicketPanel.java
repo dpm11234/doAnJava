@@ -45,6 +45,7 @@ public class SelectTicketPanel extends JPanel {
     static JComboBox c1, c2;
     int currentTo, currentFrom;
     static ListTicket listTicket;
+    static JPanel selectFrom, selectTo;
     
     public SelectTicketPanel() {
         this.setLayout(new BorderLayout());
@@ -58,13 +59,13 @@ public class SelectTicketPanel extends JPanel {
         MatteBorder borderSelect = new MatteBorder(0, 0, 1, 0, new Color(48, 148, 238));
         MatteBorder borderSelectWhite = new MatteBorder(1, 1, 1, 1, new Color(204, 217, 224));
         
-        JPanel selectFrom = new JPanel(new BorderLayout());
+        selectFrom = new JPanel(new BorderLayout());
         selectFrom.setBackground(new Color(26, 126, 218));
         selectFrom.setBorder(borderSelect);
         selectFrom.setPreferredSize(new Dimension(250, 50));
         selectFrom.setBorder(borderSelectWhite);
         
-        JPanel selectTo = new JPanel(new BorderLayout());
+        selectTo = new JPanel(new BorderLayout());
         selectTo.setBackground(new Color(26, 126, 218));
         selectTo.setBorder(borderSelect);
         selectTo.setPreferredSize(new Dimension(250, 50));
