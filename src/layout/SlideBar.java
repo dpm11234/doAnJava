@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import static layout.Content.areaPanel;
 
 // import Layout
 
@@ -41,10 +42,14 @@ public class SlideBar extends JPanel {
     
     public void changeSelectC1() {
         checkClickJCompoBox1 = false;
+        areaPanel.validate();
+        areaPanel.repaint();
     }
     
     public void changeSelectC2() {
         checkClickJCompoBox2 = false;
+        areaPanel.validate();
+        areaPanel.repaint();
     }
     
     public JComboBox getC1() {

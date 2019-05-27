@@ -28,10 +28,12 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.swing.plaf.ColorUIResource;
+import static layout.Content.areaPanel;
 import static layout.MenuDashboard.panelTicket;
 
 // import Layout
 import layout.SelectTicketPanel;
+import static layout.SelectTicketPanel.selectFrom;
 import layout.Ticket;
 
 /**
@@ -127,5 +129,13 @@ public class Dashboard extends JPanel {
         bgDashboard.add(spaceScorll);
 
         bgDashboard.add(hi);
+        
+        bgDashboard.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
     }
 }
