@@ -1,13 +1,14 @@
 package dto;
 
-import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class TuyenDTO {
     private String maNX;
     private String maTuyen;
     private String diemDen;
     private String diemXuatPhat;
-    private Date thoiGianKhoiHanh;
+    private Timestamp thoiGianKhoiHanh;
     private int tongGhe;
     private String bienSoXe;
     private int soLuong;
@@ -17,7 +18,7 @@ public class TuyenDTO {
     public TuyenDTO() {
     }
 
-    public TuyenDTO(String maNX, String maTuyen, String diemDen, String diemXuatPhat, Date thoiGianKhoiHanh, int tongGhe, String bienSoXe, int soLuong, int gia) {
+    public TuyenDTO(String maNX, String maTuyen, String diemDen, String diemXuatPhat, Timestamp thoiGianKhoiHanh, int tongGhe, String bienSoXe, int soLuong, int gia) {
         this.maNX = maNX;
         this.maTuyen = maTuyen;
         this.diemDen = diemDen;
@@ -61,11 +62,11 @@ public class TuyenDTO {
         this.diemXuatPhat = diemXuatPhat;
     }
 
-    public Date getThoiGianKhoiHanh() {
+    public Timestamp getThoiGianKhoiHanh() {
         return thoiGianKhoiHanh;
     }
 
-    public void setThoiGianKhoiHanh(Date thoiGianKhoiHanh) {
+    public void setThoiGianKhoiHanh(Timestamp thoiGianKhoiHanh) {
         this.thoiGianKhoiHanh = thoiGianKhoiHanh;
     }
 

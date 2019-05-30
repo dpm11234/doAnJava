@@ -23,7 +23,7 @@ public class TuyenDAO {
                         resultSet.getString("MATUYEN"),
                         resultSet.getString("DIEMDEN"),
                         resultSet.getString("DIEMXUATPHAT"),
-                        resultSet.getDate("TGKHOIHANH"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
                         resultSet.getInt("TONGGHE"),
                         resultSet.getString("BSX"),
                         resultSet.getInt("SOLUONG"),

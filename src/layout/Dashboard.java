@@ -1,5 +1,6 @@
 package layout;
 
+import bus.TuyenBUS;
 import createUI.ImagePanel;
 import createUI.ImageScroll;
 import java.awt.Adjustable;
@@ -17,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,6 +34,7 @@ import static layout.Content.areaPanel;
 import static layout.MenuDashboard.panelTicket;
 
 // import Layout
+import dto.TuyenDTO;
 import layout.SelectTicketPanel;
 import static layout.SelectTicketPanel.selectFrom;
 import layout.Ticket;
@@ -47,8 +50,10 @@ public class Dashboard extends JPanel {
     static SelectTicketPanel selectTicketPanel;
     static Ticket ticket, ticket2, ticket3, ticket4, ticket5, ticket6;
 
-    public Dashboard() {
+    public ArrayList<TuyenDTO> danhSachTuyen;
 
+    public Dashboard() {
+        danhSachTuyen = new ArrayList<>();
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         this.setLayout(new BorderLayout());
         try {
@@ -61,18 +66,18 @@ public class Dashboard extends JPanel {
             exp.printStackTrace();
         }
 
-        ticket = new Ticket();
-        ticket2 = new Ticket();
-        ticket3 = new Ticket();
-        ticket4 = new Ticket();
-        ticket5 = new Ticket();
-        ticket6 = new Ticket();
-        ticket.setPreferredSize(new Dimension(380, 118));
-        ticket2.setPreferredSize(new Dimension(380, 118));
-        ticket3.setPreferredSize(new Dimension(380, 118));
-        ticket4.setPreferredSize(new Dimension(380, 118));
-        ticket5.setPreferredSize(new Dimension(380, 118));
-        ticket6.setPreferredSize(new Dimension(380, 118));
+//        ticket = new Ticket();
+//        ticket2 = new Ticket();
+//        ticket3 = new Ticket();
+//        ticket4 = new Ticket();
+//        ticket5 = new Ticket();
+//        ticket6 = new Ticket();
+//        ticket.setPreferredSize(new Dimension(380, 118));
+//        ticket2.setPreferredSize(new Dimension(380, 118));
+//        ticket3.setPreferredSize(new Dimension(380, 118));
+//        ticket4.setPreferredSize(new Dimension(380, 118));
+//        ticket5.setPreferredSize(new Dimension(380, 118));
+//        ticket6.setPreferredSize(new Dimension(380, 118));
         selectTicketPanel = new SelectTicketPanel();
         JLabel test = new JLabel("Menu quản trị");
         UIManager.put("ScrollBar.background", new Color(0, 0, 0, 0));
@@ -89,12 +94,19 @@ public class Dashboard extends JPanel {
         ka.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251, 0));
-        ka.add(ticket);
-        ka.add(ticket2);
-        ka.add(ticket3);
-        ka.add(ticket4);
-        ka.add(ticket5);
-        ka.add(ticket6);
+//        ka.add(ticket);
+//        ka.add(ticket2);
+//        ka.add(ticket3);
+//        ka.add(ticket4);
+//        ka.add(ticket5);
+//        ka.add(ticket6);
+        danhSachTuyen = TuyenBUS.getAll();
+
+        for(TuyenDTO tuyen : danhSachTuyen) {
+            ticket = new Ticket(tuyen);
+            ticket.setPreferredSize(new Dimension(380, 118));
+            ka.add(ticket);
+        }
 
 //        for (int i = 0; i < 2; i++) {
 //            for (int j = 0; j < 20; j++) {

@@ -15,15 +15,10 @@ public class DataAccessHelper {
     public void open() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
+//            conn = DriverManager
+//                    .getConnection("jdbc:mysql://remotemysql.com:3306/7jjFv7zPcq", "7jjFv7zPcq", "Eba3hfJfFj");
             conn = DriverManager
-                    .getConnection("jdbc:mysql://remotemysql.com:3306/7jjFv7zPcq", "7jjFv7zPcq", "Eba3hfJfFj");
-            // Test Thôi
-//            Statement statement =conn.createStatement();
-//            ResultSet rs = statement.executeQuery("SELECT * FROM NHAXE");
-//
-//            while (rs.next()) {
-//                System.out.println(rs.getString(1)+" "+rs.getString(2) + " " + rs.getString(3)+" "+rs.getString(4));
-//            }
+                    .getConnection("jdbc:mysql://localhost:3306/doanjava", "root", "123123Mau");
 
         } catch (Exception e) {
             e.printStackTrace();
