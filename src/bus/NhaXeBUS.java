@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class NhaXeBUS {
 
-    public static ArrayList<NhaXeDTO> nhaXeAll() {
-        return NhaXeDAO.nhaXeAll();
+    public static ArrayList<NhaXeDTO> getAll() {
+        return NhaXeDAO.getAll();
     }
 
 }

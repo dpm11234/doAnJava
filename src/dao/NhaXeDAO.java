@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class NhaXeDAO {
-    public static ArrayList<NhaXeDTO> nhaXeAll() {
+    public static ArrayList<NhaXeDTO> getAll() {
 
         ArrayList<NhaXeDTO> dsNhaXe = new ArrayList<NhaXeDTO>();
         String sql = "SELECT * FROM NHAXE";

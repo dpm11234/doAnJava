@@ -384,7 +384,7 @@ public class Login extends JPanel {
     public boolean login() {
 
         ArrayList<NhaXeDTO> dsNhaXe = new ArrayList<>();
-        dsNhaXe = NhaXeBUS.nhaXeAll();
+        dsNhaXe = NhaXeBUS.getAll();
 
         NhaXeDTO nhaXe;
         for(NhaXeDTO nx : dsNhaXe) {
