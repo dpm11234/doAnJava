@@ -17,13 +17,13 @@ import layout.AddTicket;
  * @author my pc
  */
 public class Content extends JPanel {
-    static Navbar navbar;
-    static JPanel areaPanel;
-    static Home home;
-    static Login login;
-    static Dashboard dashboard;
-    static AddTicket addTicket;
-    static BookedTicket bookedTicket;
+    public static Navbar navbar;
+    public static JPanel areaPanel;
+    public static Home home;
+    public static Login login;
+    public static Dashboard dashboard;
+    public static AddTicket addTicket;
+    public static BookedTicket bookedTicket;
     
     public Content() {
         this.setLayout(new BorderLayout());
@@ -39,7 +39,7 @@ public class Content extends JPanel {
         addTicket = new AddTicket();
         bookedTicket = new BookedTicket();
         
-        areaPanel.add(bookedTicket, BorderLayout.CENTER);
+        areaPanel.add(home, BorderLayout.CENTER);
         
         this.add(navbar, BorderLayout.NORTH);
         this.add(areaPanel, BorderLayout.CENTER);
