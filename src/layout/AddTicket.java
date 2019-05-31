@@ -38,6 +38,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -45,6 +47,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -195,23 +198,32 @@ public class AddTicket extends JPanel {
 
             }
         });
-        JFormattedTextField textField = datePicker.getTextField();
-
 
 
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JFormattedTextField textField = datePicker.getTextField();
+                String date1 = textField.getText() + " 7:00";
+                System.out.println(date1);
+                Date date = new Timestamp(1);
+                try {
+                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+                    date = format.parse(date1);
+                    System.out.println(date);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 tuyen = new TuyenDTO(
                         "0002",
-                        "0002N3",
+                        "0002N6",
                         "Tp.HCM",
                         "Đồng Nai",
-                        new Timestamp(new Date().getTime()),
+                        new Timestamp(date.getTime()),
                     34,
                         "60N2-7549",
                     1,
-                    80000
+                    90000
                 );
                 TuyenBUS.addTuyen(tuyen);
             }

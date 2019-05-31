@@ -124,6 +124,7 @@ public class MenuDashboard extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 areaPanel.removeAll();
+                dashboard = new Dashboard();
                 areaPanel.add(dashboard);
 
                 areaPanel.validate();
