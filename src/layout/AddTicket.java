@@ -191,11 +191,12 @@ public class AddTicket extends JPanel {
     }
 
     public void addEvents() {
+
         compoBoxFrom.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int index = compoBoxFrom.getCompoBox().getSelectedIndex();
-
+                tuyen.setDiemXuatPhat(list[index]);
             }
         });
 
@@ -204,7 +205,7 @@ public class AddTicket extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFormattedTextField textField = datePicker.getTextField();
-                String date1 = textField.getText() + " 7:00";
+                String date1 = textField.getText() + " 10:00";
                 System.out.println(date1);
                 Date date = new Timestamp(1);
                 try {
@@ -216,14 +217,14 @@ public class AddTicket extends JPanel {
                 }
                 tuyen = new TuyenDTO(
                         "0002",
-                        "0002N6",
+                        "0002N7",
                         "Tp.HCM",
-                        "Đồng Nai",
+                        tuyen.getDiemXuatPhat(),
                         new Timestamp(date.getTime()),
-                    34,
+                        34,
                         "60N2-7549",
-                    1,
-                    90000
+                        1,
+                        90000
                 );
                 TuyenBUS.addTuyen(tuyen);
             }
