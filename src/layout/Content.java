@@ -10,6 +10,7 @@ import layout.Navbar;
 import layout.Home;
 import layout.Login;
 import layout.Dashboard;
+import layout.AddTicket;
 
 /**
  *
@@ -21,6 +22,8 @@ public class Content extends JPanel {
     static Home home;
     static Login login;
     static Dashboard dashboard;
+    static AddTicket addTicket;
+    static BookedTicket bookedTicket;
     
     public Content() {
         this.setLayout(new BorderLayout());
@@ -33,8 +36,10 @@ public class Content extends JPanel {
         home = new Home();
         login = new Login();
         dashboard = new Dashboard();
+        addTicket = new AddTicket();
+        bookedTicket = new BookedTicket();
         
-        areaPanel.add(home, BorderLayout.CENTER);
+        areaPanel.add(bookedTicket, BorderLayout.CENTER);
         
         this.add(navbar, BorderLayout.NORTH);
         this.add(areaPanel, BorderLayout.CENTER);
