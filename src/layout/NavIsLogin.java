@@ -66,14 +66,14 @@ public class NavIsLogin extends JPanel {
         btnLogout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                areaPanel.remove(dashboard);
+                areaPanel.removeAll();
                 areaPanel.add(home, BorderLayout.CENTER);
                 slideBar.remove(menuDashboard);
                 navbar.remove(navIsLogin);
                 navbar.remove(hello);
                 navbar.remove(spaceHello);
                 navbar.add(navLogin, BorderLayout.EAST);
-                
+
 //                SelectTicket selectTicket2 = new SelectTicket();
                 slideBar.add(selectTicket, BorderLayout.CENTER);
                 areaPanel.validate();

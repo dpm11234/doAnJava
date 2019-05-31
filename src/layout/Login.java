@@ -345,7 +345,10 @@ public class Login extends JPanel {
         
         this.add(loginBg, BorderLayout.CENTER);
         
-        
+        // Lưu tài khoản thôi
+        this.user.setText("tk01");
+        this.textPass.setText("admin");
+
         buttonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

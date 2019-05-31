@@ -57,13 +57,13 @@ public class AddTicket extends JPanel {
     String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
     String listKind[] = {"16", "24", "29", "34", "36", "39", "47", "52"};
     static boolean checkClickJCompoBox1, checkClickJCompoBox2, checkClickJCompoBoxKind;
-    static JComboBox compoBoxFrom, compoBoxTo, compoBoxKind;
+    static SelectDown compoBoxFrom, compoBoxTo, compoBoxKind;
     private JTextField time, price;
     
     public AddTicket() {
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        
+
         JPanel loginBg = new JPanel();
         try {
             Image imgLogin = null;
@@ -84,8 +84,8 @@ public class AddTicket extends JPanel {
         loginFormLayout.setPreferredSize(new Dimension(490, 300));
         loginFormLayout.setBackground(new Color(255, 255, 255));
         
-        SelectDown compoBoxFrom = new SelectDown(list, "Từ", 50);
-        SelectDown compoBoxTo = new SelectDown(list2, "Đến", 50);
+        compoBoxFrom = new SelectDown(list, "Từ", 50);
+        compoBoxTo = new SelectDown(list2, "Đến", 50);
         
         JLabel arrow = new JLabel();
         arrow.setPreferredSize(new Dimension(48, 27));
@@ -180,7 +180,19 @@ public class AddTicket extends JPanel {
         gbc.weightx = /*gbc.weighty = */ 45;
         gbc.insets = new Insets(2, 2, 2, 2);
         loginBg.add(loginSpace, gbc);
-        
+
         this.add(loginBg, BorderLayout.CENTER);
+        addEvents();
     }
+
+    public void addEvents() {
+        System.out.println(compoBoxFrom.getCompoBox().getSelectedIndex());
+        compoBoxFrom.getCompoBox().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println(compoBoxFrom.getCompoBox().getSelectedIndex());
+            }
+        });
+    }
+
 }
