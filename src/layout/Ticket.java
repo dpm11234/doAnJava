@@ -6,6 +6,8 @@
 package layout;
 
 import createUI.ImagePanel;
+import dto.TuyenDTO;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -18,6 +20,9 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,8 +37,10 @@ import static layout.Dashboard.selectTicketPanel;
  */
 public class Ticket extends JPanel {
     private ImagePanel bgTicket;
-    
-    public Ticket() {
+
+    private JLabel price, chair, startingPoint, destination, day;
+
+    public Ticket(TuyenDTO tuyen) {
         this.setLayout(new BorderLayout());
         try {
             Image img = null;
@@ -54,7 +61,7 @@ public class Ticket extends JPanel {
         
         // giá vé
         
-        JLabel price = new JLabel("Giá vé: 120.000đ");
+        price = new JLabel(tuyen.getGia() + "");
         price.setFont(fontPrice);
         price.setPreferredSize(new Dimension(130, 27));
         price.setIcon(new ImageIcon(new ImageIcon("images/money.png").getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT)));
@@ -75,7 +82,7 @@ public class Ticket extends JPanel {
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
         
-        JLabel chair = new JLabel("Trống: 23");
+        chair = new JLabel("Trống: " + tuyen.getSoLuong());
         chair.setFont(fontPrice);
         chair.setPreferredSize(new Dimension(80, 27));
         chair.setIcon(new ImageIcon(new ImageIcon("images/armchair2.png").getImage().getScaledInstance(14, 14, Image.SCALE_DEFAULT)));
@@ -114,14 +121,14 @@ public class Ticket extends JPanel {
         buses.setPreferredSize(new Dimension(218, 27));
         buses.setBackground(new Color(0, 0, 0, 0));
         
-        JLabel startingPoint = new JLabel("TP.HCM");
+        startingPoint = new JLabel(tuyen.getDiemXuatPhat());
         startingPoint.setPreferredSize(new Dimension(101, 27));
         startingPoint.setFont(fontPrice);
         startingPoint.setForeground(Color.black);
         startingPoint.setVerticalAlignment(JLabel.CENTER);
         startingPoint.setHorizontalAlignment(JLabel.CENTER);
         
-        JLabel destination = new JLabel("Đồng Nai");
+        destination = new JLabel(tuyen.getDiemDen());
         destination.setPreferredSize(new Dimension(101, 27));
         destination.setFont(fontPrice);
         destination.setForeground(Color.black);
@@ -142,15 +149,23 @@ public class Ticket extends JPanel {
         JPanel time = new JPanel(new BorderLayout());
         time.setPreferredSize(new Dimension(218, 27));
         time.setBackground(new Color(0, 0, 0, 0));
-        
-        JLabel day = new JLabel("14/06/2019");
+
+        LocalDateTime date = tuyen.getThoiGianKhoiHanh().toLocalDateTime();
+
+        day = new JLabel(
+                date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear()
+        );
         day.setPreferredSize(new Dimension(101, 27));
         day.setFont(fontPrice);
         day.setForeground(Color.black);
         day.setVerticalAlignment(JLabel.CENTER);
         day.setHorizontalAlignment(JLabel.CENTER);
-        
-        JLabel hours = new JLabel("Lúc 12:00");
+
+        // format giờ
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        String timeStart = date.format(timeFormatter);
+
+        JLabel hours = new JLabel(timeStart);
         hours.setPreferredSize(new Dimension(101, 27));
         hours.setFont(fontPrice);
         hours.setForeground(Color.black);

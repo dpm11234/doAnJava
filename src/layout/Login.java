@@ -351,7 +351,7 @@ public class Login extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(login()) {
                     menuDashboard = new MenuDashboard();
-                    hello = new JLabel("Xin chào nhà xe: HiHi");
+                    hello = new JLabel("Xin chào nhà xe: HiHi " + Session.tenNX);
                     spaceHello = new JLabel();
                     spaceHello.setPreferredSize(new Dimension(20, 50));
                     Font fontHello = new Font("SansSerif", Font.BOLD, 15);
@@ -383,7 +383,7 @@ public class Login extends JPanel {
     public boolean login() {
 
         ArrayList<NhaXeDTO> dsNhaXe = new ArrayList<>();
-        dsNhaXe = NhaXeBUS.nhaXeAll();
+        dsNhaXe = NhaXeBUS.getAll();
 
         NhaXeDTO nhaXe;
         for(NhaXeDTO nx : dsNhaXe) {
@@ -395,6 +395,7 @@ public class Login extends JPanel {
 //                    System.out.println("Pass dung!");
                     isLogin = true;
                     Session.ssMaNX = nhaXe.getMaNX();
+                    Session.tenNX = nhaXe.getTenNX();
                     System.out.println(ssMaNX);
                     return true;
                 }
