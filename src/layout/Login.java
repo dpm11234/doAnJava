@@ -81,7 +81,6 @@ public class Login extends JPanel {
         loginForm.setBackground(new Color(255, 255, 255));
 
         // Tạo JTextField + Custom Style
-//        JTextField user = new JTextField(26);
         user = new JTextField(26);
         MatteBorder borderInputLogin = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         user.setBorder(borderInputLogin);
