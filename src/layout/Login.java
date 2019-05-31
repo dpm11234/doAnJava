@@ -42,6 +42,7 @@ import static layout.SlideBar.menuDashboard;
 import static layout.SlideBarMain.slideBar;
 import static layout.SlideBar.selectTicket;
 import util.Session;
+import static layout.Content.dashboard;
 
 import static layout.NavBackHome.btnBackLogin;
 import static util.Session.isLogin;
@@ -54,8 +55,6 @@ import static util.Session.ssMaNX;
 public class Login extends JPanel {
     private JTextField user;
     private JPasswordField textPass;
-    private JFrame frame;
-    static Dashboard dashboard;
     static JLabel hello, spaceHello;
     
     public Login() {
@@ -376,7 +375,7 @@ public class Login extends JPanel {
                     slideBar.repaint();
                     System.out.println("hihi");
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Tài khoản hoặc mật khẩu không đúng");
+                    JOptionPane.showMessageDialog(dashboard, "Tài khoản hoặc mật khẩu không đúng");
                 }
             }
         });

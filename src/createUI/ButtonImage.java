@@ -23,6 +23,7 @@ import javax.swing.JPanel;
  * @author my pc
  */
 public class ButtonImage extends JPanel{
+    private JButton buttonLogin;
     public ButtonImage(String text) {
         JPanel buttonLoginPanel = new JPanel(new GridBagLayout());
         try {
@@ -34,7 +35,7 @@ public class ButtonImage extends JPanel{
             exp.printStackTrace();
         }
 
-        JButton buttonLogin = new JButton(text);
+        buttonLogin = new JButton(text);
         buttonLogin.setPreferredSize(new Dimension(230, 30));
         buttonLogin.setBackground(new Color(0, 0, 0, 0));
         buttonLogin.setForeground(Color.white);
@@ -50,5 +51,9 @@ public class ButtonImage extends JPanel{
         this.setPreferredSize(new Dimension(220, 40));
         
         this.add(buttonLoginPanel);
+    }
+
+    public JButton getButton() {
+        return buttonLogin;
     }
 }

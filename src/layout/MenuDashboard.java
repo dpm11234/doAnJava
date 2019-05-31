@@ -20,8 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 
-import static layout.Content.areaPanel;
-import static layout.Content.addTicket;
+import static layout.Content.*;
 
 
 /**
@@ -114,6 +113,18 @@ public class MenuDashboard extends JPanel {
                 super.mouseClicked(e);
                 areaPanel.removeAll();
                 areaPanel.add(addTicket);
+
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
+
+        panelTicket.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                areaPanel.removeAll();
+                areaPanel.add(dashboard);
 
                 areaPanel.validate();
                 areaPanel.repaint();

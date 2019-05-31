@@ -21,7 +21,7 @@ import static layout.Content.areaPanel;
 import static layout.Navbar.navLogin;
 import static layout.Navbar.navIsLogin;
 import static layout.SelectTicket.listTicket;
-import static layout.Login.dashboard;
+import static layout.Content.dashboard;
 import static layout.Content.home;
 import static layout.Content.navbar;
 import static layout.Login.hello;

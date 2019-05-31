@@ -73,4 +73,19 @@ public class TuyenDAO {
         return danhSachTuyen;
     }
 
+    public static int addTuyen(TuyenDTO tuyen) {
+        String sql = "INSERT INTO TUYEN VALUES ('" + tuyen.getMaNX() + "', '" + tuyen.getMaTuyen() + "', N'" + tuyen.getDiemXuatPhat() + "', N'" + tuyen.getDiemDen() + "', '" + tuyen.getThoiGianKhoiHanh() + "'," + 34 + "," + "'" + tuyen.getBienSoXe() + "'," + 1 + "," + 80000 + ");";
+        DataAccessHelper helper = new DataAccessHelper();
+        System.out.println(sql);
+        int res = -1;
+
+        helper.open();
+
+        res = helper.excuteUpdate(sql);
+
+
+        helper.close();
+        return res;
+    }
+
 }

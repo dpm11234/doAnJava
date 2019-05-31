@@ -5,6 +5,7 @@
  */
 package layout;
 
+import bus.TuyenBUS;
 import createUI.ButtonImage;
 import createUI.DatePickerAdd;
 import createUI.ImagePanel;
@@ -12,6 +13,7 @@ import createUI.Input;
 import createUI.JPanelInput;
 import createUI.SelectDown;
 import createUI.TwoDots;
+import dto.TuyenDTO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -35,18 +37,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
+import java.util.Date;
 
 /**
  *
@@ -59,11 +57,15 @@ public class AddTicket extends JPanel {
     static boolean checkClickJCompoBox1, checkClickJCompoBox2, checkClickJCompoBoxKind;
     static SelectDown compoBoxFrom, compoBoxTo, compoBoxKind;
     private JTextField time, price;
-    
+    private TuyenDTO tuyen;
+    static ButtonImage submit;
+
+    private DatePickerAdd datePicker;
+
     public AddTicket() {
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
+        this.tuyen = new TuyenDTO();
         JPanel loginBg = new JPanel();
         try {
             Image imgLogin = null;
@@ -106,7 +108,7 @@ public class AddTicket extends JPanel {
         selectTime.setPreferredSize(new Dimension(488, 40));
         selectTime.setBackground(new Color(255, 255, 255));
         
-        DatePickerAdd datePicker = new DatePickerAdd(9);
+        datePicker = new DatePickerAdd(9);
         TwoDots dot1 = new TwoDots();
         Input inputTime = new Input("Giờ khởi hành", "time-oclock");
         
@@ -148,7 +150,7 @@ public class AddTicket extends JPanel {
         selectRow5.setPreferredSize(new Dimension(488, 40));
         selectRow5.setBackground(new Color(255, 255, 255));
         
-        ButtonImage submit = new ButtonImage("Tạo chuyến xe");
+        submit = new ButtonImage("Tạo chuyến xe");
         
         selectRow5.add(submit);
         
@@ -186,11 +188,32 @@ public class AddTicket extends JPanel {
     }
 
     public void addEvents() {
-        System.out.println(compoBoxFrom.getCompoBox().getSelectedIndex());
         compoBoxFrom.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println(compoBoxFrom.getCompoBox().getSelectedIndex());
+                int index = compoBoxFrom.getCompoBox().getSelectedIndex();
+
+            }
+        });
+        JFormattedTextField textField = datePicker.getTextField();
+
+
+
+        submit.getButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tuyen = new TuyenDTO(
+                        "0002",
+                        "0002N3",
+                        "Tp.HCM",
+                        "Đồng Nai",
+                        new Timestamp(new Date().getTime()),
+                    34,
+                        "60N2-7549",
+                    1,
+                    80000
+                );
+                TuyenBUS.addTuyen(tuyen);
             }
         });
     }

@@ -46,17 +46,31 @@ public class DataAccessHelper {
         return rs;
     }
 
+    public int excuteUpdate(String sql) {
+        int rs = -1;
+        try {
+            Statement statement = conn.createStatement();
+            rs = statement.executeUpdate(sql);
+        } catch (SQLException ex) {
+            displayError(ex);
+        }
+
+        return rs;
+    }
+
 //    public static void main(String[] args) {
 //        DataAccessHelper helper = new DataAccessHelper();
+//        String sql = "insert into TUYEN values('0002', '0002N2', 'Tp.HCM', N'Đồng Nai', '2019-05-24 14:00:00', 16, '60N2-7249', 2, 95000)";
 //        helper.open();
-//        try {
-//            ResultSet rs = helper.excuteQuery("SELECT * FROM NHAXE");
-//            while (rs.next()) {
-//                System.out.println(rs.getString(1)+" "+rs.getString(2) + " " + rs.getString(3)+" "+rs.getString(4));
-//            }
-//        } catch (SQLException ex) {
-//            helper.displayError(ex);
-//        }
+////            ResultSet rs = helper.excuteQuery("SELECT * FROM NHAXE");
+////            while (rs.next()) {
+////                System.out.println(rs.getString(1)+" "+rs.getString(2) + " " + rs.getString(3)+" "+rs.getString(4));
+////            }
+//
+//        int rs = helper.excuteUpdate(sql);
+//
+//        System.out.println(rs);
+//
 //        helper.close();
 //    }
 
