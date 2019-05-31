@@ -47,8 +47,7 @@ public class main extends JFrame {
 
         body.add(slideBarMain, BorderLayout.WEST);
         body.add(content, BorderLayout.CENTER);
-        
-        
+
         frame.setVisible(true);
         frame.add(body);
     }

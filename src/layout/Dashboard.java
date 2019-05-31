@@ -100,7 +100,7 @@ public class Dashboard extends JPanel {
 //        ka.add(ticket4);
 //        ka.add(ticket5);
 //        ka.add(ticket6);
-        danhSachTuyen = TuyenBUS.getAll();
+        danhSachTuyen = TuyenBUS.getAllByMaNX();
 
         for(TuyenDTO tuyen : danhSachTuyen) {
             ticket = new Ticket(tuyen);

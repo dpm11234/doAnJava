@@ -9,4 +9,8 @@ public class TuyenBUS {
     public static ArrayList<TuyenDTO> getAll() {
         return TuyenDAO.getAll();
     }
+
+    public static ArrayList<TuyenDTO> getAllByMaNX() {
+        return TuyenDAO.getAllByMaNX();
+    }
 }

@@ -294,7 +294,7 @@ public class Ticket extends JPanel {
         totalChair.setVerticalAlignment(JLabel.CENTER);
         totalChair.setHorizontalAlignment(JLabel.CENTER);
         
-        JLabel licensePlate = new JLabel("BS: 60A - 03930");
+        JLabel licensePlate = new JLabel("BS: " + tuyen.getBienSoXe());
         licensePlate.setPreferredSize(new Dimension(122, 25));
         licensePlate.setFont(fontPrice);
         licensePlate.setForeground(Color.black);
