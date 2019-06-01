@@ -87,10 +87,12 @@ public class Dashboard extends JPanel {
 //        UIManager.put("ScrollBar.thumbHighlight", new Color(0, 0, 0, 0));
 //        UIManager.put("ScrollBar.thumbShadow", new Color(0, 0, 0, 0));
 //        UIManager.put("ScrollBar.width", 16);
+
         UIManager.put("control", new Color(0, 0, 0, 0));
         JPanel jp = new JPanel();
         JPanel ka = new JPanel();
-        ka.setPreferredSize(new Dimension(790, 399));
+        int height = 0;
+        ka.setPreferredSize(new Dimension(790, height));
         ka.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251, 0));
@@ -100,11 +102,14 @@ public class Dashboard extends JPanel {
 //        ka.add(ticket4);
 //        ka.add(ticket5);
 //        ka.add(ticket6);
-        danhSachTuyen = TuyenBUS.getAllByMaNX();
 
+        danhSachTuyen = TuyenBUS.getAllByMaNX();
         for(TuyenDTO tuyen : danhSachTuyen) {
             ticket = new Ticket(tuyen);
             ticket.setPreferredSize(new Dimension(380, 118));
+
+            height += 92;
+            ka.setPreferredSize(new Dimension(790, height));
             ka.add(ticket);
         }
 

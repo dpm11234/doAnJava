@@ -191,6 +191,7 @@ public class AddTicket extends JPanel {
     }
 
     public void addEvents() {
+
         compoBoxFrom.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -230,8 +231,12 @@ public class AddTicket extends JPanel {
                 System.out.println(Integer.parseInt(inputPrice.getText()));
                 tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
                 JFormattedTextField textField = datePicker.getTextField();
+<<<<<<< HEAD
                 String date1 = textField.getText() + " " + inputTime.getText();
                 System.out.println(date1);
+=======
+                String date1 = textField.getText() + " 10:00";
+>>>>>>> ecbbdd99d8e0c52f230d5e26c5e07f2163bd2018
                 Date date = new Timestamp(1);
                 try {
                     DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
@@ -241,6 +246,7 @@ public class AddTicket extends JPanel {
                     ex.printStackTrace();
                 }
                 tuyen = new TuyenDTO(
+<<<<<<< HEAD
                         tuyen.getMaNX(),
                         tuyen.getMaTuyen(),
                         tuyen.getDiemXuatPhat(),
@@ -250,8 +256,20 @@ public class AddTicket extends JPanel {
                         tuyen.getBienSoXe(),
                         tuyen.getSoLuong(),
                         tuyen.getGia()
+=======
+                        "0001",
+                        "0001N5",
+                        "Tp.HCM",
+                        tuyen.getDiemXuatPhat(),
+                        new Timestamp(date.getTime()),
+                        34,
+                        "60N2-7549",
+                        1,
+                        90000
+>>>>>>> ecbbdd99d8e0c52f230d5e26c5e07f2163bd2018
                 );
-                TuyenBUS.addTuyen(tuyen);
+                int res = TuyenBUS.deleteTicket("0001N5");
+                System.out.println(res);
             }
         });
     }

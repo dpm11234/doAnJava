@@ -92,4 +92,16 @@ public class TuyenDAO {
         return res;
     }
 
+    public static int deleteTicket(String maTuyen) {
+        String sql = "DELETE FROM TUYEN WHERE MATUYEN = '" + maTuyen + "'";
+        DataAccessHelper helper = new DataAccessHelper();
+        int res = -1;
+        helper.open();
+
+        res = helper.excuteUpdate(sql);
+
+        helper.close();
+        return res;
+    }
+
 }
