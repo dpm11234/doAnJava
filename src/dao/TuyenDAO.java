@@ -74,15 +74,19 @@ public class TuyenDAO {
     }
 
     public static int addTuyen(TuyenDTO tuyen) {
-        String sql = "INSERT INTO TUYEN VALUES ('" + tuyen.getMaNX() + "', '" + tuyen.getMaTuyen() + "', N'" + tuyen.getDiemXuatPhat() + "', N'" + tuyen.getDiemDen() + "', '" + tuyen.getThoiGianKhoiHanh() + "'," + 34 + "," + "'" + tuyen.getBienSoXe() + "'," + 1 + "," + 80000 + ");";
+        String sql = "INSERT INTO TUYEN VALUES ('" + tuyen.getMaNX() + "', '" + tuyen.getMaTuyen() + "', N'" + tuyen.getDiemXuatPhat() + "', N'" + tuyen.getDiemDen() + "', '" + tuyen.getThoiGianKhoiHanh() + "'," + tuyen.getTongGhe() + "," + "'" + tuyen.getBienSoXe() + "'," + tuyen.getSoLuong() + "," + tuyen.getGia() + ");";
+        String sql2 = "UPDATE NHAXE SET SOTUYEN = SOTUYEN + 1 WHERE MANX = " + Session.ssMaNX;
         DataAccessHelper helper = new DataAccessHelper();
         System.out.println(sql);
+        System.out.println(sql2);
         int res = -1;
 
         helper.open();
 
         res = helper.excuteUpdate(sql);
-
+        if (res == 1) {
+            helper.excuteUpdate(sql2);
+        }
 
         helper.close();
         return res;
