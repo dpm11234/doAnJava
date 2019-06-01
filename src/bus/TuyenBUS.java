@@ -14,10 +14,18 @@ public class TuyenBUS {
         return TuyenDAO.getAllByMaNX();
     }
 
-    public static int addTuyen(TuyenDTO tuyen) {
+    public static int addTicket(TuyenDTO tuyen) {
         int res = -1;
 
-        res = TuyenDAO.addTuyen(tuyen);
+        res = TuyenDAO.addTicket(tuyen);
+
+        return res;
+    }
+
+    public static int deleteTicket(String maTuyen) {
+        int res = -1;
+
+        res = TuyenDAO.deleteTicket(maTuyen);
 
         return res;
     }

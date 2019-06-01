@@ -206,7 +206,6 @@ public class AddTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 JFormattedTextField textField = datePicker.getTextField();
                 String date1 = textField.getText() + " 10:00";
-                System.out.println(date1);
                 Date date = new Timestamp(1);
                 try {
                     DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
@@ -216,8 +215,8 @@ public class AddTicket extends JPanel {
                     ex.printStackTrace();
                 }
                 tuyen = new TuyenDTO(
-                        "0002",
-                        "0002N7",
+                        "0001",
+                        "0001N5",
                         "Tp.HCM",
                         tuyen.getDiemXuatPhat(),
                         new Timestamp(date.getTime()),
@@ -226,7 +225,8 @@ public class AddTicket extends JPanel {
                         1,
                         90000
                 );
-                TuyenBUS.addTuyen(tuyen);
+                int res = TuyenBUS.deleteTicket("0001N5");
+                System.out.println(res);
             }
         });
     }
