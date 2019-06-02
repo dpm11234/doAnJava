@@ -112,6 +112,7 @@ public class MenuDashboard extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 areaPanel.removeAll();
+                addTicket = new AddTicket();
                 areaPanel.add(addTicket);
 
                 areaPanel.validate();

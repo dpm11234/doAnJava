@@ -35,8 +35,7 @@ public class Content extends JPanel {
         navbar = new Navbar();
         home = new Home();
         login = new Login();
-        dashboard = new Dashboard();
-        addTicket = new AddTicket();
+
         bookedTicket = new BookedTicket();
         
         areaPanel.add(home, BorderLayout.CENTER);
