@@ -46,18 +46,16 @@ public class DataAccessHelper {
         return rs;
     }
 
-//    public static void main(String[] args) {
-//        DataAccessHelper helper = new DataAccessHelper();
-//        helper.open();
-//        try {
-//            ResultSet rs = helper.excuteQuery("SELECT * FROM NHAXE");
-//            while (rs.next()) {
-//                System.out.println(rs.getString(1)+" "+rs.getString(2) + " " + rs.getString(3)+" "+rs.getString(4));
-//            }
-//        } catch (SQLException ex) {
-//            helper.displayError(ex);
-//        }
-//        helper.close();
-//    }
+    public int excuteUpdate(String sql) {
+        int rs = -1;
+        try {
+            Statement statement = conn.createStatement();
+            rs = statement.executeUpdate(sql);
+        } catch (SQLException ex) {
+            displayError(ex);
+        }
+
+        return rs;
+    }
 
 }

@@ -70,18 +70,6 @@ public class Dashboard extends JPanel {
             exp.printStackTrace();
         }
 
-//        ticket = new Ticket();
-//        ticket2 = new Ticket();
-//        ticket3 = new Ticket();
-//        ticket4 = new Ticket();
-//        ticket5 = new Ticket();
-//        ticket6 = new Ticket();
-//        ticket.setPreferredSize(new Dimension(380, 118));
-//        ticket2.setPreferredSize(new Dimension(380, 118));
-//        ticket3.setPreferredSize(new Dimension(380, 118));
-//        ticket4.setPreferredSize(new Dimension(380, 118));
-//        ticket5.setPreferredSize(new Dimension(380, 118));
-//        ticket6.setPreferredSize(new Dimension(380, 118));
         selectTicketPanel = new SelectTicketPanel();
         JLabel test = new JLabel("Menu quản trị");
         UIManager.put("ScrollBar.background", new Color(0, 0, 0, 0));
@@ -91,6 +79,7 @@ public class Dashboard extends JPanel {
 //        UIManager.put("ScrollBar.thumbHighlight", new Color(0, 0, 0, 0));
 //        UIManager.put("ScrollBar.thumbShadow", new Color(0, 0, 0, 0));
 //        UIManager.put("ScrollBar.width", 16);
+
         UIManager.put("control", new Color(0, 0, 0, 0));
         JPanel jp = new JPanel();
         JPanel ka = new JPanel();
@@ -99,15 +88,9 @@ public class Dashboard extends JPanel {
         ka.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251, 0));
-//        ka.add(ticket);
-//        ka.add(ticket2);
-//        ka.add(ticket3);
-//        ka.add(ticket4);
-//        ka.add(ticket5);
-//        ka.add(ticket6);
-        danhSachTuyen = TuyenBUS.getAll();
-        
+
         int countTuyen = 1;
+        danhSachTuyen = TuyenBUS.getAllByMaNX();
         for(TuyenDTO tuyen : danhSachTuyen) {
             ticket = new TicketClient(tuyen);
             ticket.setPreferredSize(new Dimension(380, 118));

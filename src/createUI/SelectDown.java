@@ -119,4 +119,8 @@ public class SelectDown extends JPanel {
             }
         }
     }
+
+    public JComboBox getCompoBox() {
+        return compoBox;
+    }
 }

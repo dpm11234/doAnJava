@@ -129,4 +129,7 @@ public class Input extends JPanel {
         
         this.add(inputRadius);
     }
+    public String getText(){
+        return input.getText();
+    }
 }

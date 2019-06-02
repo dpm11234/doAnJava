@@ -23,7 +23,8 @@ public class DatePickerAdd extends JPanel {
     JLabel datePickerSpace, leftAlignDatePicker, rightAlignDatePicker;
     JPanel alignDatePicker;
     JButton changeButton;
-    
+    private JFormattedTextField textField;
+
     public DatePickerAdd(int heightSpace) {
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(255, 255, 255));
@@ -68,8 +69,8 @@ public class DatePickerAdd extends JPanel {
         
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
         JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        
-        JFormattedTextField textField = datePicker.getJFormattedTextField();
+
+        textField = datePicker.getJFormattedTextField();
 
         datePicker.setShowYearButtons(false);
         datePicker.setTextEditable(false);
@@ -131,5 +132,9 @@ public class DatePickerAdd extends JPanel {
 
             return "";
         }
+    }
+
+    public JFormattedTextField getTextField() {
+        return textField;
     }
 }

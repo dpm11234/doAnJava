@@ -1,14 +1,9 @@
 package util;
 
-public class Session {
-    public static boolean isLogin;
-    public static String ssMaNX;
-    public static String tenNX;
+import dto.NhaXeDTO;
 
-    public Session() {
-        isLogin = false;
-        ssMaNX = null;
-        tenNX = null;
-    }
+public class Session {
+    public static boolean isLogin = false;
+    public static NhaXeDTO ssNhaXe = null;
 
 }

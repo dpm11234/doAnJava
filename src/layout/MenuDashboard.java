@@ -20,6 +20,9 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 
+import static layout.Content.*;
+
+
 /**
  *
  * @author my pc
@@ -101,6 +104,32 @@ public class MenuDashboard extends JPanel {
                 createTicket.setBackground(new Color(26, 126, 218));
                 nameCreateTicket.setForeground(new Color(255, 255, 255));
                 nameCreateTicket.setIcon(new ImageIcon(new ImageIcon("images/notes.png").getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT)));
+            }
+        });
+
+        createTicket.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                areaPanel.removeAll();
+                addTicket = new AddTicket();
+                areaPanel.add(addTicket);
+
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
+
+        panelTicket.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                areaPanel.removeAll();
+                dashboard = new Dashboard();
+                areaPanel.add(dashboard);
+
+                areaPanel.validate();
+                areaPanel.repaint();
             }
         });
         

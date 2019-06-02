@@ -42,10 +42,11 @@ import static layout.SlideBar.menuDashboard;
 import static layout.SlideBarMain.slideBar;
 import static layout.SlideBar.selectTicket;
 import util.Session;
+import static layout.Content.dashboard;
 
 import static layout.NavBackHome.btnBackLogin;
 import static util.Session.isLogin;
-import static util.Session.ssMaNX;
+import static util.Session.ssNhaXe;
 
 /**
  *
@@ -54,8 +55,6 @@ import static util.Session.ssMaNX;
 public class Login extends JPanel {
     private JTextField user;
     private JPasswordField textPass;
-    private JFrame frame;
-    static Dashboard dashboard;
     static JLabel hello, spaceHello;
     
     public Login() {
@@ -345,13 +344,16 @@ public class Login extends JPanel {
         
         this.add(loginBg, BorderLayout.CENTER);
         
-        
+        // Lưu tài khoản thôi
+        this.user.setText("tk01");
+        this.textPass.setText("admin");
+
         buttonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(login()) {
                     menuDashboard = new MenuDashboard();
-                    hello = new JLabel("Xin chào nhà xe: HiHi " + Session.tenNX);
+                    hello = new JLabel("Xin chào nhà xe: " + ssNhaXe.getTenNX());
                     spaceHello = new JLabel();
                     spaceHello.setPreferredSize(new Dimension(20, 50));
                     Font fontHello = new Font("SansSerif", Font.BOLD, 15);
@@ -373,7 +375,7 @@ public class Login extends JPanel {
                     slideBar.repaint();
                     System.out.println("hihi");
                 } else {
-                    JOptionPane.showMessageDialog(frame, "Tài khoản hoặc mật khẩu không đúng");
+                    JOptionPane.showMessageDialog(dashboard, "Tài khoản hoặc mật khẩu không đúng");
                 }
             }
         });
@@ -389,14 +391,9 @@ public class Login extends JPanel {
         for(NhaXeDTO nx : dsNhaXe) {
             nhaXe = nx;
             if(nhaXe.getUsername().equals(user.getText())) {
-//                System.out.println("Dung user name");
-//                System.out.println("Pass: " + textPass.getText());
                 if(nhaXe.getPassword().equals(textPass.getText())) {
-//                    System.out.println("Pass dung!");
                     isLogin = true;
-                    Session.ssMaNX = nhaXe.getMaNX();
-                    Session.tenNX = nhaXe.getTenNX();
-                    System.out.println(ssMaNX);
+                    ssNhaXe = nhaXe;
                     return true;
                 }
                 else{
