@@ -21,9 +21,7 @@ public class Home extends JPanel{
             Image img = null;
             img = ImageIO.read(new File("images/background.png"));
             imgPanel = new ImagePanel(img);
-            //this.add(new ImagePanel(img));
             this.add(imgPanel);
-            System.out.println(this.getWidth() - 1);
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }

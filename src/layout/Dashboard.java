@@ -35,6 +35,9 @@ import static layout.MenuDashboard.panelTicket;
 
 // import Layout
 import dto.TuyenDTO;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import static layout.Main.heightGet;
 import layout.SelectTicketPanel;
 import static layout.SelectTicketPanel.selectFrom;
 import layout.Ticket;
@@ -48,7 +51,8 @@ public class Dashboard extends JPanel {
     private ImagePanel bgDashboard;
 //    ImageScroll hi;
     static SelectTicketPanel selectTicketPanel;
-    static Ticket ticket;
+    static Ticket ticket2, ticket3, ticket4, ticket5, ticket6;
+    static TicketClient ticket;
 
     public ArrayList<TuyenDTO> danhSachTuyen;
 
@@ -85,30 +89,30 @@ public class Dashboard extends JPanel {
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251, 0));
 
+        int countTuyen = 1;
         danhSachTuyen = TuyenBUS.getAllByMaNX();
         for(TuyenDTO tuyen : danhSachTuyen) {
-            ticket = new Ticket(tuyen);
+            ticket = new TicketClient(tuyen);
             ticket.setPreferredSize(new Dimension(380, 118));
-
-            height += ticket.getPreferredSize().height;
-
+            
+            if (countTuyen % 2 != 0) {
+                height += 133;
+            }
+            countTuyen++;
             ka.setPreferredSize(new Dimension(790, height));
             ka.add(ticket);
         }
-
-//        for (int i = 0; i < 2; i++) {
-//            for (int j = 0; j < 20; j++) {
-//                ka.add(new JButton("Button " + j));
-//            }
-//        }
+        System.out.println(height);
+        
         JViewport viewport = new JViewport();
         viewport.setView(ka);
         JScrollPane hi = new JScrollPane();
         hi.setViewport(viewport);
-        hi.setPreferredSize(new Dimension(810, 500));
+        hi.setPreferredSize(new Dimension(810, heightGet - 220));
         hi.setBorder(borderInputPass);
         hi.setOpaque(false);
         hi.getViewport().setOpaque(false);
+        hi.getVerticalScrollBar().setUnitIncrement(5);
 
         hi.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
             @Override
@@ -135,6 +139,14 @@ public class Dashboard extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 areaPanel.validate();
                 areaPanel.repaint();
+            }
+        });
+        
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                hi.setPreferredSize(new Dimension(810, heightGet - 220));
+                bgDashboard.revalidate();
             }
         });
     }

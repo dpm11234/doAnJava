@@ -8,17 +8,31 @@ package layout;
 import createUI.ImagePanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
+import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
+import static layout.Main.heightGet;
+import static layout.Main.widthGet;
 
 /**
  *
@@ -27,32 +41,51 @@ import javax.swing.border.MatteBorder;
 public class BookedTicket extends JPanel {
 
     private ImagePanel bgBooked;
+    public int height;
 
     public BookedTicket() {
+
+        int widthArea = widthGet - 130 - 270;
+        int width;
+        if (height > heightGet - 251) {
+            width = widthArea - 17;
+        } else {
+            width = widthArea;
+        }
+        int widthOutLine = width - 4;
+        float nameW2 = (float) widthOutLine / 100 * 29;
+        float phoneW2 = (float) widthOutLine / 100 * 23;
+        float totalW2 = (float) widthOutLine / 100 * 16;
+        float timeW2 = (float) widthOutLine / 100 * 21;
+
+        int nameW = Math.round(nameW2) + 1;
+        int phoneW = Math.round(phoneW2);
+        int totalW = Math.round(totalW2);
+        int timeW = Math.round(timeW2);
+        int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+
         this.setLayout(new BorderLayout());
         try {
             Image img = null;
             img = ImageIO.read(new File("images/bg/admin-panel2.png"));
             bgBooked = new ImagePanel(img);
-            //this.add(new ImagePanel(img));
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }
 
         MatteBorder borderBlack = new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0));
         MatteBorder borderWhile = new MatteBorder(1, 1, 1, 1, new Color(255, 255, 255));
+        MatteBorder borderBox = new MatteBorder(0, 0, 1, 0, new Color(219, 220, 221));
 
         JPanel boxListBooked = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        boxListBooked.setPreferredSize(new Dimension(800, 400));
         boxListBooked.setBackground(new Color(255, 255, 255, 0));
-//        boxListBooked.setBorder(borderWhile);
 
         JLabel spaceTop = new JLabel();
         spaceTop.setPreferredSize(new Dimension(800, 30));
         spaceTop.setBackground(new Color(95, 152, 244, 0));
 
         JPanel infoTicket = new JPanel(new BorderLayout());
-        infoTicket.setPreferredSize(new Dimension(800, 40));
+        infoTicket.setPreferredSize(new Dimension(widthGet - 130 - 270, 40));
         infoTicket.setBackground(new Color(76, 173, 255));
         infoTicket.setBorder(borderWhile);
 
@@ -102,16 +135,25 @@ public class BookedTicket extends JPanel {
 
         infoTicketRight.add(time, BorderLayout.WEST);
         infoTicketRight.add(day, BorderLayout.EAST);
+        
+        JLabel totalTickets = new JLabel("Tổng vé: 23");
+        totalTickets.setPreferredSize(new Dimension(60, 40));
+        totalTickets.setHorizontalAlignment(JLabel.CENTER);
+        totalTickets.setForeground(Color.white);
+        totalTickets.setHorizontalAlignment(JLabel.CENTER);
+        totalTickets.setVerticalAlignment(JLabel.CENTER);
 
         infoTicket.add(infoTicketLeft, BorderLayout.WEST);
+        infoTicket.add(totalTickets, BorderLayout.CENTER);
         infoTicket.add(infoTicketRight, BorderLayout.EAST);
 
         JPanel titleTable = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
-        titleTable.setPreferredSize(new Dimension(800, 38));
+        titleTable.setPreferredSize(new Dimension(widthGet - 130 - 270, 38));
         titleTable.setBackground(new Color(255, 255, 255));
+        titleTable.setBorder(borderBox);
 
         JLabel name = new JLabel("Tên");
-        name.setPreferredSize(new Dimension(230, 38));
+        name.setPreferredSize(new Dimension(nameW, 38));
         name.setHorizontalAlignment(JLabel.CENTER);
         name.setForeground(new Color(117, 120, 122));
         name.setHorizontalAlignment(JLabel.CENTER);
@@ -120,7 +162,7 @@ public class BookedTicket extends JPanel {
         Line line1 = new Line();
 
         JLabel phone = new JLabel("Số điện thoại");
-        phone.setPreferredSize(new Dimension(180, 38));
+        phone.setPreferredSize(new Dimension(phoneW, 38));
         phone.setHorizontalAlignment(JLabel.CENTER);
         phone.setForeground(new Color(117, 120, 122));
         phone.setHorizontalAlignment(JLabel.CENTER);
@@ -129,7 +171,7 @@ public class BookedTicket extends JPanel {
         Line line2 = new Line();
 
         JLabel totalTicket = new JLabel("Số vé đặt");
-        totalTicket.setPreferredSize(new Dimension(130, 38));
+        totalTicket.setPreferredSize(new Dimension(totalW, 38));
         totalTicket.setHorizontalAlignment(JLabel.CENTER);
         totalTicket.setForeground(new Color(117, 120, 122));
         totalTicket.setHorizontalAlignment(JLabel.CENTER);
@@ -138,7 +180,7 @@ public class BookedTicket extends JPanel {
         Line line3 = new Line();
 
         JLabel timeBooked = new JLabel("Thời gian đặt");
-        timeBooked.setPreferredSize(new Dimension(176, 38));
+        timeBooked.setPreferredSize(new Dimension(timeW, 38));
         timeBooked.setHorizontalAlignment(JLabel.CENTER);
         timeBooked.setForeground(new Color(117, 120, 122));
         timeBooked.setHorizontalAlignment(JLabel.CENTER);
@@ -147,7 +189,7 @@ public class BookedTicket extends JPanel {
         Line line4 = new Line();
 
         JLabel delete = new JLabel("Hủy");
-        delete.setPreferredSize(new Dimension(80, 38));
+        delete.setPreferredSize(new Dimension(deleteW, 38));
         delete.setHorizontalAlignment(JLabel.CENTER);
         delete.setForeground(new Color(117, 120, 122));
         delete.setHorizontalAlignment(JLabel.CENTER);
@@ -163,25 +205,109 @@ public class BookedTicket extends JPanel {
         titleTable.add(line4);
         titleTable.add(delete);
 
-//        ListBookedB list1 = new ListBookedB();
-//        ListBookedW list2 = new ListBookedW();
-        boxListBooked.add(spaceTop);
-        boxListBooked.add(infoTicket);
-        boxListBooked.add(titleTable);
+        UIManager.put("ScrollBar.background", new Color(219, 220, 221));
+        UIManager.put("ScrollBar.highlight", new Color(252, 210, 33, 0));
 
-        for (int i = 0; i < 10; i++) {
+        JPanel ka = new JPanel();
+        ka.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
+        ka.setBorder(borderInputPass);
+        ka.setBackground(new Color(119, 191, 251));
+        height = 20 * 40;
+        if (height > heightGet - 251) {
+            boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 142));
+        } else {
+            boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, 108 + height));
+        }
+        ka.setPreferredSize(new Dimension(widthGet - 130 - 270 - 17, height + 1));
+
+        for (int i = 0; i < 20; i++) {
             if (i % 2 == 0) {
-                boxListBooked.add(new ListBookedB());
+                ka.add(new ListBookedB(i));
             } else {
-                boxListBooked.add(new ListBookedW());
+                ka.add(new ListBookedW(i));
             }
         }
 
-//        boxListBooked.add(list1);
-//        boxListBooked.add(list2);
+        JViewport viewport = new JViewport();
+        viewport.setView(ka);
+        JScrollPane hi = new JScrollPane();
+        hi.setViewport(viewport);
+        if (height > heightGet - 251) {
+            hi.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 251));
+        } else {
+            hi.setPreferredSize(new Dimension(widthGet - 130 - 270, height));
+        }
+        hi.setBorder(borderInputPass);
+        hi.setOpaque(false);
+        hi.getViewport().setOpaque(false);
+        hi.getVerticalScrollBar().setUnitIncrement(5);
+        hi.setBackground(new Color(0, 0, 0, 0));
+
+        boxListBooked.setBorder(borderBox);
+
+        boxListBooked.add(spaceTop);
+        boxListBooked.add(infoTicket);
+        boxListBooked.add(titleTable);
+        boxListBooked.add(hi);
         bgBooked.add(boxListBooked);
 
         this.add(bgBooked);
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+
+                int widthG = widthGet - 130 - 270;
+                int width;
+                if (height > heightGet - 251) {
+                    width = widthG - 17;
+                } else {
+                    width = widthG;
+                }
+                int widthOutLine = width - 4;
+
+                float nameW2 = (float) widthOutLine / 100 * 29;
+                float phoneW2 = (float) widthOutLine / 100 * 23;
+                float totalW2 = (float) widthOutLine / 100 * 16;
+                float timeW2 = (float) widthOutLine / 100 * 21;
+
+                int nameW = Math.round(nameW2) + 1;
+                int phoneW = Math.round(phoneW2);
+                int totalW = Math.round(totalW2);
+                int timeW = Math.round(timeW2);
+                int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+
+                if (height > heightGet - 251) {
+                    boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 142));
+                } else {
+                    boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, 109 + height));
+                }
+                infoTicket.setPreferredSize(new Dimension(widthG, 40));
+                titleTable.setPreferredSize(new Dimension(widthG, 38));
+                ka.setPreferredSize(new Dimension(widthG - 17, height));
+                if (height > heightGet - 251) {
+                    hi.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 251));
+                } else {
+                    hi.setPreferredSize(new Dimension(widthGet - 130 - 270, height));
+                }
+                name.setPreferredSize(new Dimension(nameW, 38));
+                phone.setPreferredSize(new Dimension(phoneW, 38));
+                totalTicket.setPreferredSize(new Dimension(totalW, 38));
+                timeBooked.setPreferredSize(new Dimension(timeW, 38));
+                delete.setPreferredSize(new Dimension(deleteW, 38));
+                ka.removeAll();
+                for (int i = 0; i < 20; i++) {
+                    if (i % 2 == 0) {
+                        ka.add(new ListBookedB(i));
+                    } else {
+                        ka.add(new ListBookedW(i));
+                    }
+                }
+                timeBooked.revalidate();
+                boxListBooked.revalidate();
+            }
+        });
     }
 
     public class Line extends JLabel {
@@ -196,21 +322,295 @@ public class BookedTicket extends JPanel {
 
     public class ListBookedB extends JPanel {
 
-        public ListBookedB() {
+        JPanel boxButtonDeleteT, boxButtonDeleteTHover;
+
+        public ListBookedB(int id) {
+
+            int widthArea = widthGet - 130 - 270;
+            int width;
+            if (height > heightGet - 251) {
+                width = widthArea - 17;
+            } else {
+                width = widthArea;
+            }
+            int widthOutLine = width - 4;
+
+            float nameW2 = (float) widthOutLine / 100 * 29;
+            float phoneW2 = (float) widthOutLine / 100 * 23;
+            float totalW2 = (float) widthOutLine / 100 * 16;
+            float timeW2 = (float) widthOutLine / 100 * 21;
+
+            int nameW = Math.round(nameW2);
+            int phoneW = Math.round(phoneW2);
+            int totalW = Math.round(totalW2);
+            int timeW = Math.round(timeW2);
+            int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+
             this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-            this.setPreferredSize(new Dimension(800, 40));
+            this.setPreferredSize(new Dimension(width, 40));
             this.setBackground(new Color(239, 241, 242));
+            MatteBorder borderLR = new MatteBorder(0, 1, 0, 1, new Color(219, 220, 221));
+            this.setBorder(borderLR);
+
+            JLabel name = new JLabel("Đỗ Đức Duy");
+            name.setPreferredSize(new Dimension(nameW, 38));
+            name.setHorizontalAlignment(JLabel.CENTER);
+            name.setForeground(new Color(117, 120, 122));
+            name.setHorizontalAlignment(JLabel.CENTER);
+            name.setVerticalAlignment(JLabel.CENTER);
+
+            Line line1 = new Line();
+
+            JLabel phone = new JLabel("0374740747");
+            phone.setPreferredSize(new Dimension(phoneW, 38));
+            phone.setHorizontalAlignment(JLabel.CENTER);
+            phone.setForeground(new Color(117, 120, 122));
+            phone.setHorizontalAlignment(JLabel.CENTER);
+            phone.setVerticalAlignment(JLabel.CENTER);
+
+            Line line2 = new Line();
+
+            JLabel totalTicket = new JLabel("3");
+            totalTicket.setPreferredSize(new Dimension(totalW, 38));
+            totalTicket.setHorizontalAlignment(JLabel.CENTER);
+            totalTicket.setForeground(new Color(117, 120, 122));
+            totalTicket.setHorizontalAlignment(JLabel.CENTER);
+            totalTicket.setVerticalAlignment(JLabel.CENTER);
+
+            Line line3 = new Line();
+
+            JLabel timeBooked = new JLabel("12:30 ngày 29-09-2019");
+            timeBooked.setPreferredSize(new Dimension(timeW, 38));
+            timeBooked.setHorizontalAlignment(JLabel.CENTER);
+            timeBooked.setForeground(new Color(117, 120, 122));
+            timeBooked.setHorizontalAlignment(JLabel.CENTER);
+            timeBooked.setVerticalAlignment(JLabel.CENTER);
+
+            Line line4 = new Line();
+
+            JPanel boxButtonDelete = new JPanel(new GridBagLayout());
+            boxButtonDelete.setPreferredSize(new Dimension(deleteW - 2, 38));
+            boxButtonDelete.setBackground(new Color(239, 241, 242));
+
+            boxButtonDeleteT = new JPanel(new BorderLayout());
+            boxButtonDeleteT.setPreferredSize(new Dimension(24, 24));
+            boxButtonDeleteT.setBackground(new Color(39, 241, 242));
+
+            boxButtonDeleteTHover = new JPanel(new BorderLayout());
+            boxButtonDeleteTHover.setPreferredSize(new Dimension(24, 24));
+            boxButtonDeleteTHover.setBackground(new Color(39, 241, 242));
+
+            JButton delete = new JButton();
+            delete.setPreferredSize(new Dimension(24, 24));
+            delete.setBackground(new Color(0, 0, 0, 0));
+            delete.setRolloverEnabled(false);
+            delete.setBorderPainted(false);
+            delete.setFocusPainted(false);
+            delete.setContentAreaFilled(false);
+            delete.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/delete-button.png"));
+                boxButtonDeleteT = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            }
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/delete-button-hover.png"));
+                boxButtonDeleteTHover = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            };
+
+            delete.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    boxButtonDeleteTHover.add(delete);
+                    boxButtonDelete.remove(boxButtonDeleteT);
+                    boxButtonDelete.add(boxButtonDeleteTHover);
+                    boxButtonDelete.validate();
+                    boxButtonDelete.repaint();
+                }
+            });
+
+            delete.addMouseListener(new MouseAdapter() {
+                public void mouseExited(MouseEvent e) {
+                    boxButtonDeleteT.add(delete);
+                    boxButtonDelete.remove(boxButtonDeleteTHover);
+                    boxButtonDelete.add(boxButtonDeleteT);
+                    boxButtonDelete.validate();
+                    boxButtonDelete.repaint();
+                }
+            });
+
+            boxButtonDeleteT.add(delete);
+            boxButtonDelete.add(boxButtonDeleteT);
+
+            this.add(name);
+            this.add(line1);
+            this.add(phone);
+            this.add(line2);
+            this.add(totalTicket);
+            this.add(line3);
+            this.add(timeBooked);
+            this.add(line4);
+            this.add(boxButtonDelete);
+
+            delete.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(id);
+                }
+            });
         }
     }
 
     public class ListBookedW extends JPanel {
 
-        public ListBookedW() {
+        JPanel boxButtonDeleteT, boxButtonDeleteTHover;
+
+        public ListBookedW(int id) {
+
+            int widthArea = widthGet - 130 - 270;
+            int width;
+            if (height > heightGet - 251) {
+                width = widthArea - 17;
+            } else {
+                width = widthArea;
+            }
+            int widthOutLine = width - 4;
+
+            float nameW2 = (float) widthOutLine / 100 * 29;
+            float phoneW2 = (float) widthOutLine / 100 * 23;
+            float totalW2 = (float) widthOutLine / 100 * 16;
+            float timeW2 = (float) widthOutLine / 100 * 21;
+
+            int nameW = Math.round(nameW2);
+            int phoneW = Math.round(phoneW2);
+            int totalW = Math.round(totalW2);
+            int timeW = Math.round(timeW2);
+            int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+
             this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-            this.setPreferredSize(new Dimension(800, 40));
+            this.setPreferredSize(new Dimension(width, 40));
             this.setBackground(new Color(255, 255, 255));
-            MatteBorder borderLR = new MatteBorder(0, 1, 0, 1, new Color(239, 241, 242));
+            MatteBorder borderLR = new MatteBorder(0, 1, 0, 1, new Color(219, 220, 221));
             this.setBorder(borderLR);
+
+            JLabel name = new JLabel("Đỗ Đức Duy");
+            name.setPreferredSize(new Dimension(nameW, 38));
+            name.setHorizontalAlignment(JLabel.CENTER);
+            name.setForeground(new Color(117, 120, 122));
+            name.setHorizontalAlignment(JLabel.CENTER);
+            name.setVerticalAlignment(JLabel.CENTER);
+
+            Line line1 = new Line();
+
+            JLabel phone = new JLabel("0374740747");
+            phone.setPreferredSize(new Dimension(phoneW, 38));
+            phone.setHorizontalAlignment(JLabel.CENTER);
+            phone.setForeground(new Color(117, 120, 122));
+            phone.setHorizontalAlignment(JLabel.CENTER);
+            phone.setVerticalAlignment(JLabel.CENTER);
+
+            Line line2 = new Line();
+
+            JLabel totalTicket = new JLabel("3");
+            totalTicket.setPreferredSize(new Dimension(totalW, 38));
+            totalTicket.setHorizontalAlignment(JLabel.CENTER);
+            totalTicket.setForeground(new Color(117, 120, 122));
+            totalTicket.setHorizontalAlignment(JLabel.CENTER);
+            totalTicket.setVerticalAlignment(JLabel.CENTER);
+
+            Line line3 = new Line();
+
+            JLabel timeBooked = new JLabel("12:30 ngày 29-09-2019");
+            timeBooked.setPreferredSize(new Dimension(timeW, 38));
+            timeBooked.setHorizontalAlignment(JLabel.CENTER);
+            timeBooked.setForeground(new Color(117, 120, 122));
+            timeBooked.setHorizontalAlignment(JLabel.CENTER);
+            timeBooked.setVerticalAlignment(JLabel.CENTER);
+
+            Line line4 = new Line();
+
+            JPanel boxButtonDelete = new JPanel(new GridBagLayout());
+            boxButtonDelete.setPreferredSize(new Dimension(deleteW - 2, 38));
+            boxButtonDelete.setBackground(new Color(255, 255, 255));
+
+            boxButtonDeleteT = new JPanel(new BorderLayout());
+            boxButtonDeleteT.setPreferredSize(new Dimension(24, 24));
+            boxButtonDeleteT.setBackground(new Color(255, 255, 255));
+
+            boxButtonDeleteTHover = new JPanel(new BorderLayout());
+            boxButtonDeleteTHover.setPreferredSize(new Dimension(24, 24));
+            boxButtonDeleteTHover.setBackground(new Color(255, 255, 255));
+
+            JButton delete = new JButton();
+            delete.setPreferredSize(new Dimension(24, 24));
+            delete.setBackground(new Color(255, 255, 255));
+            delete.setRolloverEnabled(false);
+            delete.setBorderPainted(false);
+            delete.setFocusPainted(false);
+            delete.setContentAreaFilled(false);
+            delete.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/delete-button.png"));
+                boxButtonDeleteT = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            }
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/delete-button-hover.png"));
+                boxButtonDeleteTHover = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            };
+
+            delete.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    boxButtonDeleteTHover.add(delete);
+                    boxButtonDelete.remove(boxButtonDeleteT);
+                    boxButtonDelete.add(boxButtonDeleteTHover);
+                    boxButtonDelete.validate();
+                    boxButtonDelete.repaint();
+                }
+            });
+
+            delete.addMouseListener(new MouseAdapter() {
+                public void mouseExited(MouseEvent e) {
+                    boxButtonDeleteT.add(delete);
+                    boxButtonDelete.remove(boxButtonDeleteTHover);
+                    boxButtonDelete.add(boxButtonDeleteT);
+                    boxButtonDelete.validate();
+                    boxButtonDelete.repaint();
+                }
+            });
+
+            boxButtonDeleteT.add(delete);
+            boxButtonDelete.add(boxButtonDeleteT);
+
+            this.add(name);
+            this.add(line1);
+            this.add(phone);
+            this.add(line2);
+            this.add(totalTicket);
+            this.add(line3);
+            this.add(timeBooked);
+            this.add(line4);
+            this.add(boxButtonDelete);
+
+            delete.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(id);
+                }
+            });
         }
     }
 }
