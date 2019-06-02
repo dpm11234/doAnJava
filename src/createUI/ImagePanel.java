@@ -25,6 +25,7 @@ public class ImagePanel extends JPanel {
             this.img = img;
             this.x = x;
             this.y = y;
+            this.setBackground(new Color(255, 0, 0, 0));
         }
 
         @Override

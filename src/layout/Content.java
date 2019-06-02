@@ -39,7 +39,7 @@ public class Content extends JPanel {
         addTicket = new AddTicket();
         bookedTicket = new BookedTicket();
         
-        areaPanel.add(bookedTicket, BorderLayout.CENTER);
+        areaPanel.add(dashboard, BorderLayout.CENTER);
         
         this.add(navbar, BorderLayout.NORTH);
         this.add(areaPanel, BorderLayout.CENTER);
