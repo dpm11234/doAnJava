@@ -46,7 +46,7 @@ import static layout.Content.dashboard;
 
 import static layout.NavBackHome.btnBackLogin;
 import static util.Session.isLogin;
-import static util.Session.ssMaNX;
+import static util.Session.ssNhaXe;
 
 /**
  *
@@ -353,7 +353,7 @@ public class Login extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 if(login()) {
                     menuDashboard = new MenuDashboard();
-                    hello = new JLabel("Xin chào nhà xe: HiHi " + Session.tenNX);
+                    hello = new JLabel("Xin chào nhà xe: " + ssNhaXe.getTenNX());
                     spaceHello = new JLabel();
                     spaceHello.setPreferredSize(new Dimension(20, 50));
                     Font fontHello = new Font("SansSerif", Font.BOLD, 15);
@@ -391,14 +391,9 @@ public class Login extends JPanel {
         for(NhaXeDTO nx : dsNhaXe) {
             nhaXe = nx;
             if(nhaXe.getUsername().equals(user.getText())) {
-//                System.out.println("Dung user name");
-//                System.out.println("Pass: " + textPass.getText());
                 if(nhaXe.getPassword().equals(textPass.getText())) {
-//                    System.out.println("Pass dung!");
                     isLogin = true;
-                    Session.ssMaNX = nhaXe.getMaNX();
-                    Session.tenNX = nhaXe.getTenNX();
-                    System.out.println(ssMaNX);
+                    ssNhaXe = nhaXe;
                     return true;
                 }
                 else{

@@ -2,7 +2,7 @@ package dao;
 
 import dto.TuyenDTO;
 import util.DataAccessHelper;
-import util.Session;
+import static util.Session.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByMaNX() {
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-        String sql = "select * from TUYEN WHERE MANX = " + Session.ssMaNX;
+        String sql = "select * from TUYEN WHERE MANX = " + ssNhaXe.getMaNX();
         DataAccessHelper helper = new DataAccessHelper();
 
         helper.open();
@@ -73,20 +73,14 @@ public class TuyenDAO {
         return danhSachTuyen;
     }
 
-    public static int addTuyen(TuyenDTO tuyen) {
+    public static int addTicket(TuyenDTO tuyen) {
         String sql = "INSERT INTO TUYEN VALUES ('" + tuyen.getMaNX() + "', '" + tuyen.getMaTuyen() + "', N'" + tuyen.getDiemXuatPhat() + "', N'" + tuyen.getDiemDen() + "', '" + tuyen.getThoiGianKhoiHanh() + "'," + tuyen.getTongGhe() + "," + "'" + tuyen.getBienSoXe() + "'," + tuyen.getSoLuong() + "," + tuyen.getGia() + ");";
-        String sql2 = "UPDATE NHAXE SET SOTUYEN = SOTUYEN + 1 WHERE MANX = " + Session.ssMaNX;
         DataAccessHelper helper = new DataAccessHelper();
-        System.out.println(sql);
-        System.out.println(sql2);
         int res = -1;
 
         helper.open();
 
         res = helper.excuteUpdate(sql);
-        if (res == 1) {
-            helper.excuteUpdate(sql2);
-        }
 
         helper.close();
         return res;

@@ -51,7 +51,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 import java.util.Date;
 import java.util.Locale;
-import util.Session;
+import static util.Session.*;
 
 /**
  *
@@ -75,7 +75,11 @@ public class AddTicket extends JPanel {
     public AddTicket() {
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+
         this.tuyen = new TuyenDTO();
+        this.tuyen.setDiemXuatPhat(this.list[0]);
+        this.tuyen.setDiemDen(this.list2[0]);
+
         JPanel loginBg = new JPanel();
         try {
             Image imgLogin = null;
@@ -213,63 +217,43 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<NhaXeDTO> dsNhaXe = new ArrayList<>();
-                dsNhaXe = NhaXeBUS.getAll();
-                for (NhaXeDTO nhaxe : dsNhaXe) {
-                    if (nhaxe.getMaNX().equals(Session.ssMaNX)) {
-                        tuyen.setMaTuyen(Session.ssMaNX + "MDD" + nhaxe.getSoTuyen());
-                        System.out.println(tuyen.getMaTuyen());
-                    }
-                }
-                tuyen.setDiemXuatPhat(list[indexFrom]);
-                tuyen.setDiemDen(list2[indexTo]);
-                tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
-                tuyen.setMaNX(Session.ssMaNX);
+                String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
+                tuyen.setMaTuyen(maTuyen);
+
+
+                tuyen.setMaNX(ssNhaXe.getMaNX());
+
                 tuyen.setBienSoXe(inputLicensePlate.getText());
-                System.out.println(inputLicensePlate.getText());
+
                 tuyen.setGia(Integer.parseInt(inputPrice.getText()));
-                System.out.println(Integer.parseInt(inputPrice.getText()));
+
                 tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
+
+                tuyen.setDiemDen(list2[indexTo]);
+
+                tuyen.setDiemXuatPhat(list[indexFrom]);
+
+                tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
+
                 JFormattedTextField textField = datePicker.getTextField();
-<<<<<<< HEAD
-                String date1 = textField.getText() + " " + inputTime.getText();
-                System.out.println(date1);
-=======
-                String date1 = textField.getText() + " 10:00";
->>>>>>> ecbbdd99d8e0c52f230d5e26c5e07f2163bd2018
-                Date date = new Timestamp(1);
+                String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
+
+                Date date = new Date();
+                Timestamp gioKhoiHanh;
                 try {
                     DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-                    date = format.parse(date1);
-                    System.out.println(date);
+                    date = format.parse(txtGioKhoiHanh);
+                    gioKhoiHanh = new Timestamp(date.getTime());
+                    tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
-                tuyen = new TuyenDTO(
-<<<<<<< HEAD
-                        tuyen.getMaNX(),
-                        tuyen.getMaTuyen(),
-                        tuyen.getDiemXuatPhat(),
-                        tuyen.getDiemDen(),
-                        new Timestamp(date.getTime()),
-                        tuyen.getTongGhe(),
-                        tuyen.getBienSoXe(),
-                        tuyen.getSoLuong(),
-                        tuyen.getGia()
-=======
-                        "0001",
-                        "0001N5",
-                        "Tp.HCM",
-                        tuyen.getDiemXuatPhat(),
-                        new Timestamp(date.getTime()),
-                        34,
-                        "60N2-7549",
-                        1,
-                        90000
->>>>>>> ecbbdd99d8e0c52f230d5e26c5e07f2163bd2018
-                );
-                int res = TuyenBUS.deleteTicket("0001N5");
-                System.out.println(res);
+
+                int res = TuyenBUS.addTicket(tuyen);
+                boolean rs = NhaXeBUS.updateNhaXe(res);
+                if(rs) {
+                    ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+                }
             }
         });
     }

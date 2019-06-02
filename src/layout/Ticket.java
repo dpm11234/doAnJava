@@ -5,6 +5,7 @@
  */
 package layout;
 
+import bus.NhaXeBUS;
 import createUI.ImagePanel;
 import dto.TuyenDTO;
 
@@ -195,7 +196,8 @@ public class Ticket extends JPanel {
         companyLable.setVerticalAlignment(JLabel.CENTER);
         companyLable.setHorizontalAlignment(JLabel.RIGHT);
         
-        JLabel companyName = new JLabel("Quê Hương");
+//        JLabel companyName = new JLabel("Quê Hương");
+        JLabel companyName = new JLabel(NhaXeBUS.getTenNX(tuyen.getMaNX()));
         companyName.setPreferredSize(new Dimension(101, 27));
         companyName.setFont(fontPrice);
         companyName.setForeground(Color.black);
