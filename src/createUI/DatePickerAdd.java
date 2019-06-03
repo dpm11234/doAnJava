@@ -137,4 +137,9 @@ public class DatePickerAdd extends JPanel {
     public JFormattedTextField getTextField() {
         return textField;
     }
+    
+    public JFormattedTextField setText(String date) {
+        textField.setText(date);
+        return textField;
+    }
 }

@@ -17,6 +17,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -226,7 +228,7 @@ public class TicketClient extends JPanel {
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }
-        
+
         buttonEditH = new JPanel(new GridBagLayout());
         buttonEditH.setPreferredSize(new Dimension(65, 24));
         try {
@@ -363,6 +365,17 @@ public class TicketClient extends JPanel {
 
         right.add(rightTop, BorderLayout.NORTH);
         right.add(rightCenter, BorderLayout.CENTER);
+
+        clickEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                areaPanel.removeAll();
+                EditTicket editTicket = new EditTicket(tuyen.getMaTuyen());
+                areaPanel.add(editTicket);
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
 
         bgTicket.add(left);
         bgTicket.add(right);

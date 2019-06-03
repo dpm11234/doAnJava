@@ -132,4 +132,8 @@ public class Input extends JPanel {
     public String getText(){
         return input.getText();
     }
+    
+    public void setText(String text) {
+        input.setText(text);
+    }
 }

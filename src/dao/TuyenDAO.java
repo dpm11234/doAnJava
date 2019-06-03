@@ -99,12 +99,13 @@ public class TuyenDAO {
     }
 
     public static int editTicket(String maTuyen, TuyenDTO tuyen) {
-        String sql = "UPDATE TUYEN SET DIEMDEN = " + tuyen.getDiemDen() + ",DIEMXUATPHAT = " + tuyen.getDiemXuatPhat() + ",TGKHOIHANH = " + tuyen.getThoiGianKhoiHanh() + ",TONGGHE = " + tuyen.getTongGhe()+ ",BSX = " + tuyen.getBienSoXe()+ ",SOLUONG = " + tuyen.getSoLuong()+ ",GIA = " + tuyen.getGia()+ "WHERE MATUYEN = '" + maTuyen + "'";
+        String sql = "UPDATE TUYEN SET DIEMDEN = " + tuyen.getDiemDen() + ",DIEMXUATPHAT = " + tuyen.getDiemXuatPhat() + ",TGKHOIHANH = " + tuyen.getThoiGianKhoiHanh() + ",TONGGHE = " + tuyen.getTongGhe()+ ",BSX = " + tuyen.getBienSoXe()+ ",SOLUONG = " + tuyen.getSoLuong()+ ",GIA = " + tuyen.getGia()+ " WHERE MATUYEN = '" + maTuyen + "'";
         DataAccessHelper helper = new DataAccessHelper();
+        System.out.println(sql);
         int res = -1;
         helper.open();
 
-        res = helper.excuteUpdate(sql);
+//        res = helper.excuteUpdate(sql);
 
         helper.close();
         return res;
