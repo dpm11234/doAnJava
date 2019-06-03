@@ -3,25 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/NavLogin.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/MenuDashboard.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/bus/TuyenBUS.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Content.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/main/main.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/AddTicket.java</file>
+            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/dto/TuyenDTO.java</file>
+            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/TicketClient.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Ticket.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/dao/TuyenDAO.java</file>
-=======
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/Main.java</file>
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/TicketClient.java</file>
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/MenuDashboard.java</file>
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/Dashboard.java</file>
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/SelectTicketPanel.java</file>
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/Ticket.java</file>
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/Content.java</file>
-            <file>file:/C:/Users/my%20pc/Documents/NetBeansProjects/doAnJava/src/layout/BookedTicket.java</file>
->>>>>>> b9993545388b0cb3cb5f54fa2a69ce5bd4184908
         </group>
     </open-files>
 </project-private>
