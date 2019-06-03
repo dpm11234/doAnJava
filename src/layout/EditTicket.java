@@ -57,7 +57,7 @@ import static util.Session.*;
  *
  * @author my pc
  */
-public class AddTicket extends JPanel {
+public class EditTicket extends JPanel {
 
     String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
     String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
@@ -66,13 +66,13 @@ public class AddTicket extends JPanel {
     static SelectDown compoBoxFrom, compoBoxTo, compoBoxKind;
     private JTextField time, price;
     private TuyenDTO tuyen;
-    static ButtonImage submit;
+    static ButtonImage submitSave, submitDelete;
     int indexFrom = 0, indexTo = 0, indexKind = 0;
 
     private DatePickerAdd datePicker;
     Input inputTime, inputLicensePlate, inputPrice, inputSet;
 
-    public AddTicket() {
+    public EditTicket() {
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -160,9 +160,15 @@ public class AddTicket extends JPanel {
         selectRow5.setPreferredSize(new Dimension(488, 40));
         selectRow5.setBackground(new Color(255, 255, 255));
 
-        submit = new ButtonImage("Tạo chuyến xe", "submitLogin", 230);
+        submitSave = new ButtonImage("Lưu thay đổi", "submitSave", 220);
+        JLabel spaceSubmit = new JLabel();
+        spaceSubmit.setPreferredSize(new Dimension(48, 27));
+        spaceSubmit.setBackground(new Color(0, 0, 0, 0));
+        submitDelete = new ButtonImage("Xóa chuyến xe", "submitDelete", 220);
 
-        selectRow5.add(submit);
+        selectRow5.add(submitSave);
+        selectRow5.add(spaceSubmit);
+        selectRow5.add(submitDelete);
 
         loginFormLayout.add(selectLocal);
         loginFormLayout.add(selectTime);
@@ -214,46 +220,20 @@ public class AddTicket extends JPanel {
                 indexKind = compoBoxKind.getCompoBox().getSelectedIndex();
             }
         });
-        submit.getButton().addActionListener(new ActionListener() {
+        
+        // Event
+        
+        submitSave.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
-                tuyen.setMaTuyen(maTuyen);
-
-
-                tuyen.setMaNX(ssNhaXe.getMaNX());
-
-                tuyen.setBienSoXe(inputLicensePlate.getText());
-
-                tuyen.setGia(Integer.parseInt(inputPrice.getText()));
-
-                tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
-
-                tuyen.setDiemDen(list2[indexTo]);
-
-                tuyen.setDiemXuatPhat(list[indexFrom]);
-
-                tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
-
-                JFormattedTextField textField = datePicker.getTextField();
-                String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
-
-                Date date = new Date();
-                Timestamp gioKhoiHanh;
-                try {
-                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-                    date = format.parse(txtGioKhoiHanh);
-                    gioKhoiHanh = new Timestamp(date.getTime());
-                    tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-
-                int res = TuyenBUS.addTicket(tuyen);
-                boolean rs = NhaXeBUS.updateNhaXe(res);
-                if(rs) {
-                    ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
-                }
+                
+            }
+        });
+        
+        submitDelete.getButton().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
             }
         });
     }
