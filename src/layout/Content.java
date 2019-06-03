@@ -24,6 +24,8 @@ public class Content extends JPanel {
     public static Dashboard dashboard;
     public static AddTicket addTicket;
     public static BookedTicket bookedTicket;
+    public static EditTicket editTicket;
+    public static PickTicket pickTicket;
     
     public Content() {
         this.setLayout(new BorderLayout());
@@ -37,6 +39,8 @@ public class Content extends JPanel {
         login = new Login();
 
         bookedTicket = new BookedTicket();
+        editTicket = new EditTicket();
+        pickTicket = new PickTicket();
         
         areaPanel.add(home, BorderLayout.CENTER);
         

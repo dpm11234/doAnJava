@@ -24,19 +24,19 @@ import javax.swing.JPanel;
  */
 public class ButtonImage extends JPanel{
     private JButton buttonLogin;
-    public ButtonImage(String text) {
+    public ButtonImage(String text, String image, int width) {
         JPanel buttonLoginPanel = new JPanel(new GridBagLayout());
         try {
             Image imgButtonLogin = null;
-            imgButtonLogin = ImageIO.read(new File("images/buttonlogin.png"));
-            buttonLoginPanel = new ImagePanel(imgButtonLogin, 230, 40);
-            buttonLoginPanel.setPreferredSize(new Dimension(230, 40));
+            imgButtonLogin = ImageIO.read(new File("images/bg/"+image+".png"));
+            buttonLoginPanel = new ImagePanel(imgButtonLogin, width, 40);
+            buttonLoginPanel.setPreferredSize(new Dimension(width, 40));
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }
 
         buttonLogin = new JButton(text);
-        buttonLogin.setPreferredSize(new Dimension(230, 30));
+        buttonLogin.setPreferredSize(new Dimension(width, 30));
         buttonLogin.setBackground(new Color(0, 0, 0, 0));
         buttonLogin.setForeground(Color.white);
         buttonLogin.setRolloverEnabled(false);
@@ -48,7 +48,7 @@ public class ButtonImage extends JPanel{
         
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(255, 255, 255));
-        this.setPreferredSize(new Dimension(220, 40));
+        this.setPreferredSize(new Dimension(width, 40));
         
         this.add(buttonLoginPanel);
     }
