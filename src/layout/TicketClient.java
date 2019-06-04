@@ -374,7 +374,7 @@ public class TicketClient extends JPanel {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 areaPanel.removeAll();
-                EditTicket editTicket = new EditTicket(tuyen.getMaTuyen());
+                EditTicket editTicket = new EditTicket(tuyen);
                 areaPanel.add(editTicket);
                 areaPanel.validate();
                 areaPanel.repaint();

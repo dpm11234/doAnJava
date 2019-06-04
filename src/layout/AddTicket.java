@@ -51,6 +51,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 import java.util.Date;
 import java.util.Locale;
+import static layout.Content.areaPanel;
+import static layout.Main.frame;
 import static util.Session.*;
 
 /**
@@ -205,7 +207,7 @@ public class AddTicket extends JPanel {
         compoBoxTo.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                indexTo= compoBoxTo.getCompoBox().getSelectedIndex();
+                indexTo = compoBoxTo.getCompoBox().getSelectedIndex();
             }
         });
         compoBoxKind.getCompoBox().addActionListener(new ActionListener() {
@@ -219,7 +221,6 @@ public class AddTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
                 tuyen.setMaTuyen(maTuyen);
-
 
                 tuyen.setMaNX(ssNhaXe.getMaNX());
 
@@ -251,8 +252,13 @@ public class AddTicket extends JPanel {
 
                 int res = TuyenBUS.addTicket(tuyen);
                 boolean rs = NhaXeBUS.updateNhaXe(res);
-                if(rs) {
+                if (rs) {
                     ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+                    areaPanel.removeAll();
+                    Dashboard dashBoard = new Dashboard();
+                    areaPanel.add(dashBoard);
+                    areaPanel.validate();
+                    areaPanel.repaint();
                 }
             }
         });
