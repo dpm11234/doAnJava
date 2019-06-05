@@ -41,9 +41,8 @@ public class Content extends JPanel {
         login = new Login();
 
         bookedTicket = new BookedTicket();
-        editTicket = new EditTicket();
-        pickTicket = new PickTicket();
-//        homeSelect = new HomeSelect();
+//        editTicket = new EditTicket();
+//        pickTicket = new PickTicket();
         
         areaPanel.add(dashboard, BorderLayout.CENTER);
         

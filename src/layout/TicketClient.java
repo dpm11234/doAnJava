@@ -17,6 +17,8 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -30,6 +32,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import static layout.Content.areaPanel;
+import static layout.Content.editTicket;
 
 /**
  *
@@ -41,8 +44,11 @@ public class TicketClient extends JPanel {
 
     private JLabel price, chair, startingPoint, destination, day;
     public JPanel buttonListBooked, buttonListBookedH, buttonEdit, buttonEditH;
+    private TuyenDTO tuyenXe;
 
     public TicketClient(TuyenDTO tuyen) {
+
+        this.tuyenXe = tuyen;
         this.setLayout(new BorderLayout());
         try {
             Image img = null;
@@ -350,7 +356,7 @@ public class TicketClient extends JPanel {
         totalChair.setVerticalAlignment(JLabel.CENTER);
         totalChair.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel licensePlate = new JLabel("BS: 60A - 03930");
+        JLabel licensePlate = new JLabel(tuyen.getBienSoXe());
         licensePlate.setPreferredSize(new Dimension(122, 25));
         licensePlate.setFont(fontPrice);
         licensePlate.setForeground(Color.black);
@@ -366,5 +372,17 @@ public class TicketClient extends JPanel {
 
         bgTicket.add(left);
         bgTicket.add(right);
+
+        clickEdit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                areaPanel.removeAll();
+                editTicket = new EditTicket(tuyenXe);
+                areaPanel.add(editTicket);
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
+
     }
 }

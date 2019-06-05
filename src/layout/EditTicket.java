@@ -72,13 +72,15 @@ public class EditTicket extends JPanel {
     private DatePickerAdd datePicker;
     Input inputTime, inputLicensePlate, inputPrice, inputSet;
 
-    public EditTicket() {
+    public EditTicket(TuyenDTO tuyen) {
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        this.tuyen = new TuyenDTO();
-        this.tuyen.setDiemXuatPhat(this.list[0]);
-        this.tuyen.setDiemDen(this.list2[0]);
+//        this.tuyen = new TuyenDTO();
+//        this.tuyen.setDiemXuatPhat(this.list[0]);
+//        this.tuyen.setDiemDen(this.list2[0]);
+
+        this.tuyen = tuyen;
 
         JPanel loginBg = new JPanel();
         try {
@@ -103,6 +105,9 @@ public class EditTicket extends JPanel {
         compoBoxFrom = new SelectDown(list, "Từ", 50);
         compoBoxTo = new SelectDown(list2, "Đến", 50);
 
+        compoBoxFrom.getCompoBox().setSelectedItem(tuyen.getDiemXuatPhat());
+        compoBoxTo.getCompoBox().setSelectedItem(tuyen.getDiemDen());
+
         JLabel arrow = new JLabel();
         arrow.setPreferredSize(new Dimension(48, 27));
         arrow.setIcon(new ImageIcon(new ImageIcon("images/right-arrow-space.png").getImage().getScaledInstance(48, 16, Image.SCALE_DEFAULT)));
@@ -120,10 +125,15 @@ public class EditTicket extends JPanel {
         JPanel selectTime = new JPanel(new BorderLayout());
         selectTime.setPreferredSize(new Dimension(488, 40));
         selectTime.setBackground(new Color(255, 255, 255));
+        LocalDateTime time = tuyen.getThoiGianKhoiHanh().toLocalDateTime();
 
         datePicker = new DatePickerAdd(9);
+        datePicker.getTextField().setText(time.getDayOfMonth() + "-" + time.getMonthValue() + "-" + time.getYear());
+
         TwoDots dot1 = new TwoDots();
         inputTime = new Input("Giờ khởi hành", "time-oclock");
+
+        inputTime.getInput().setText(time.getHour() + ":" + time.getMinute());
 
         selectTime.add(datePicker, BorderLayout.WEST);
         selectTime.add(dot1, BorderLayout.CENTER);
@@ -135,8 +145,12 @@ public class EditTicket extends JPanel {
         selectRow3.setBackground(new Color(255, 255, 255));
 
         compoBoxKind = new SelectDown(listKind, "Số chổ ngồi", 88);
+        compoBoxKind.getCompoBox().setSelectedItem(tuyen.getTongGhe());
+
         TwoDots dot2 = new TwoDots();
         inputPrice = new Input("Giá vé", "price");
+
+        inputPrice.getInput().setText(tuyen.getGia() + "");
 
         selectRow3.add(compoBoxKind, BorderLayout.WEST);
         selectRow3.add(dot2, BorderLayout.CENTER);
@@ -150,6 +164,9 @@ public class EditTicket extends JPanel {
         inputSet = new Input("Đã đặt", "user-set");
         TwoDots dot3 = new TwoDots();
         inputLicensePlate = new Input("Biển số", "LicensePlate");
+
+        inputSet.getInput().setText(tuyen.getSoLuong() + "");
+        inputLicensePlate.getInput().setText(tuyen.getBienSoXe() + "");
 
         selectRow4.add(inputSet, BorderLayout.WEST);
         selectRow4.add(dot3, BorderLayout.CENTER);
