@@ -29,4 +29,8 @@ public class TuyenBUS {
 
         return res;
     }
+
+    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
+        return TuyenDAO.getAllByTrip(startingPoint, destination);
+    }
 }

@@ -43,9 +43,9 @@ public class Content extends JPanel {
         bookedTicket = new BookedTicket();
 //        editTicket = new EditTicket();
 //        pickTicket = new PickTicket();
-        homeSelect = new HomeSelect();
+//        homeSelect = new HomeSelect();
         
-        areaPanel.add(homeSelect, BorderLayout.CENTER);
+        areaPanel.add(home, BorderLayout.CENTER);
         
         this.add(navbar, BorderLayout.NORTH);
         this.add(areaPanel, BorderLayout.CENTER);

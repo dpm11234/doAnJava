@@ -24,9 +24,9 @@ import javax.swing.border.MatteBorder;
 
 import createUI.DatePicker;
 import layout.ListTicket;
-import static layout.Content.home;
-import static layout.Content.login;
-import static layout.Content.areaPanel;
+
+import static layout.Content.*;
+
 /**
  *
  * @author my pc
@@ -197,9 +197,11 @@ public class SelectTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int selected = c1.getSelectedIndex();
                 if(selected != currentFrom) {
-                    areaPanel.remove(home);
-                    areaPanel.remove(login);
-                    areaPanel.add(listTicket);
+//                    areaPanel.remove(home);
+//                    areaPanel.remove(login);
+                    areaPanel.removeAll();
+                    homeSelect = new HomeSelect(list[selected], list2[currentTo]);
+                    areaPanel.add(homeSelect);
                     areaPanel.validate();
                     areaPanel.repaint();
                     currentFrom = selected;
@@ -213,9 +215,12 @@ public class SelectTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int selected = c2.getSelectedIndex();
                 if(selected != currentFrom) {
-                    areaPanel.remove(home);
-                    areaPanel.remove(login);
-                    areaPanel.add(listTicket);
+//                    areaPanel.remove(home);
+//                    areaPanel.remove(login);
+//                    areaPanel.add(listTicket);
+                    areaPanel.removeAll();
+                    homeSelect = new HomeSelect(list[currentFrom], list2[selected]);
+                    areaPanel.add(homeSelect);
                     areaPanel.validate();
                     areaPanel.repaint();
                     currentTo = selected;

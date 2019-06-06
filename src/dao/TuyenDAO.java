@@ -98,4 +98,41 @@ public class TuyenDAO {
         return res;
     }
 
+    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
+
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "';";
+        System.out.println(sql);
+        DataAccessHelper helper = new DataAccessHelper();
+
+        ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+
+        helper.open();
+
+        ResultSet resultSet = helper.excuteQuery(sql);
+
+        try {
+
+            while (resultSet.next()) {
+                TuyenDTO tuyen = new TuyenDTO(
+                        resultSet.getString("MANX"),
+                        resultSet.getString("MATUYEN"),
+                        resultSet.getString("DIEMDEN"),
+                        resultSet.getString("DIEMXUATPHAT"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
+                        resultSet.getInt("TONGGHE"),
+                        resultSet.getString("BSX"),
+                        resultSet.getInt("SOLUONG"),
+                        resultSet.getInt("GIA")
+                );
+                danhSachTuyen.add(tuyen);
+            }
+
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        }
+
+
+        return danhSachTuyen;
+    }
+
 }

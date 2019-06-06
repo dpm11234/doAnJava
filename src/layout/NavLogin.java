@@ -55,8 +55,9 @@ public class NavLogin extends JPanel {
         btnLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                areaPanel.remove(home);
-                areaPanel.remove(listTicket);
+//                areaPanel.remove(home);
+//                areaPanel.remove(listTicket);
+                areaPanel.removeAll();
                 areaPanel.add(login, BorderLayout.CENTER);
                 navbar.remove(navLogin);
                 navbar.add(navBackHome, BorderLayout.EAST);

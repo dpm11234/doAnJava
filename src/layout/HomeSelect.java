@@ -53,9 +53,9 @@ public class HomeSelect extends JPanel {
     static Ticket ticket2, ticket3, ticket4, ticket5, ticket6;
     static Ticket ticket;
 
-//    public ArrayList<TuyenDTO> danhSachTuyen;
+    private ArrayList<TuyenDTO> danhSachTuyen;
 
-    public HomeSelect() {
+    public HomeSelect(String startingPoint, String destination) {
 //        danhSachTuyen = new ArrayList<>();
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         this.setLayout(new BorderLayout());
@@ -88,9 +88,9 @@ public class HomeSelect extends JPanel {
         ka.setBackground(new Color(119, 191, 251, 0));
 
         int countTuyen = 1;
-//        danhSachTuyen = TuyenBUS.getAllByMaNX();
-        for(int i = 0; i < 15; i++) {
-            ticket = new Ticket();
+        danhSachTuyen = TuyenBUS.getAllByTrip(startingPoint, destination);
+        for(TuyenDTO tuyen : danhSachTuyen) {
+            ticket = new Ticket(tuyen);
             ticket.setPreferredSize(new Dimension(380, 118));
             
             if (countTuyen % 2 != 0) {
