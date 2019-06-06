@@ -214,7 +214,7 @@ public class SelectTicket extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = c2.getSelectedIndex();
-                if(selected != currentFrom) {
+                if(selected != currentTo) {
 //                    areaPanel.remove(home);
 //                    areaPanel.remove(login);
 //                    areaPanel.add(listTicket);

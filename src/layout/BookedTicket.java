@@ -5,7 +5,12 @@
  */
 package layout;
 
+import bus.KhachHangBUS;
 import createUI.ImagePanel;
+import dao.KhachHangDAO;
+import dto.KhachHangDTO;
+import dto.TuyenDTO;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -22,6 +27,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -42,8 +51,11 @@ public class BookedTicket extends JPanel {
 
     private ImagePanel bgBooked;
     public int height;
+    private ArrayList<KhachHangDTO> danhSachKhachHang;
 
-    public BookedTicket() {
+    public BookedTicket(TuyenDTO tuyen) {
+
+        danhSachKhachHang = KhachHangBUS.getAll(tuyen.getMaNX(), tuyen.getMaTuyen());
 
         int widthArea = widthGet - 130 - 270;
         int width;
@@ -93,7 +105,7 @@ public class BookedTicket extends JPanel {
         infoTicketLeft.setPreferredSize(new Dimension(208, 40));
         infoTicketLeft.setBackground(new Color(76, 173, 255));
 
-        JLabel from = new JLabel("Bình Dương");
+        JLabel from = new JLabel(tuyen.getDiemXuatPhat());
         from.setPreferredSize(new Dimension(80, 40));
         from.setHorizontalAlignment(JLabel.CENTER);
         from.setForeground(Color.white);
@@ -105,7 +117,7 @@ public class BookedTicket extends JPanel {
         arrow.setIcon(new ImageIcon(new ImageIcon("images/right-arrow-space-w.png").getImage().getScaledInstance(48, 16, Image.SCALE_DEFAULT)));
         arrow.setIconTextGap(0);
 
-        JLabel to = new JLabel("Đồng Nai");
+        JLabel to = new JLabel(tuyen.getDiemDen());
         to.setPreferredSize(new Dimension(80, 40));
         to.setForeground(Color.white);
         to.setHorizontalAlignment(JLabel.LEFT);
@@ -119,14 +131,18 @@ public class BookedTicket extends JPanel {
         infoTicketRight.setPreferredSize(new Dimension(170, 40));
         infoTicketRight.setBackground(new Color(76, 173, 255));
 
-        JLabel time = new JLabel("12:30");
+        LocalDateTime dateTime = tuyen.getThoiGianKhoiHanh().toLocalDateTime();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        JLabel time = new JLabel(dateTime.format(formatter));
         time.setPreferredSize(new Dimension(60, 40));
         time.setHorizontalAlignment(JLabel.CENTER);
         time.setForeground(Color.white);
         time.setHorizontalAlignment(JLabel.CENTER);
         time.setVerticalAlignment(JLabel.CENTER);
 
-        JLabel day = new JLabel("Ngày 29-05-2019");
+        JLabel day = new JLabel("Ngày " + dateTime.getDayOfMonth() + "-" + dateTime.getMonthValue() + "-" + dateTime.getYear());
         day.setPreferredSize(new Dimension(110, 40));
         day.setHorizontalAlignment(JLabel.CENTER);
         day.setForeground(Color.white);
@@ -136,7 +152,7 @@ public class BookedTicket extends JPanel {
         infoTicketRight.add(time, BorderLayout.WEST);
         infoTicketRight.add(day, BorderLayout.EAST);
         
-        JLabel totalTickets = new JLabel("Tổng vé: 23");
+        JLabel totalTickets = new JLabel("Tổng vé: " + tuyen.getTongGhe());
         totalTickets.setPreferredSize(new Dimension(60, 40));
         totalTickets.setHorizontalAlignment(JLabel.CENTER);
         totalTickets.setForeground(Color.white);
@@ -221,13 +237,24 @@ public class BookedTicket extends JPanel {
         }
         ka.setPreferredSize(new Dimension(widthGet - 130 - 270 - 17, height + 1));
 
-        for (int i = 0; i < 20; i++) {
-            if (i % 2 == 0) {
-                ka.add(new ListBookedB(i));
-            } else {
-                ka.add(new ListBookedW(i));
-            }
-        }
+//        for (int i = 0; i < 20; i++) {
+//            if (i % 2 == 0) {
+//                ka.add(new ListBookedB(i));
+//            } else {
+//                ka.add(new ListBookedW(i));
+//            }
+//        }
+
+//        int count = 0;
+//
+//        for (KhachHangDTO khachHang : danhSachKhachHang) {
+//            if(count % 2 == 0) {
+//                ka.add(new ListBookedB(khachHang));
+//            } else {
+//                ka.add(new ListBookedW(khachHang));
+//            }
+//            count++;
+//        }
 
         JViewport viewport = new JViewport();
         viewport.setView(ka);
@@ -297,13 +324,27 @@ public class BookedTicket extends JPanel {
                 timeBooked.setPreferredSize(new Dimension(timeW, 38));
                 delete.setPreferredSize(new Dimension(deleteW, 38));
                 ka.removeAll();
-                for (int i = 0; i < 20; i++) {
-                    if (i % 2 == 0) {
-                        ka.add(new ListBookedB(i));
+
+
+//                for (int i = 0; i < 20; i++) {
+//                    if (i % 2 == 0) {
+//                        ka.add(new ListBookedB(i));
+//                    } else {
+//                        ka.add(new ListBookedW(i));
+//                    }
+//                }
+                int count = 0;
+
+                for (KhachHangDTO khachHang : danhSachKhachHang) {
+                    if(count % 2 == 0) {
+                        ka.add(new ListBookedB(khachHang));
                     } else {
-                        ka.add(new ListBookedW(i));
+                        ka.add(new ListBookedW(khachHang));
                     }
+                    count++;
                 }
+
+
                 timeBooked.revalidate();
                 boxListBooked.revalidate();
             }
@@ -324,7 +365,7 @@ public class BookedTicket extends JPanel {
 
         JPanel boxButtonDeleteT, boxButtonDeleteTHover;
 
-        public ListBookedB(int id) {
+        public ListBookedB(KhachHangDTO khachHang) {
 
             int widthArea = widthGet - 130 - 270;
             int width;
@@ -352,7 +393,7 @@ public class BookedTicket extends JPanel {
             MatteBorder borderLR = new MatteBorder(0, 1, 0, 1, new Color(219, 220, 221));
             this.setBorder(borderLR);
 
-            JLabel name = new JLabel("Đỗ Đức Duy");
+            JLabel name = new JLabel(khachHang.getHoTen());
             name.setPreferredSize(new Dimension(nameW, 38));
             name.setHorizontalAlignment(JLabel.CENTER);
             name.setForeground(new Color(117, 120, 122));
@@ -361,7 +402,7 @@ public class BookedTicket extends JPanel {
 
             Line line1 = new Line();
 
-            JLabel phone = new JLabel("0374740747");
+            JLabel phone = new JLabel(khachHang.getSdt());
             phone.setPreferredSize(new Dimension(phoneW, 38));
             phone.setHorizontalAlignment(JLabel.CENTER);
             phone.setForeground(new Color(117, 120, 122));
@@ -370,7 +411,7 @@ public class BookedTicket extends JPanel {
 
             Line line2 = new Line();
 
-            JLabel totalTicket = new JLabel("3");
+            JLabel totalTicket = new JLabel(khachHang.getSoVeDat() + "");
             totalTicket.setPreferredSize(new Dimension(totalW, 38));
             totalTicket.setHorizontalAlignment(JLabel.CENTER);
             totalTicket.setForeground(new Color(117, 120, 122));
@@ -379,7 +420,12 @@ public class BookedTicket extends JPanel {
 
             Line line3 = new Line();
 
-            JLabel timeBooked = new JLabel("12:30 ngày 29-09-2019");
+            DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+            DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDateTime dateTime = khachHang.getThoiGianDat().toLocalDateTime();
+
+
+            JLabel timeBooked = new JLabel(dateTime.format(formatterTime) + " ngày " + dateTime.format(formatterDate));
             timeBooked.setPreferredSize(new Dimension(timeW, 38));
             timeBooked.setHorizontalAlignment(JLabel.CENTER);
             timeBooked.setForeground(new Color(117, 120, 122));
@@ -461,7 +507,8 @@ public class BookedTicket extends JPanel {
             delete.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(id);
+                    int res = KhachHangBUS.deleteCustomer(khachHang.getId());
+                    System.out.println(res);
                 }
             });
         }
@@ -471,7 +518,7 @@ public class BookedTicket extends JPanel {
 
         JPanel boxButtonDeleteT, boxButtonDeleteTHover;
 
-        public ListBookedW(int id) {
+        public ListBookedW(KhachHangDTO khachHang) {
 
             int widthArea = widthGet - 130 - 270;
             int width;
@@ -499,7 +546,7 @@ public class BookedTicket extends JPanel {
             MatteBorder borderLR = new MatteBorder(0, 1, 0, 1, new Color(219, 220, 221));
             this.setBorder(borderLR);
 
-            JLabel name = new JLabel("Đỗ Đức Duy");
+            JLabel name = new JLabel(khachHang.getHoTen());
             name.setPreferredSize(new Dimension(nameW, 38));
             name.setHorizontalAlignment(JLabel.CENTER);
             name.setForeground(new Color(117, 120, 122));
@@ -508,7 +555,7 @@ public class BookedTicket extends JPanel {
 
             Line line1 = new Line();
 
-            JLabel phone = new JLabel("0374740747");
+            JLabel phone = new JLabel(khachHang.getSdt());
             phone.setPreferredSize(new Dimension(phoneW, 38));
             phone.setHorizontalAlignment(JLabel.CENTER);
             phone.setForeground(new Color(117, 120, 122));
@@ -517,7 +564,7 @@ public class BookedTicket extends JPanel {
 
             Line line2 = new Line();
 
-            JLabel totalTicket = new JLabel("3");
+            JLabel totalTicket = new JLabel(khachHang.getSoVeDat() + "");
             totalTicket.setPreferredSize(new Dimension(totalW, 38));
             totalTicket.setHorizontalAlignment(JLabel.CENTER);
             totalTicket.setForeground(new Color(117, 120, 122));
@@ -526,7 +573,11 @@ public class BookedTicket extends JPanel {
 
             Line line3 = new Line();
 
-            JLabel timeBooked = new JLabel("12:30 ngày 29-09-2019");
+            DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+            DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDateTime dateTime = khachHang.getThoiGianDat().toLocalDateTime();
+
+            JLabel timeBooked = new JLabel(dateTime.format(formatterTime) + " ngày " + dateTime.format(formatterDate));
             timeBooked.setPreferredSize(new Dimension(timeW, 38));
             timeBooked.setHorizontalAlignment(JLabel.CENTER);
             timeBooked.setForeground(new Color(117, 120, 122));
@@ -608,7 +659,9 @@ public class BookedTicket extends JPanel {
             delete.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println(id);
+                    int res = KhachHangBUS.deleteCustomer(khachHang.getId());
+                    System.out.println(res);
+
                 }
             });
         }

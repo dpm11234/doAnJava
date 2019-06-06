@@ -5,6 +5,7 @@
  */
 package layout;
 
+import bus.KhachHangBUS;
 import bus.NhaXeBUS;
 import bus.TuyenBUS;
 import createUI.ButtonImage;
@@ -14,6 +15,9 @@ import createUI.Input;
 import createUI.JPanelInput;
 import createUI.SelectDown;
 import createUI.TwoDots;
+import dao.KhachHangDAO;
+import dao.TuyenDAO;
+import dto.KhachHangDTO;
 import dto.NhaXeDTO;
 import dto.TuyenDTO;
 import java.awt.BorderLayout;
@@ -39,6 +43,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -49,7 +54,6 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
-import java.util.Date;
 import java.util.Locale;
 import static util.Session.*;
 
@@ -61,16 +65,21 @@ public class PickTicket extends JPanel {
 
     String list[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
     static boolean checkClickJCompoBox1, checkClickJCompoBox2, checkClickJCompoBoxKind;
-    static SelectDown compoBoxFrom, compoBoxTo, compoBoxKind;
+    static SelectDown compoBoxFrom, compoBoxBookNum, compoBoxKind;
     private JTextField time, price;
     private TuyenDTO tuyen;
     static ButtonImage submitSave, submitDelete;
-    int indexFrom = 0, indexTo = 0, indexKind = 0;
+    int indexFrom = 0, index = 0, indexKind = 0;
 
     private DatePickerAdd datePicker;
     Input inputName, inputPhone;
+    private KhachHangDTO khachHang;
 
-    public PickTicket() {
+    public PickTicket(TuyenDTO tuyen) {
+
+        this.khachHang = new KhachHangDTO();
+        this.tuyen = tuyen;
+
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -94,13 +103,13 @@ public class PickTicket extends JPanel {
         loginFormLayout.setPreferredSize(new Dimension(300, 300));
         loginFormLayout.setBackground(new Color(255, 255, 255));
 
-        compoBoxTo = new SelectDown(list, "Số ghế đặt", 100);
+        compoBoxBookNum = new SelectDown(list, "Số ghế đặt", 100);
 
         JPanel selectLocal = new JPanel(new BorderLayout());
         selectLocal.setPreferredSize(new Dimension(300, 40));
         selectLocal.setBackground(new Color(255, 255, 255));
 
-        selectLocal.add(compoBoxTo, BorderLayout.CENTER);
+        selectLocal.add(compoBoxBookNum, BorderLayout.CENTER);
 
         // Row 2
         JPanel selectTime = new JPanel(new BorderLayout());
@@ -159,10 +168,10 @@ public class PickTicket extends JPanel {
     }
 
     public void addEvents() {
-        compoBoxTo.getCompoBox().addActionListener(new ActionListener() {
+        compoBoxBookNum.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                indexTo= compoBoxTo.getCompoBox().getSelectedIndex();
+                index= compoBoxBookNum.getCompoBox().getSelectedIndex();
             }
         });
         
@@ -171,7 +180,14 @@ public class PickTicket extends JPanel {
         submitSave.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                khachHang.setMaNX(tuyen.getMaNX());
+                khachHang.setMaTuyen(tuyen.getMaTuyen());
+                khachHang.setHoTen(inputName.getText());
+                khachHang.setSdt(inputPhone.getText());
+                khachHang.setThoiGianDat(Timestamp.valueOf(LocalDateTime.now()));
+                khachHang.setSoVeDat(Integer.parseInt(list[index]));
+
+                int res = KhachHangBUS.addCustomer(khachHang);
             }
         });
     }

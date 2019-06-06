@@ -19,6 +19,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -31,6 +33,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import static layout.Dashboard.selectTicketPanel;
+import static layout.Content.*;
 
 /**
  *
@@ -39,10 +42,13 @@ import static layout.Dashboard.selectTicketPanel;
 public class Ticket extends JPanel {
     private ImagePanel bgTicket;
 
+    private JButton submit;
     private JLabel price, chair, startingPoint, destination, day;
+    private TuyenDTO tuyen;
 
-//    public Ticket(TuyenDTO tuyen) {
     public Ticket(TuyenDTO tuyen) {
+        this.tuyen = tuyen;
+
         this.setLayout(new BorderLayout());
         try {
             Image img = null;
@@ -226,7 +232,7 @@ public class Ticket extends JPanel {
             exp.printStackTrace();
         }
         
-        JButton submit = new JButton();
+        submit = new JButton();
         submit.setPreferredSize(new Dimension(230, 30));
         submit.setBackground(new Color(0, 0, 0, 0));
         submit.setForeground(Color.white);
@@ -314,5 +320,17 @@ public class Ticket extends JPanel {
         
         bgTicket.add(left);
         bgTicket.add(right);
+
+        this.submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                areaPanel.removeAll();
+                pickTicket = new PickTicket(tuyen);
+                areaPanel.add(pickTicket);
+
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
     }
 }
