@@ -41,6 +41,7 @@ public class Ticket extends JPanel {
 
     private JLabel price, chair, startingPoint, destination, day;
 
+//    public Ticket(TuyenDTO tuyen) {
     public Ticket(TuyenDTO tuyen) {
         this.setLayout(new BorderLayout());
         try {
@@ -156,13 +157,14 @@ public class Ticket extends JPanel {
         day = new JLabel(
                 date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear()
         );
+
         day.setPreferredSize(new Dimension(101, 27));
         day.setFont(fontPrice);
         day.setForeground(Color.black);
         day.setVerticalAlignment(JLabel.CENTER);
         day.setHorizontalAlignment(JLabel.CENTER);
 
-        // format giờ
+         //format giờ
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
         String timeStart = date.format(timeFormatter);
 
@@ -195,8 +197,7 @@ public class Ticket extends JPanel {
         companyLable.setForeground(Color.black);
         companyLable.setVerticalAlignment(JLabel.CENTER);
         companyLable.setHorizontalAlignment(JLabel.RIGHT);
-        
-//        JLabel companyName = new JLabel("Quê Hương");
+
         JLabel companyName = new JLabel(NhaXeBUS.getTenNX(tuyen.getMaNX()));
         companyName.setPreferredSize(new Dimension(101, 27));
         companyName.setFont(fontPrice);
@@ -296,7 +297,8 @@ public class Ticket extends JPanel {
         totalChair.setVerticalAlignment(JLabel.CENTER);
         totalChair.setHorizontalAlignment(JLabel.CENTER);
         
-        JLabel licensePlate = new JLabel("BS: " + tuyen.getBienSoXe());
+//        JLabel licensePlate = new JLabel("BS: " + tuyen.getBienSoXe());
+        JLabel licensePlate = new JLabel("BS: 60B - 27297");
         licensePlate.setPreferredSize(new Dimension(122, 25));
         licensePlate.setFont(fontPrice);
         licensePlate.setForeground(Color.black);

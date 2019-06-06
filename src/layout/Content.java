@@ -11,6 +11,7 @@ import layout.Home;
 import layout.Login;
 import layout.Dashboard;
 import layout.AddTicket;
+import layout.HomeSelect;
 
 /**
  *
@@ -26,6 +27,7 @@ public class Content extends JPanel {
     public static BookedTicket bookedTicket;
     public static EditTicket editTicket;
     public static PickTicket pickTicket;
+    public static HomeSelect homeSelect;
     
     public Content() {
         this.setLayout(new BorderLayout());
@@ -41,6 +43,7 @@ public class Content extends JPanel {
         bookedTicket = new BookedTicket();
 //        editTicket = new EditTicket();
 //        pickTicket = new PickTicket();
+//        homeSelect = new HomeSelect();
         
         areaPanel.add(home, BorderLayout.CENTER);
         

@@ -285,6 +285,8 @@ public class EditTicket extends JPanel {
                 areaPanel.add(dashBoard);
                 areaPanel.validate();
                 areaPanel.repaint();
+                JOptionPane.showMessageDialog(null, "Xoa thanh cong");
+                System.out.println(res);
             }
         });
     }
