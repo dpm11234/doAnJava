@@ -380,20 +380,22 @@ public class TicketClient extends JPanel {
                 areaPanel.repaint();
             }
         });
+        
+        clickListBooked.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                areaPanel.removeAll();
+                BookedTicket bookedTicket = new BookedTicket();
+                areaPanel.add(bookedTicket);
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+            
+        });
 
         bgTicket.add(left);
         bgTicket.add(right);
 
-        clickEdit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                areaPanel.removeAll();
-                editTicket = new EditTicket(tuyenXe);
-                areaPanel.add(editTicket);
-                areaPanel.validate();
-                areaPanel.repaint();
-            }
-        });
 
     }
 }
