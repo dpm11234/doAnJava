@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14e3f3f5-e4cd-4cfa-9210-5065ff24b5e4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/layout/Content.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/Content.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/layout/NavLogin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/NavLogin$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/layout/NavLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/NavLogin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/layout/Ticket.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/Ticket.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bus/TuyenBUS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bus/TuyenBUS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dao/TuyenDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dao/TuyenDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Content.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/EditTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/EditTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/HomeSelect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/HomeSelect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/NavLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/NavLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/SelectTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/SelectTicket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/layout/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/Ticket.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
