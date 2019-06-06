@@ -349,7 +349,7 @@ public class TicketClient extends JPanel {
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel totalChair = new JLabel("32 chỗ");
+        JLabel totalChair = new JLabel(tuyen.getTongGhe()+" chỗ");
         totalChair.setPreferredSize(new Dimension(122, 25));
         totalChair.setFont(fontPrice);
         totalChair.setForeground(Color.black);

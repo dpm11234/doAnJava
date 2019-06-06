@@ -290,7 +290,7 @@ public class Ticket extends JPanel {
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
         
-        JLabel totalChair = new JLabel("32 chỗ");
+        JLabel totalChair = new JLabel(tuyen.getTongGhe()+" chỗ");
         totalChair.setPreferredSize(new Dimension(122, 25));
         totalChair.setFont(fontPrice);
         totalChair.setForeground(Color.black);
@@ -298,7 +298,7 @@ public class Ticket extends JPanel {
         totalChair.setHorizontalAlignment(JLabel.CENTER);
         
 //        JLabel licensePlate = new JLabel("BS: " + tuyen.getBienSoXe());
-        JLabel licensePlate = new JLabel("BS: 60B - 27297");
+        JLabel licensePlate = new JLabel("BS: "+tuyen.getBienSoXe());
         licensePlate.setPreferredSize(new Dimension(122, 25));
         licensePlate.setFont(fontPrice);
         licensePlate.setForeground(Color.black);

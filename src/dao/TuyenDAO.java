@@ -109,6 +109,8 @@ public class TuyenDAO {
 
         helper.close();
         return res;
+    }
+    
     public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
 
         String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "';";
