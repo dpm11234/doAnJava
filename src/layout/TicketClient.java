@@ -31,8 +31,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
-import static layout.Content.areaPanel;
-import static layout.Content.editTicket;
+
+import static layout.Content.*;
 
 /**
  *
@@ -143,11 +143,11 @@ public class TicketClient extends JPanel {
         time.setPreferredSize(new Dimension(258, 27));
         time.setBackground(new Color(0, 0, 0, 0));
 
-        LocalDateTime date = tuyen.getThoiGianKhoiHanh().toLocalDateTime();
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime dateTime = tuyen.getThoiGianKhoiHanh().toLocalDateTime();
 
-        day = new JLabel(
-                date.getDayOfMonth() + "/" + date.getMonthValue() + "/" + date.getYear()
-        );
+        day = new JLabel(dateTime.format(formatterDate));
         day.setPreferredSize(new Dimension(121, 27));
         day.setFont(fontPrice);
         day.setForeground(Color.black);
@@ -155,10 +155,10 @@ public class TicketClient extends JPanel {
         day.setHorizontalAlignment(JLabel.CENTER);
 
         // format giờ
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        String timeStart = date.format(timeFormatter);
+//        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+//        String timeStart = date.format(timeFormatter);
 
-        JLabel hours = new JLabel(timeStart);
+        JLabel hours = new JLabel(dateTime.format(formatterTime));
         hours.setPreferredSize(new Dimension(121, 27));
         hours.setFont(fontPrice);
         hours.setForeground(Color.black);
@@ -379,6 +379,17 @@ public class TicketClient extends JPanel {
                 areaPanel.removeAll();
                 editTicket = new EditTicket(tuyenXe);
                 areaPanel.add(editTicket);
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+        });
+
+        clickListBooked.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                areaPanel.removeAll();
+                bookedTicket = new BookedTicket(tuyenXe);
+                areaPanel.add(bookedTicket);
                 areaPanel.validate();
                 areaPanel.repaint();
             }

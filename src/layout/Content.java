@@ -40,7 +40,7 @@ public class Content extends JPanel {
         home = new Home();
         login = new Login();
 
-        bookedTicket = new BookedTicket();
+//        bookedTicket = new BookedTicket();
 //        editTicket = new EditTicket();
 //        pickTicket = new PickTicket();
 //        homeSelect = new HomeSelect();
