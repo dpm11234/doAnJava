@@ -163,7 +163,6 @@ public class AddTicket extends JPanel {
         selectRow5.setBackground(new Color(255, 255, 255));
 
         submit = new ButtonImage("Tạo chuyến xe", "submitLogin", 230);
-
         selectRow5.add(submit);
 
         loginFormLayout.add(selectLocal);
@@ -219,37 +218,45 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
-                tuyen.setMaTuyen(maTuyen);
+//                if(handleAddTicket()) {
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Fail");
+//                }
+//                popUp = new PopUp("Thanh cong");
+//                popUp.setModal(true);
+//                popUp.setVisible(true);
+                JFrame test = new JFrame("test");
+                test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                test.setSize(300, 400);
+                test.setVisible(true);
+            }
+        });
+    }
 
-                tuyen.setMaNX(ssNhaXe.getMaNX());
+    public boolean handleAddTicket() {
+        String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
+        tuyen.setMaTuyen(maTuyen);
 
-                tuyen.setBienSoXe(inputLicensePlate.getText());
 
-                tuyen.setGia(Integer.parseInt(inputPrice.getText()));
+        tuyen.setMaNX(ssNhaXe.getMaNX());
 
-                tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
+        tuyen.setBienSoXe(inputLicensePlate.getText());
 
-                tuyen.setDiemDen(list2[indexTo]);
+        tuyen.setGia(Integer.parseInt(inputPrice.getText()));
 
-                tuyen.setDiemXuatPhat(list[indexFrom]);
+        tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
 
-                tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
+        tuyen.setDiemDen(list2[indexTo]);
 
-                JFormattedTextField textField = datePicker.getTextField();
-                String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
+        tuyen.setDiemXuatPhat(list[indexFrom]);
 
-                Date date = new Date();
-                Timestamp gioKhoiHanh;
-                try {
-                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-                    date = format.parse(txtGioKhoiHanh);
-                    gioKhoiHanh = new Timestamp(date.getTime());
-                    tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+        tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
 
+        JFormattedTextField textField = datePicker.getTextField();
+        String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
+
+<<<<<<< HEAD
                 int res = TuyenBUS.addTicket(tuyen);
                 boolean rs = NhaXeBUS.updateNhaXe(res);
                 if (rs) {
@@ -262,6 +269,26 @@ public class AddTicket extends JPanel {
                 }
             }
         });
+=======
+        Date date = new Date();
+        Timestamp gioKhoiHanh;
+        try {
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            date = format.parse(txtGioKhoiHanh);
+            gioKhoiHanh = new Timestamp(date.getTime());
+            tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        int res = TuyenBUS.addTicket(tuyen);
+        boolean rs = NhaXeBUS.updateNhaXe(res);
+        if(rs) {
+            ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+        }
+
+        return rs;
+>>>>>>> 611c4e1f7aba63422267ccfbd341485ccb294a1d
     }
 
 }

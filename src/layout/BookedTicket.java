@@ -43,6 +43,7 @@ import javax.swing.border.MatteBorder;
 import static layout.Content.areaPanel;
 import static layout.Main.heightGet;
 import static layout.Main.widthGet;
+import static layout.Content.*;
 
 /**
  *
@@ -53,10 +54,12 @@ public class BookedTicket extends JPanel {
     private ImagePanel bgBooked;
     public int height;
     private ArrayList<KhachHangDTO> danhSachKhachHang;
+    private TuyenDTO tuyen;
 
     public BookedTicket(TuyenDTO tuyen) {
 
-        danhSachKhachHang = KhachHangBUS.getAll(tuyen.getMaNX(), tuyen.getMaTuyen());
+        this.danhSachKhachHang = KhachHangBUS.getAll(tuyen.getMaNX(), tuyen.getMaTuyen());
+        this.tuyen = tuyen;
 
         int widthArea = widthGet - 130 - 270;
         int width;
@@ -509,7 +512,11 @@ public class BookedTicket extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int res = KhachHangBUS.deleteCustomer(khachHang.getId());
-                    System.out.println(res);
+                    areaPanel.removeAll();
+                    bookedTicket = new BookedTicket(tuyen);
+                    areaPanel.add(bookedTicket);
+                    areaPanel.validate();
+                    areaPanel.repaint();
                 }
             });
         }
@@ -661,8 +668,11 @@ public class BookedTicket extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     int res = KhachHangBUS.deleteCustomer(khachHang.getId());
-                    System.out.println(res);
-
+                    areaPanel.removeAll();
+                    bookedTicket = new BookedTicket(tuyen);
+                    areaPanel.add(bookedTicket);
+                    areaPanel.validate();
+                    areaPanel.repaint();
                 }
             });
         }
