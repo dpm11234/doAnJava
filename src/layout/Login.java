@@ -35,6 +35,8 @@ import static layout.Content.login;
 import createUI.ImagePanel;
 import createUI.JPanelInput;
 import static layout.Content.navbar;
+
+import jdk.nashorn.internal.scripts.JO;
 import layout.Dashboard;
 import static layout.Navbar.navIsLogin;
 import static layout.Navbar.navBackHome;
@@ -114,7 +116,6 @@ public class Login extends JPanel {
 
                 } else {
                     if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                        System.out.println(e.getKeyCode());
                         checkKey = true;
                     }
                 }
@@ -207,7 +208,6 @@ public class Login extends JPanel {
 
                 } else {
                     if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                        System.out.println(e.getKeyCode());
                         checkKey = true;
                     }
                 }
@@ -373,9 +373,8 @@ public class Login extends JPanel {
                     navbar.repaint();
                     slideBar.validate();
                     slideBar.repaint();
-                    System.out.println("hihi");
                 } else {
-                    JOptionPane.showMessageDialog(dashboard, "Tài khoản hoặc mật khẩu không đúng");
+                    JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Đăng nhập thất bại", 1);
                 }
             }
         });

@@ -252,7 +252,6 @@ public class EditTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int res = TuyenBUS.deleteTicket(tuyen.getMaTuyen());
                 JOptionPane.showMessageDialog(null, "Xoa thanh cong");
-                System.out.println(res);
 
             }
         });

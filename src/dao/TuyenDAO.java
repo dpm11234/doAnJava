@@ -101,7 +101,6 @@ public class TuyenDAO {
     public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
 
         String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "';";
-        System.out.println(sql);
         DataAccessHelper helper = new DataAccessHelper();
 
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();

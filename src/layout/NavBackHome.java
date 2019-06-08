@@ -55,13 +55,11 @@ public class NavBackHome extends JPanel{
         btnBackLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("start");
                 areaPanel.remove(login);
                 areaPanel.remove(listTicket);
                 areaPanel.add(home, BorderLayout.CENTER);
                 navbar.remove(navBackHome);
                 navbar.add(navLogin, BorderLayout.EAST);
-                System.out.println("end");
                 areaPanel.validate();
                 areaPanel.repaint();
                 navbar.validate();

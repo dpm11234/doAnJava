@@ -102,7 +102,6 @@ public class Dashboard extends JPanel {
             ka.setPreferredSize(new Dimension(790, height));
             ka.add(ticket);
         }
-        System.out.println(height);
         
         JViewport viewport = new JViewport();
         viewport.setView(ka);

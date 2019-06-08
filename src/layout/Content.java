@@ -28,7 +28,7 @@ public class Content extends JPanel {
     public static EditTicket editTicket;
     public static PickTicket pickTicket;
     public static HomeSelect homeSelect;
-    
+
     public Content() {
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(242, 243, 245));
@@ -39,6 +39,7 @@ public class Content extends JPanel {
         navbar = new Navbar();
         home = new Home();
         login = new Login();
+        addTicket = new AddTicket();
 
 //        bookedTicket = new BookedTicket();
 //        editTicket = new EditTicket();
