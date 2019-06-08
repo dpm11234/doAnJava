@@ -226,10 +226,10 @@ public class AddTicket extends JPanel {
 //                popUp = new PopUp("Thanh cong");
 //                popUp.setModal(true);
 //                popUp.setVisible(true);
-                JFrame test = new JFrame("test");
-                test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                test.setSize(300, 400);
-                test.setVisible(true);
+               JFrame test = new JFrame("test");
+               test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+               test.setSize(300, 400);
+               test.setVisible(true);
             }
         });
     }
@@ -237,7 +237,6 @@ public class AddTicket extends JPanel {
     public boolean handleAddTicket() {
         String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
         tuyen.setMaTuyen(maTuyen);
-
 
         tuyen.setMaNX(ssNhaXe.getMaNX());
 
@@ -255,20 +254,10 @@ public class AddTicket extends JPanel {
 
         JFormattedTextField textField = datePicker.getTextField();
         String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
-                int res = TuyenBUS.addTicket(tuyen);
-                boolean rs = NhaXeBUS.updateNhaXe(res);
-                if (rs) {
-                    ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
-                    areaPanel.removeAll();
-                    Dashboard dashBoard = new Dashboard();
-                    areaPanel.add(dashBoard);
-                    areaPanel.validate();
-                    areaPanel.repaint();
-                }
         Date date = new Date();
         Timestamp gioKhoiHanh;
         try {
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
             date = format.parse(txtGioKhoiHanh);
             gioKhoiHanh = new Timestamp(date.getTime());
             tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
@@ -276,12 +265,16 @@ public class AddTicket extends JPanel {
             ex.printStackTrace();
         }
 
-        res = TuyenBUS.addTicket(tuyen);
-        rs = NhaXeBUS.updateNhaXe(res);
-        if(rs) {
+        int res = TuyenBUS.addTicket(tuyen);
+        boolean rs = NhaXeBUS.updateNhaXe(res);
+        if (rs) {
             ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+            areaPanel.removeAll();
+            Dashboard dashBoard = new Dashboard();
+            areaPanel.add(dashBoard);
+            areaPanel.validate();
+            areaPanel.repaint();
         }
-
         return rs;
     }
 
