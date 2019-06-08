@@ -52,7 +52,6 @@ import javax.swing.text.JTextComponent;
 import java.util.Date;
 import java.util.Locale;
 import static util.Session.*;
-import static layout.Content.popUp;
 
 /**
  *
@@ -162,8 +161,7 @@ public class AddTicket extends JPanel {
         selectRow5.setBackground(new Color(255, 255, 255));
 
         submit = new ButtonImage("Tạo chuyến xe", "submitLogin", 230);
-        JButton test = new JButton("test");
-        selectRow5.add(test);
+        selectRow5.add(submit);
 
         loginFormLayout.add(selectLocal);
         loginFormLayout.add(selectTime);
@@ -193,12 +191,6 @@ public class AddTicket extends JPanel {
 
         this.add(loginBg, BorderLayout.CENTER);
         addEvents();
-        test.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "test");
-            }
-        });
     }
 
     public void addEvents() {
