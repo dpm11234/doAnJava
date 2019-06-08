@@ -255,8 +255,6 @@ public class AddTicket extends JPanel {
 
         JFormattedTextField textField = datePicker.getTextField();
         String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
-
-<<<<<<< HEAD
                 int res = TuyenBUS.addTicket(tuyen);
                 boolean rs = NhaXeBUS.updateNhaXe(res);
                 if (rs) {
@@ -267,9 +265,6 @@ public class AddTicket extends JPanel {
                     areaPanel.validate();
                     areaPanel.repaint();
                 }
-            }
-        });
-=======
         Date date = new Date();
         Timestamp gioKhoiHanh;
         try {
@@ -281,14 +276,13 @@ public class AddTicket extends JPanel {
             ex.printStackTrace();
         }
 
-        int res = TuyenBUS.addTicket(tuyen);
-        boolean rs = NhaXeBUS.updateNhaXe(res);
+        res = TuyenBUS.addTicket(tuyen);
+        rs = NhaXeBUS.updateNhaXe(res);
         if(rs) {
             ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
         }
 
         return rs;
->>>>>>> 611c4e1f7aba63422267ccfbd341485ccb294a1d
     }
 
 }
