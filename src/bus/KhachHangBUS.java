@@ -12,6 +12,10 @@ public class KhachHangBUS {
     }
 
     public static int addCustomer(KhachHangDTO khachHang) {
+        if(khachHang.getHoTen().equals("Họ tên") || khachHang.getSdt().equals("Số điện thoại")) {
+            return 0;
+        }
+
         return KhachHangDAO.addCustomer(khachHang);
     }
 

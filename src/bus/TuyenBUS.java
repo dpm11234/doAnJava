@@ -17,6 +17,8 @@ public class TuyenBUS {
     public static int addTicket(TuyenDTO tuyen) {
         int res = -1;
 
+
+
         res = TuyenDAO.addTicket(tuyen);
 
         return res;

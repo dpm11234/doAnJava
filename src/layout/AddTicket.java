@@ -216,23 +216,19 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if(handleAddTicket()) {
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Fail");
-//                }
-//                popUp = new PopUp("Thanh cong");
-//                popUp.setModal(true);
-//                popUp.setVisible(true);
-                JFrame test = new JFrame("test");
-                test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-                test.setSize(300, 400);
-                test.setVisible(true);
+                if(handleAddTicket()) {
+                    JOptionPane.showMessageDialog(null, "Thành công");
+                } else {
+                    System.out.println("fail");
+                    JOptionPane.showMessageDialog(null, "Fail");
+                }
+
             }
         });
     }
 
     public boolean handleAddTicket() {
+
         String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
         tuyen.setMaTuyen(maTuyen);
 
@@ -250,8 +246,12 @@ public class AddTicket extends JPanel {
         tuyen.setDiemXuatPhat(list[indexFrom]);
 
         tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
-
         JFormattedTextField textField = datePicker.getTextField();
+
+        if(!textField.toString().contains(":")) {
+            return false;
+        }
+
         String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
 
         Date date = new Date();
