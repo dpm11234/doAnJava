@@ -18,6 +18,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -55,7 +58,7 @@ public class HomeSelect extends JPanel {
 
     private ArrayList<TuyenDTO> danhSachTuyen;
 
-    public HomeSelect(String startingPoint, String destination) {
+    public HomeSelect(String startingPoint, String destination, LocalDateTime time) {
 //        danhSachTuyen = new ArrayList<>();
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         this.setLayout(new BorderLayout());
@@ -88,7 +91,7 @@ public class HomeSelect extends JPanel {
         ka.setBackground(new Color(119, 191, 251, 0));
 
         int countTuyen = 1;
-        danhSachTuyen = TuyenBUS.getAllByTrip(startingPoint, destination);
+        danhSachTuyen = TuyenBUS.getAllByTrip(startingPoint, destination, time);
         for(TuyenDTO tuyen : danhSachTuyen) {
             ticket = new Ticket(tuyen);
             ticket.setPreferredSize(new Dimension(380, 118));

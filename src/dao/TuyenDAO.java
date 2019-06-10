@@ -5,6 +5,7 @@ import util.DataAccessHelper;
 import static util.Session.*;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TuyenDAO {
@@ -98,11 +99,11 @@ public class TuyenDAO {
         return res;
     }
 
-    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
+    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination, LocalDateTime time) {
 
-        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "';";
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
         DataAccessHelper helper = new DataAccessHelper();
-
+        System.out.println(sql);
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
 
         helper.open();

@@ -3,6 +3,9 @@ package bus;
 import dao.TuyenDAO;
 import dto.TuyenDTO;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TuyenBUS {
@@ -32,7 +35,7 @@ public class TuyenBUS {
         return res;
     }
 
-    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
-        return TuyenDAO.getAllByTrip(startingPoint, destination);
+    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination, LocalDateTime time) {
+        return TuyenDAO.getAllByTrip(startingPoint, destination, time);
     }
 }

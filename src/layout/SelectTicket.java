@@ -9,13 +9,14 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.AbstractButton;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
@@ -191,6 +192,8 @@ public class SelectTicket extends JPanel {
         currentTo = c2.getSelectedIndex();
         
         listTicket = new ListTicket();
+
+
         
         c1.addActionListener(new ActionListener() {
             @Override
@@ -199,8 +202,23 @@ public class SelectTicket extends JPanel {
                 if(selected != currentFrom) {
 //                    areaPanel.remove(home);
 //                    areaPanel.remove(login);
+
+                    JFormattedTextField textField = datePicker.getTextField();
+                    Date date = new Date();
+                    Timestamp dateTimestamp = null;
+                    LocalDateTime dateTime = null;
+                    try {
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        date = format.parse(textField.getText());
+                        dateTimestamp = new Timestamp(date.getTime());
+                        dateTime = dateTimestamp.toLocalDateTime();
+                        System.out.println(dateTimestamp);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
                     areaPanel.removeAll();
-                    homeSelect = new HomeSelect(list[selected], list2[currentTo]);
+                    homeSelect = new HomeSelect(list[selected], list2[currentTo], dateTime);
                     areaPanel.add(homeSelect);
                     areaPanel.validate();
                     areaPanel.repaint();
@@ -218,8 +236,23 @@ public class SelectTicket extends JPanel {
 //                    areaPanel.remove(home);
 //                    areaPanel.remove(login);
 //                    areaPanel.add(listTicket);
+
+                    JFormattedTextField textField = datePicker.getTextField();
+                    Date date = new Date();
+                    Timestamp dateTimestamp = null;
+                    LocalDateTime dateTime = null;
+                    try {
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        date = format.parse(textField.getText());
+                        dateTimestamp = new Timestamp(date.getTime());
+                        dateTime = dateTimestamp.toLocalDateTime();
+                        System.out.println(dateTimestamp);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
                     areaPanel.removeAll();
-                    homeSelect = new HomeSelect(list[currentFrom], list2[selected]);
+                    homeSelect = new HomeSelect(list[currentFrom], list2[selected], dateTime);
                     areaPanel.add(homeSelect);
                     areaPanel.validate();
                     areaPanel.repaint();
@@ -227,6 +260,30 @@ public class SelectTicket extends JPanel {
                 }
             }
         });
+
+       datePicker.getDatePicker().addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               JFormattedTextField textField = datePicker.getTextField();
+                Date date = new Date();
+                LocalDateTime dateTime = null;
+               try {
+                   DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                   date = format.parse(textField.getText());
+                   Timestamp dateTimestamp = new Timestamp(date.getTime());
+                   System.out.println(dateTimestamp);
+                   dateTime = dateTimestamp.toLocalDateTime();
+                   homeSelect = new HomeSelect(list[currentFrom], list2[currentTo], dateTime);
+                   areaPanel.removeAll();
+                   areaPanel.add(homeSelect);
+                   areaPanel.validate();
+                   areaPanel.repaint();
+               } catch (Exception ex) {
+                   ex.printStackTrace();
+               }
+
+           }
+       });
     }
     
     public void removeArrowCompoBox(Component[] component) {
