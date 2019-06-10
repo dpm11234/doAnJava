@@ -117,7 +117,41 @@ public class TuyenDAO {
 
         String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
         DataAccessHelper helper = new DataAccessHelper();
-        System.out.println(sql);
+        ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+
+        helper.open();
+
+        ResultSet resultSet = helper.excuteQuery(sql);
+
+        try {
+
+            while (resultSet.next()) {
+                TuyenDTO tuyen = new TuyenDTO(
+                        resultSet.getString("MANX"),
+                        resultSet.getString("MATUYEN"),
+                        resultSet.getString("DIEMDEN"),
+                        resultSet.getString("DIEMXUATPHAT"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
+                        resultSet.getInt("TONGGHE"),
+                        resultSet.getString("BSX"),
+                        resultSet.getInt("SOLUONG"),
+                        resultSet.getInt("GIA")
+                );
+                danhSachTuyen.add(tuyen);
+            }
+
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        }
+
+
+        return danhSachTuyen;
+    }
+
+    public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
+
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
+        DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
 
         helper.open();

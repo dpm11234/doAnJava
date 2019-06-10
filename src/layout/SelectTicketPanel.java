@@ -21,18 +21,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.AbstractButton;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import static layout.Content.areaPanel;
-import static layout.Content.home;
-import static layout.Content.login;
+
+import static layout.Content.*;
+import static layout.Content.homeSelect;
 import static layout.MenuDashboard.panelTicket;
 import static layout.SelectTicket.c1;
 
@@ -44,16 +43,15 @@ public class SelectTicketPanel extends JPanel {
 
     String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
     String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
-    static boolean checkClickJCompoBox1, checkClickJCompoBox2;
-    static JComboBox c1, c2;
     int currentTo, currentFrom;
     static ListTicket listTicket;
-    static JPanel selectFrom, selectTo;
+    private SelectWhite selectFrom, selectTo;
+    private DatePickerWhite datePicker;
 
     public SelectTicketPanel() {
 
-        SelectWhite selectFrom1 = new SelectWhite(list, "Từ", 50);
-        SelectWhite selectTo1 = new SelectWhite(list2, "Đến", 50);
+        selectFrom = new SelectWhite(list, "Từ", 50);
+        selectTo = new SelectWhite(list2, "Đến", 50);
         areaPanel.validate();
         areaPanel.repaint();
 
@@ -65,31 +63,76 @@ public class SelectTicketPanel extends JPanel {
         areaSelect.setPreferredSize(new Dimension(810, 65));
         areaSelect.setBackground(new Color(255, 255, 255, 0));
 
-        DatePickerWhite datePicker = new DatePickerWhite(12);
+        datePicker = new DatePickerWhite(12);
         datePicker.setPreferredSize(new Dimension(250, 40));
 
-        areaSelect.add(selectFrom1);
-        areaSelect.add(selectTo1);
+        areaSelect.add(selectFrom);
+        areaSelect.add(selectTo);
         areaSelect.add(datePicker);
 
         this.add(areaSelect, BorderLayout.NORTH);
 
         listTicket = new ListTicket();
 
-        selectFrom1.get().addActionListener(new ActionListener() {
+        currentFrom = selectFrom.get().getSelectedIndex();
+        currentTo = selectTo.get().getSelectedIndex();
+
+        selectFrom.get().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                areaPanel.validate();
-                areaPanel.repaint();
+                int selected = selectFrom.get().getSelectedIndex();
+                if(selected != currentFrom) {
+                    JFormattedTextField textField = datePicker.getTextField();
+
+                    Date date = new Date();
+                    Timestamp dateTimestamp = null;
+                    LocalDateTime dateTime = null;
+                    try {
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        date = format.parse(textField.getText());
+                        dateTimestamp = new Timestamp(date.getTime());
+                        dateTime = dateTimestamp.toLocalDateTime();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                    areaPanel.removeAll();
+                    dashboard = new Dashboard(list[selected], list2[currentTo], dateTime);
+                    areaPanel.add(dashboard);
+                    areaPanel.validate();
+                    areaPanel.repaint();
+                    currentFrom = selected;
+                }
             }
 
         });
 
-        selectTo1.get().addActionListener(new ActionListener() {
+        selectTo.get().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                areaPanel.validate();
-                areaPanel.repaint();
+                int selected = selectTo.get().getSelectedIndex();
+                if(selected != currentTo) {
+                    JFormattedTextField textField = datePicker.getTextField();
+
+                    Date date = new Date();
+                    Timestamp dateTimestamp = null;
+                    LocalDateTime dateTime = null;
+                    try {
+                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                        date = format.parse(textField.getText());
+                        dateTimestamp = new Timestamp(date.getTime());
+                        dateTime = dateTimestamp.toLocalDateTime();
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+
+                    areaPanel.removeAll();
+                    dashboard = new Dashboard(list[selected], list2[currentTo], dateTime);
+                    areaPanel.add(dashboard);
+                    areaPanel.validate();
+                    areaPanel.repaint();
+                    currentFrom = selected;
+                }
             }
         });
     }
@@ -102,5 +145,13 @@ public class SelectTicketPanel extends JPanel {
                 button.setVisible(false);
             }
         }
+    }
+
+    public SelectWhite getSelectFrom() {
+        return selectFrom;
+    }
+
+    public SelectWhite getSelectTo() {
+        return selectTo;
     }
 }
