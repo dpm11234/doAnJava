@@ -40,6 +40,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JViewport;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
+import static layout.Content.areaPanel;
 import static layout.Main.heightGet;
 import static layout.Main.widthGet;
 import static layout.Content.*;

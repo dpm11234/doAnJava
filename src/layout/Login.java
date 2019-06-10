@@ -45,6 +45,7 @@ import static layout.SlideBarMain.slideBar;
 import static layout.SlideBar.selectTicket;
 import util.Session;
 import static layout.Content.dashboard;
+import static layout.Main.frame;
 
 import static layout.NavBackHome.btnBackLogin;
 import static util.Session.isLogin;

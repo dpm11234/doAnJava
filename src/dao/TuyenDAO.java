@@ -89,7 +89,21 @@ public class TuyenDAO {
 
     public static int deleteTicket(String maTuyen) {
         String sql = "DELETE FROM TUYEN WHERE MATUYEN = '" + maTuyen + "'";
+        String sql2 = "DELETE FROM KHACHHANG WHERE MATUYEN = '" + maTuyen +"'";
         DataAccessHelper helper = new DataAccessHelper();
+        int res = -1;
+        helper.open();
+
+        res = helper.excuteUpdate(sql2);
+        helper.excuteUpdate(sql);
+        helper.close();
+        return res;
+    }
+
+    public static int editTicket(String maTuyen, TuyenDTO tuyen) {
+        String sql = "UPDATE TUYEN SET DIEMDEN = " + "N'" + tuyen.getDiemDen() + "'" + ", DIEMXUATPHAT = " + "N'" + tuyen.getDiemXuatPhat() + "'" + ", TGKHOIHANH = " + "'" + tuyen.getThoiGianKhoiHanh() + "'" + ", TONGGHE = " + tuyen.getTongGhe()+ ", BSX = " + "'" + tuyen.getBienSoXe()+ "'" + ", SOLUONG = " + tuyen.getSoLuong()+ ",GIA = " + tuyen.getGia()+ " WHERE MATUYEN = '" + maTuyen + "'";
+        DataAccessHelper helper = new DataAccessHelper();
+        System.out.println(sql);
         int res = -1;
         helper.open();
 

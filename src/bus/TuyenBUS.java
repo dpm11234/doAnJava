@@ -16,7 +16,7 @@ public class TuyenBUS {
     public static ArrayList<TuyenDTO> getAllByMaNX() {
         return TuyenDAO.getAllByMaNX();
     }
-
+    
     public static int addTicket(TuyenDTO tuyen) {
         int res = -1;
 
@@ -34,6 +34,15 @@ public class TuyenBUS {
 
         return res;
     }
+    
+     public static int editTicket(String maTuyen, TuyenDTO tuyen) {
+        int res = -1;
+
+        res = TuyenDAO.editTicket(maTuyen, tuyen);
+
+        return res;
+    }
+    
 
     public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination, LocalDateTime time) {
         return TuyenDAO.getAllByTrip(startingPoint, destination, time);

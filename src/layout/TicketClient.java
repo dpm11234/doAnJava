@@ -232,7 +232,7 @@ public class TicketClient extends JPanel {
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }
-        
+
         buttonEditH = new JPanel(new GridBagLayout());
         buttonEditH.setPreferredSize(new Dimension(65, 24));
         try {
@@ -349,7 +349,7 @@ public class TicketClient extends JPanel {
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel totalChair = new JLabel("32 chỗ");
+        JLabel totalChair = new JLabel(tuyen.getTongGhe()+" chỗ");
         totalChair.setPreferredSize(new Dimension(122, 25));
         totalChair.setFont(fontPrice);
         totalChair.setForeground(Color.black);
@@ -370,19 +370,32 @@ public class TicketClient extends JPanel {
         right.add(rightTop, BorderLayout.NORTH);
         right.add(rightCenter, BorderLayout.CENTER);
 
-        bgTicket.add(left);
-        bgTicket.add(right);
-
         clickEdit.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent ae) {
                 areaPanel.removeAll();
-                editTicket = new EditTicket(tuyenXe);
+                EditTicket editTicket = new EditTicket(tuyen);
                 areaPanel.add(editTicket);
                 areaPanel.validate();
                 areaPanel.repaint();
             }
         });
+        
+        clickListBooked.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                areaPanel.removeAll();
+                BookedTicket bookedTicket = new BookedTicket(tuyen);
+                areaPanel.add(bookedTicket);
+                areaPanel.validate();
+                areaPanel.repaint();
+            }
+            
+        });
+
+        bgTicket.add(left);
+        bgTicket.add(right);
+
 
         clickListBooked.addActionListener(new ActionListener() {
             @Override

@@ -51,6 +51,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 import java.util.Date;
 import java.util.Locale;
+import static layout.Content.areaPanel;
 import static util.Session.*;
 
 /**
@@ -67,7 +68,7 @@ public class EditTicket extends JPanel {
     private JTextField time, price;
     private TuyenDTO tuyen;
     static ButtonImage submitSave, submitDelete;
-    int indexFrom = 0, indexTo = 0, indexKind = 0;
+    int indexFrom, indexTo, indexKind;
 
     private DatePickerAdd datePicker;
     Input inputTime, inputLicensePlate, inputPrice, inputSet;
@@ -79,7 +80,6 @@ public class EditTicket extends JPanel {
 //        this.tuyen = new TuyenDTO();
 //        this.tuyen.setDiemXuatPhat(this.list[0]);
 //        this.tuyen.setDiemDen(this.list2[0]);
-
         this.tuyen = tuyen;
 
         JPanel loginBg = new JPanel();
@@ -228,7 +228,7 @@ public class EditTicket extends JPanel {
         compoBoxTo.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                indexTo= compoBoxTo.getCompoBox().getSelectedIndex();
+                indexTo = compoBoxTo.getCompoBox().getSelectedIndex();
             }
         });
         compoBoxKind.getCompoBox().addActionListener(new ActionListener() {
@@ -237,20 +237,54 @@ public class EditTicket extends JPanel {
                 indexKind = compoBoxKind.getCompoBox().getSelectedIndex();
             }
         });
-        
+
         // Event
-        
         submitSave.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                tuyen.setBienSoXe(inputLicensePlate.getText());
+
+                tuyen.setGia(Integer.parseInt(inputPrice.getText()));
+
+                tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
+
+                tuyen.setDiemDen(list2[indexTo]);
+
+                tuyen.setDiemXuatPhat(list[indexFrom]);
+
+                tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
+
+                JFormattedTextField textField = datePicker.getTextField();
+                String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
+
+                Date date = new Date();
+                Timestamp gioKhoiHanh;
+                try {
+                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+                    date = format.parse(txtGioKhoiHanh);
+                    gioKhoiHanh = new Timestamp(date.getTime());
+                    tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                TuyenBUS.editTicket(tuyen.getMaTuyen(), tuyen);
+                areaPanel.removeAll();
+                Dashboard dashBoard = new Dashboard();
+                areaPanel.add(dashBoard);
+                areaPanel.validate();
+                areaPanel.repaint();
             }
         });
-        
+
         submitDelete.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int res = TuyenBUS.deleteTicket(tuyen.getMaTuyen());
+                TuyenBUS.deleteTicket(tuyen.getMaTuyen());
+                areaPanel.removeAll();
+                Dashboard dashBoard = new Dashboard();
+                areaPanel.add(dashBoard);
+                areaPanel.validate();
+                areaPanel.repaint();
                 JOptionPane.showMessageDialog(null, "Xoa thanh cong");
 
             }

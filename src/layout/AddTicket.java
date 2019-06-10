@@ -51,6 +51,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 import java.util.Date;
 import java.util.Locale;
+import static layout.Content.areaPanel;
+import static layout.Main.frame;
 import static util.Session.*;
 
 /**
@@ -204,7 +206,7 @@ public class AddTicket extends JPanel {
         compoBoxTo.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                indexTo= compoBoxTo.getCompoBox().getSelectedIndex();
+                indexTo = compoBoxTo.getCompoBox().getSelectedIndex();
             }
         });
         compoBoxKind.getCompoBox().addActionListener(new ActionListener() {
@@ -232,7 +234,6 @@ public class AddTicket extends JPanel {
         String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
         tuyen.setMaTuyen(maTuyen);
 
-
         tuyen.setMaNX(ssNhaXe.getMaNX());
 
         tuyen.setBienSoXe(inputLicensePlate.getText());
@@ -253,11 +254,10 @@ public class AddTicket extends JPanel {
         }
 
         String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
-
         Date date = new Date();
         Timestamp gioKhoiHanh;
         try {
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
             date = format.parse(txtGioKhoiHanh);
             gioKhoiHanh = new Timestamp(date.getTime());
             tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
@@ -267,10 +267,14 @@ public class AddTicket extends JPanel {
 
         int res = TuyenBUS.addTicket(tuyen);
         boolean rs = NhaXeBUS.updateNhaXe(res);
-        if(rs) {
+        if (rs) {
             ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+            areaPanel.removeAll();
+            Dashboard dashBoard = new Dashboard();
+            areaPanel.add(dashBoard);
+            areaPanel.validate();
+            areaPanel.repaint();
         }
-
         return rs;
     }
 
