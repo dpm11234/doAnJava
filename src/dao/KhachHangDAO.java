@@ -52,7 +52,6 @@ public class KhachHangDAO {
                 + "', '" + khachHang.getSdt()
                 + "', " + khachHang.getSoVeDat()
                 + ", '" + khachHang.getThoiGianDat() + "')";
-
         helper.open();
 
         res = helper.excuteUpdate(sql);
@@ -67,7 +66,6 @@ public class KhachHangDAO {
         DataAccessHelper helper = new DataAccessHelper();
 
         String sql = "DELETE FROM KHACHHANG WHERE id = " + id;
-
         helper.open();
 
         res = helper.excuteUpdate(sql);

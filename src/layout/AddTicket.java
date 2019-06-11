@@ -218,18 +218,15 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if(handleAddTicket()) {
-//
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Fail");
-//                }
-//                popUp = new PopUp("Thanh cong");
-//                popUp.setModal(true);
-//                popUp.setVisible(true);
-               JFrame test = new JFrame("test");
-               test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-               test.setSize(300, 400);
-               test.setVisible(true);
+                if (handleAddTicket()) {
+                    JOptionPane.showMessageDialog(null, "Tạo thành công", "test", 1);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tạo thất bại");
+                }
+//               JFrame test = new JFrame("test");
+//               test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//               test.setSize(300, 400);
+//               test.setVisible(true);
             }
         });
     }

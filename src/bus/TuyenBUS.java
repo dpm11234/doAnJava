@@ -42,4 +42,8 @@ public class TuyenBUS {
     public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
         return TuyenDAO.getAllByTrip(startingPoint, destination);
     }
+   
+    public static int countemptySeat(String maTuyen){
+        return TuyenDAO.countEmptySeat(maTuyen);
+    }
 }
