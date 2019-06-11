@@ -2,22 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< HEAD
         <group>
-            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/EditTicket.java</file>
-            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/MenuDashboard.java</file>
+            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/bus/TuyenBUS.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Dashboard.java</file>
-            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Content.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/AddTicket.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/HomeSelect.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/PickTicket.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/TicketClient.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Login.java</file>
-            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/dao/TuyenDAO.java</file>
-            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/BookedTicket.java</file>
+            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/util/DataAccessHelper.java</file>
         </group>
-=======
-        <group/>
->>>>>>> 0e2b5eb6a98bbffab1b204f94d821fd584950c3d
     </open-files>
 </project-private>
