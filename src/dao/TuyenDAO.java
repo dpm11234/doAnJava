@@ -176,6 +176,8 @@ public class TuyenDAO {
             helper.displayError(ex);
         }
         return result;
+    }
+
     public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
 
         String sql = "SELECT * FROM TUYEN, NHAXE WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
@@ -207,8 +209,6 @@ public class TuyenDAO {
             helper.displayError(ex);
         }
 
-
         return danhSachTuyen;
     }
-
 }

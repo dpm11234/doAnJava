@@ -35,6 +35,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JViewport;
@@ -155,7 +156,7 @@ public class BookedTicket extends JPanel {
 
         infoTicketRight.add(time, BorderLayout.WEST);
         infoTicketRight.add(day, BorderLayout.EAST);
-        
+
         JLabel totalTickets = new JLabel("Tổng vé: " + tuyen.getTongGhe());
         totalTickets.setPreferredSize(new Dimension(60, 40));
         totalTickets.setHorizontalAlignment(JLabel.CENTER);
@@ -248,7 +249,6 @@ public class BookedTicket extends JPanel {
 //                ka.add(new ListBookedW(i));
 //            }
 //        }
-
 //        int count = 0;
 //
 //        for (KhachHangDTO khachHang : danhSachKhachHang) {
@@ -259,7 +259,6 @@ public class BookedTicket extends JPanel {
 //            }
 //            count++;
 //        }
-
         JViewport viewport = new JViewport();
         viewport.setView(ka);
         JScrollPane hi = new JScrollPane();
@@ -329,7 +328,6 @@ public class BookedTicket extends JPanel {
                 delete.setPreferredSize(new Dimension(deleteW, 38));
                 ka.removeAll();
 
-
 //                for (int i = 0; i < 20; i++) {
 //                    if (i % 2 == 0) {
 //                        ka.add(new ListBookedB(i));
@@ -340,14 +338,13 @@ public class BookedTicket extends JPanel {
                 int count = 0;
 
                 for (KhachHangDTO khachHang : danhSachKhachHang) {
-                    if(count % 2 == 0) {
+                    if (count % 2 == 0) {
                         ka.add(new ListBookedB(khachHang));
                     } else {
                         ka.add(new ListBookedW(khachHang));
                     }
                     count++;
                 }
-
 
                 timeBooked.revalidate();
                 boxListBooked.revalidate();
@@ -427,7 +424,6 @@ public class BookedTicket extends JPanel {
             DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("HH:mm");
             DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDateTime dateTime = khachHang.getThoiGianDat().toLocalDateTime();
-
 
             JLabel timeBooked = new JLabel(dateTime.format(formatterTime) + " ngày " + dateTime.format(formatterDate));
             timeBooked.setPreferredSize(new Dimension(timeW, 38));
@@ -511,12 +507,16 @@ public class BookedTicket extends JPanel {
             delete.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    int res = KhachHangBUS.deleteCustomer(khachHang.getId());
-                    areaPanel.removeAll();
-                    bookedTicket = new BookedTicket(tuyen);
-                    areaPanel.add(bookedTicket);
-                    areaPanel.validate();
-                    areaPanel.repaint();
+                    int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa?", "Thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (check == 0) {
+                        int res = KhachHangBUS.deleteCustomer(khachHang.getId());
+                        areaPanel.removeAll();
+                        bookedTicket = new BookedTicket(tuyen);
+                        areaPanel.add(bookedTicket);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                    }
+
                 }
             });
         }
@@ -664,17 +664,6 @@ public class BookedTicket extends JPanel {
             this.add(line4);
             this.add(boxButtonDelete);
 
-            delete.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    int res = KhachHangBUS.deleteCustomer(khachHang.getId());
-                    areaPanel.removeAll();
-                    bookedTicket = new BookedTicket(tuyen);
-                    areaPanel.add(bookedTicket);
-                    areaPanel.validate();
-                    areaPanel.repaint();
-                }
-            });
         }
     }
 }
