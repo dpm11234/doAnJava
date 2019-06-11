@@ -36,6 +36,7 @@ import createUI.ImagePanel;
 import createUI.JPanelInput;
 import static layout.Content.navbar;
 
+import dto.TuyenDTO;
 import jdk.nashorn.internal.scripts.JO;
 import layout.Dashboard;
 import static layout.Navbar.navIsLogin;
@@ -359,7 +360,8 @@ public class Login extends JPanel {
                     spaceHello.setPreferredSize(new Dimension(20, 50));
                     Font fontHello = new Font("SansSerif", Font.BOLD, 15);
                     hello.setFont(fontHello);
-                    dashboard = new Dashboard();
+                    ArrayList<TuyenDTO> danhSachTuyen = null;
+                    dashboard = new Dashboard(danhSachTuyen);
                     areaPanel.remove(login);
                     areaPanel.add(dashboard, BorderLayout.CENTER);
                     navbar.remove(navBackHome);

@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package createUI;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,7 +17,7 @@ import org.jdatepicker.impl.*;
  * @author Duong Mau
  */
 public class DatePickerWhite extends JPanel {
-    
+
     JLabel datePickerSpace, leftAlignDatePicker, rightAlignDatePicker;
     JPanel alignDatePicker;
     JButton changeButton;
@@ -34,25 +31,25 @@ public class DatePickerWhite extends JPanel {
 
         addControls(heightSpace);
     }
-    
+
     public void addControls(int heightSpace) {
-        
-        MatteBorder borderPicker = new MatteBorder(0, 0, 0, 0, new Color(26, 126, 218));        
-        
+
+        MatteBorder borderPicker = new MatteBorder(0, 0, 0, 0, new Color(26, 126, 218));
+
         leftAlignDatePicker = new JLabel("");
         rightAlignDatePicker = new JLabel("");
         datePickerSpace = new JLabel("");
         datePickerSpace.setPreferredSize(new Dimension(120, heightSpace));
         leftAlignDatePicker.setPreferredSize(new Dimension(50, 25));
         rightAlignDatePicker.setPreferredSize(new Dimension(15, 25));
-        
+
         alignDatePicker = new JPanel(new BorderLayout());
         alignDatePicker.setBackground(new Color(255, 255, 255));
-        
-        
+
+
         alignDatePicker.add(leftAlignDatePicker, BorderLayout.WEST);
         alignDatePicker.add(rightAlignDatePicker, BorderLayout.EAST);
-        
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String date = sdf.format(new Date());
         String[] parts = date.split("/"); //returns an array with the 2 parts
@@ -66,17 +63,17 @@ public class DatePickerWhite extends JPanel {
         p.put("text.today", "Hôm nay");
         p.put("text.month", "tháng");
         p.put("text.year", "năm");
-        
+
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
         datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        
+
         textField = datePicker.getJFormattedTextField();
 
         datePicker.setShowYearButtons(false);
         datePicker.setTextEditable(false);
         datePicker.setButtonFocusable(false);
-        
-        
+
+
         changeButton = (JButton) datePicker.getComponent(1);
         changeButton.setToolTipText("OK");
         changeButton.setText("");
@@ -97,14 +94,14 @@ public class DatePickerWhite extends JPanel {
         Font font1 = new Font("SansSerif", Font.BOLD, 16);
         textField.setFont(font1);
 
-        
+
         alignDatePicker.add(datePicker, BorderLayout.CENTER);
-        
+
         this.add(datePickerSpace, BorderLayout.NORTH);
         this.add(alignDatePicker, BorderLayout.CENTER);
-        
+
     }
-    
+
     public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
         private String datePattern = "dd-MM-yyyy";
@@ -126,12 +123,16 @@ public class DatePickerWhite extends JPanel {
         }
     }
 
+    public JButton getChangeButton() {
+        return this.changeButton;
+    }
+
     public JDatePickerImpl getDatePicker() {
         return this.datePicker;
     }
 
     public JFormattedTextField getTextField() {
-        return this.textField;
+        return textField;
     }
-    
+
 }

@@ -5,8 +5,10 @@
  */
 package layout;
 
+import bus.TuyenBUS;
 import createUI.DatePicker;
 import createUI.DatePickerWhite;
+import dto.TuyenDTO;
 import layout.SelectWhite;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,12 +27,14 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import static layout.Content.*;
+import static layout.Dashboard.selectTicketPanel;
 import static layout.Content.homeSelect;
 import static layout.MenuDashboard.panelTicket;
 import static layout.SelectTicket.c1;
@@ -46,7 +50,7 @@ public class SelectTicketPanel extends JPanel {
     int currentTo, currentFrom;
     static ListTicket listTicket;
     private SelectWhite selectFrom, selectTo;
-    private DatePickerWhite datePicker;
+//    private DatePickerWhite datePicker;
 
     public SelectTicketPanel() {
 
@@ -63,7 +67,7 @@ public class SelectTicketPanel extends JPanel {
         areaSelect.setPreferredSize(new Dimension(810, 65));
         areaSelect.setBackground(new Color(255, 255, 255, 0));
 
-        datePicker = new DatePickerWhite(12);
+        DatePickerWhite datePicker = new DatePickerWhite(12);
         datePicker.setPreferredSize(new Dimension(250, 40));
 
         areaSelect.add(selectFrom);
@@ -81,7 +85,6 @@ public class SelectTicketPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = selectFrom.get().getSelectedIndex();
-                if(selected != currentFrom) {
                     JFormattedTextField textField = datePicker.getTextField();
 
                     Date date = new Date();
@@ -95,14 +98,22 @@ public class SelectTicketPanel extends JPanel {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
-
-                    areaPanel.removeAll();
-                    dashboard = new Dashboard(list[selected], list2[currentTo], dateTime);
-                    areaPanel.add(dashboard);
-                    areaPanel.validate();
-                    areaPanel.repaint();
+                ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[selected], list2[currentTo], dateTime);
+                    selectTicketPanel.getSelectFrom().get().setSelectedItem(list[selected]);
+                    dashboard.getBgDashboard().removeAll();
+                    dashboard.getBgDashboard().add(selectTicketPanel);
+                    dashboard.getKa().removeAll();
+                    dashboard.showTicket(danhSachTuyen);
+                dashboard.getKa().validate();
+                dashboard.getKa().repaint();
+                dashboard.getHi().validate();
+                dashboard.getHi().repaint();
+                dashboard.getBgDashboard().add(dashboard.getHi());
+                dashboard.getBgDashboard().validate();
+                dashboard.getBgDashboard().repaint();
+                dashboard.validate();
+                dashboard.repaint();
                     currentFrom = selected;
-                }
             }
 
         });
@@ -111,7 +122,6 @@ public class SelectTicketPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = selectTo.get().getSelectedIndex();
-                if(selected != currentTo) {
                     JFormattedTextField textField = datePicker.getTextField();
 
                     Date date = new Date();
@@ -125,14 +135,57 @@ public class SelectTicketPanel extends JPanel {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
+                ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[selected], dateTime);
+                selectTicketPanel.getSelectTo().get().setSelectedItem(list2[selected]);
+                dashboard.getBgDashboard().removeAll();
+                dashboard.getBgDashboard().add(selectTicketPanel);
+                dashboard.getKa().removeAll();
+                dashboard.showTicket(danhSachTuyen);
+                dashboard.getKa().validate();
+                dashboard.getKa().repaint();
+                dashboard.getHi().validate();
+                dashboard.getHi().repaint();
+                dashboard.getBgDashboard().add(dashboard.getHi());
+                dashboard.getBgDashboard().validate();
+                dashboard.getBgDashboard().repaint();
+                dashboard.validate();
+                dashboard.repaint();
+                currentTo = selected;
 
-                    areaPanel.removeAll();
-                    dashboard = new Dashboard(list[selected], list2[currentTo], dateTime);
-                    areaPanel.add(dashboard);
-                    areaPanel.validate();
-                    areaPanel.repaint();
-                    currentFrom = selected;
+            }
+        });
+
+        datePicker.getDatePicker().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFormattedTextField textField = datePicker.getTextField();
+
+                Date date = new Date();
+                Timestamp dateTimestamp = null;
+                LocalDateTime dateTime = null;
+                try {
+                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                    date = format.parse(textField.getText());
+                    dateTimestamp = new Timestamp(date.getTime());
+                    dateTime = dateTimestamp.toLocalDateTime();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
+
+                ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
+                dashboard.getKa().removeAll();
+                dashboard.showTicket(danhSachTuyen);
+                dashboard.getKa().removeAll();
+                dashboard.showTicket(danhSachTuyen);
+                dashboard.getKa().validate();
+                dashboard.getKa().repaint();
+                dashboard.getHi().validate();
+                dashboard.getHi().repaint();
+                dashboard.getBgDashboard().add(dashboard.getHi());
+                dashboard.getBgDashboard().validate();
+                dashboard.getBgDashboard().repaint();
+                dashboard.validate();
+                dashboard.repaint();
             }
         });
     }

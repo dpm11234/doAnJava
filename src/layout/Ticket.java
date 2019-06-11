@@ -233,7 +233,7 @@ public class Ticket extends JPanel {
         }
         
         submit = new JButton();
-        submit.setPreferredSize(new Dimension(230, 30));
+        submit.setPreferredSize(new Dimension(30, 71));
         submit.setBackground(new Color(0, 0, 0, 0));
         submit.setForeground(Color.white);
         submit.setRolloverEnabled(false);
@@ -292,7 +292,7 @@ public class Ticket extends JPanel {
         
         JLabel typeBus = new JLabel("");
         typeBus.setPreferredSize(new Dimension(122, 33));
-        typeBus.setIcon(new ImageIcon(new ImageIcon("images/32c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
+        typeBus.setIcon(new ImageIcon(new ImageIcon("images/"+ tuyen.getTongGhe() +"c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
         

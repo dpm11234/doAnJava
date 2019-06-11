@@ -42,7 +42,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import static layout.Main.heightGet;
 import layout.SelectTicketPanel;
-import static layout.SelectTicketPanel.selectFrom;
 import layout.Ticket;
 
 /**

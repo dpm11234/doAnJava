@@ -12,7 +12,7 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAll() {
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-        String sql = "select * from TUYEN";
+        String sql = "SELECT * FROM TUYEN WHERE MANX = '" + ssNhaXe.getMaNX() + "';";
         DataAccessHelper helper = new DataAccessHelper();
 
         helper.open();
@@ -150,10 +150,10 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
 
-        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
+        String sql = "SELECT * FROM TUYEN, NHAXE WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-
+        System.out.println(sql);
         helper.open();
 
         ResultSet resultSet = helper.excuteQuery(sql);

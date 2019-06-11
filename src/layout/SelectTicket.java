@@ -199,9 +199,10 @@ public class SelectTicket extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = c1.getSelectedIndex();
-                if(selected != currentFrom) {
 //                    areaPanel.remove(home);
 //                    areaPanel.remove(login);
+                DefaultListSelectionModel model = new DefaultListSelectionModel();
+
 
                     JFormattedTextField textField = datePicker.getTextField();
                     Date date = new Date();
@@ -223,7 +224,7 @@ public class SelectTicket extends JPanel {
                     areaPanel.validate();
                     areaPanel.repaint();
                     currentFrom = selected;
-                }
+
             }
             
         });
@@ -232,7 +233,7 @@ public class SelectTicket extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = c2.getSelectedIndex();
-                if(selected != currentTo) {
+
 //                    areaPanel.remove(home);
 //                    areaPanel.remove(login);
 //                    areaPanel.add(listTicket);
@@ -257,7 +258,6 @@ public class SelectTicket extends JPanel {
                     areaPanel.validate();
                     areaPanel.repaint();
                     currentTo = selected;
-                }
             }
         });
 

@@ -269,7 +269,7 @@ public class EditTicket extends JPanel {
                 }
                 TuyenBUS.editTicket(tuyen.getMaTuyen(), tuyen);
                 areaPanel.removeAll();
-                Dashboard dashBoard = new Dashboard();
+                Dashboard dashBoard = new Dashboard(null);
                 areaPanel.add(dashBoard);
                 areaPanel.validate();
                 areaPanel.repaint();
@@ -281,7 +281,7 @@ public class EditTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 TuyenBUS.deleteTicket(tuyen.getMaTuyen());
                 areaPanel.removeAll();
-                Dashboard dashBoard = new Dashboard();
+                Dashboard dashBoard = new Dashboard(null);
                 areaPanel.add(dashBoard);
                 areaPanel.validate();
                 areaPanel.repaint();

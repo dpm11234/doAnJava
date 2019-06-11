@@ -270,7 +270,7 @@ public class AddTicket extends JPanel {
         if (rs) {
             ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
             areaPanel.removeAll();
-            Dashboard dashBoard = new Dashboard();
+            Dashboard dashBoard = new Dashboard(null);
             areaPanel.add(dashBoard);
             areaPanel.validate();
             areaPanel.repaint();
