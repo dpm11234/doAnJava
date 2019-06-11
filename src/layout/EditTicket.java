@@ -243,41 +243,23 @@ public class EditTicket extends JPanel {
         submitSave.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                tuyen.setBienSoXe(inputLicensePlate.getText());
-
-                tuyen.setGia(Integer.parseInt(inputPrice.getText()));
-
-                tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
-
-                tuyen.setDiemDen(list2[indexTo]);
-
-                tuyen.setDiemXuatPhat(list[indexFrom]);
-
-                tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
-
-                JFormattedTextField textField = datePicker.getTextField();
-                String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
-
-                Date date = new Date();
-                Timestamp gioKhoiHanh;
-                try {
-                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
-                    date = format.parse(txtGioKhoiHanh);
-                    gioKhoiHanh = new Timestamp(date.getTime());
-                    tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                int res = TuyenBUS.editTicket(tuyen.getMaTuyen(), tuyen);
-                if (res == 1) {
-                    JOptionPane.showMessageDialog(null, "Sửa thành công", "Thông báo", 1);
-                    areaPanel.removeAll();
-                    dashboard = new Dashboard(null);
-                    areaPanel.add(dashboard);
-                    areaPanel.validate();
-                    areaPanel.repaint();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Sửa thất bại", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                switch (handleEditTicket()) {
+                    case 1:
+                        areaPanel.removeAll();
+                        Dashboard dashBoard = new Dashboard(null);
+                        areaPanel.add(dashBoard);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                        JOptionPane.showMessageDialog(null, "Sửa thành công", "Thành công", 1);
+                        break;
+                    case -2:
+                        JOptionPane.showMessageDialog(null, "Giờ khởi hành không hợp lệ", "Thất bại", 1);
+                        break;
+                    case -3:
+                        JOptionPane.showMessageDialog(null, "Giá không hợp lệ", "Thất bại", 1);
+                        break;
+                    case -4:
+                        JOptionPane.showMessageDialog(null, "Số đã đặt không hợp lệ", "Thất bại", 1);
                 }
             }
         });
@@ -302,6 +284,51 @@ public class EditTicket extends JPanel {
                 }
             }
         });
+    }
+
+    public int handleEditTicket() {
+        String regexTime = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]?";
+        if(!inputTime.getText().matches(regexTime)) {
+            return -2;
+        }
+
+        String regexGia = "[0-9]+";
+        if(!inputPrice.getText().matches(regexGia)) {
+            return -3;
+        }
+
+        String regexDaDat = "[0-9]+";
+        if(!inputSet.getText().matches(regexDaDat)) {
+            return -4;
+        }
+
+        tuyen.setBienSoXe(inputLicensePlate.getText());
+
+        tuyen.setGia(Integer.parseInt(inputPrice.getText()));
+
+        tuyen.setSoLuong(Integer.parseInt(inputSet.getText()));
+
+        tuyen.setDiemDen(list2[indexTo]);
+
+        tuyen.setDiemXuatPhat(list[indexFrom]);
+
+        tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
+
+        JFormattedTextField textField = datePicker.getTextField();
+        String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
+
+        Date date = new Date();
+        Timestamp gioKhoiHanh;
+        try {
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            date = format.parse(txtGioKhoiHanh);
+            gioKhoiHanh = new Timestamp(date.getTime());
+            tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return TuyenBUS.editTicket(tuyen.getMaTuyen(), tuyen);
     }
 
 }

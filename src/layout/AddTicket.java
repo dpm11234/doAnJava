@@ -218,16 +218,48 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (handleAddTicket()) {
-                    JOptionPane.showMessageDialog(null, "Tạo thành công", "Thông báo", 1);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Tạo thất bại", "Thông báo", 0);
+                switch (handleAddTicket()) {
+                    case 1:
+                        boolean rs = NhaXeBUS.updateNhaXe(1);
+                        if (rs) {
+                            ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+                            areaPanel.removeAll();
+                            Dashboard dashBoard = new Dashboard(null);
+                            areaPanel.add(dashBoard);
+                            areaPanel.validate();
+                            areaPanel.repaint();
+                        }
+                        JOptionPane.showMessageDialog(null, "Tạo thành công", "Thành công", 1);
+                        break;
+                    case -2:
+                        JOptionPane.showMessageDialog(null, "Giờ khởi hành không hợp lệ", "Thất bại", 1);
+                        break;
+                    case -3:
+                        JOptionPane.showMessageDialog(null, "Giá không hợp lệ", "Thất bại", 1);
+                        break;
+                    case -4:
+                        JOptionPane.showMessageDialog(null, "Số đã đặt không hợp lệ", "Thất bại", 1);
                 }
             }
         });
     }
 
-    public boolean handleAddTicket() {
+    public int handleAddTicket() {
+
+        String regexTime = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]?";
+        if(!inputTime.getText().matches(regexTime)) {
+            return -2;
+        }
+
+        String regexGia = "[0-9]+";
+        if(!inputPrice.getText().matches(regexGia)) {
+            return -3;
+        }
+
+        String regexDaDat = "[0-9]+";
+        if(!inputSet.getText().matches(regexDaDat)) {
+            return -4;
+        }
 
         String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
         tuyen.setMaTuyen(maTuyen);
@@ -260,17 +292,7 @@ public class AddTicket extends JPanel {
             ex.printStackTrace();
         }
 
-        int res = TuyenBUS.addTicket(tuyen);
-        boolean rs = NhaXeBUS.updateNhaXe(res);
-        if (rs) {
-            ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
-            areaPanel.removeAll();
-            Dashboard dashBoard = new Dashboard(null);
-            areaPanel.add(dashBoard);
-            areaPanel.validate();
-            areaPanel.repaint();
-        }
-        return rs;
+        return TuyenBUS.addTicket(tuyen);
     }
 
 }
