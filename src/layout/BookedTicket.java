@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
@@ -55,6 +56,7 @@ public class BookedTicket extends JPanel {
     public int height;
     private ArrayList<KhachHangDTO> danhSachKhachHang;
     private TuyenDTO tuyen;
+    static JLabel spaceTop;
 
     public BookedTicket(TuyenDTO tuyen) {
 
@@ -96,7 +98,7 @@ public class BookedTicket extends JPanel {
         JPanel boxListBooked = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         boxListBooked.setBackground(new Color(255, 255, 255, 0));
 
-        JLabel spaceTop = new JLabel();
+        spaceTop = new JLabel();
         spaceTop.setPreferredSize(new Dimension(800, 30));
         spaceTop.setBackground(new Color(95, 152, 244, 0));
 
@@ -233,7 +235,7 @@ public class BookedTicket extends JPanel {
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251));
-        height = 20 * 40;
+        height = 1 * 40;
         if (height > heightGet - 251) {
             boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 142));
         } else {
@@ -282,6 +284,15 @@ public class BookedTicket extends JPanel {
         boxListBooked.add(titleTable);
         boxListBooked.add(hi);
         bgBooked.add(boxListBooked);
+        
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 16);
+        
+        JLabel noTicket = new JLabel("Chưa Có Khách Đặt Mua!");
+        noTicket.setPreferredSize(new Dimension(width, 40));
+        noTicket.setVerticalAlignment(JLabel.CENTER);
+        noTicket.setHorizontalAlignment(JLabel.CENTER);
+        noTicket.setForeground(new Color(100, 100, 100));
+        noTicket.setFont(fontTextTitle);
 
         this.add(bgBooked);
 
@@ -346,6 +357,10 @@ public class BookedTicket extends JPanel {
                         ka.add(new ListBookedW(khachHang));
                     }
                     count++;
+                }
+                
+                if (count <= 0) {
+                    ka.add(noTicket);
                 }
 
 

@@ -31,6 +31,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
+import static layout.BookedTicket.spaceTop;
 
 import static layout.Content.*;
 
@@ -387,6 +388,10 @@ public class TicketClient extends JPanel {
                 areaPanel.removeAll();
                 BookedTicket bookedTicket = new BookedTicket(tuyen);
                 areaPanel.add(bookedTicket);
+                areaPanel.validate();
+                areaPanel.repaint();
+                spaceTop.validate();
+                spaceTop.repaint();
                 areaPanel.validate();
                 areaPanel.repaint();
             }

@@ -26,6 +26,9 @@ import createUI.DatePicker;
 import layout.ListTicket;
 
 import static layout.Content.*;
+import static layout.Login.hello;
+import static layout.Navbar.navLogin;
+import static layout.Navbar.titleSpace;
 
 /**
  *
@@ -192,6 +195,15 @@ public class SelectTicket extends JPanel {
         
         listTicket = new ListTicket();
         
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
+        
+        JLabel titleListTicket = new JLabel("Danh Sách Vé");
+        titleListTicket.setPreferredSize(new Dimension(100, 60));
+        titleListTicket.setVerticalAlignment(JLabel.CENTER);
+        titleListTicket.setHorizontalAlignment(JLabel.CENTER);
+        titleListTicket.setFont(fontTextTitle);
+        titleListTicket.setForeground(new Color(140, 140, 140));
+        
         c1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -202,8 +214,14 @@ public class SelectTicket extends JPanel {
                     areaPanel.removeAll();
                     homeSelect = new HomeSelect(list[selected], list2[currentTo]);
                     areaPanel.add(homeSelect);
+                    navbar.removeAll();
+                    navbar.add(titleListTicket, BorderLayout.CENTER);
+                    navbar.add(titleSpace, BorderLayout.WEST);
+                    navbar.add(navLogin, BorderLayout.EAST);
                     areaPanel.validate();
                     areaPanel.repaint();
+                    navbar.validate();
+                    navbar.repaint();
                     currentFrom = selected;
                 }
             }
@@ -223,6 +241,12 @@ public class SelectTicket extends JPanel {
                     areaPanel.add(homeSelect);
                     areaPanel.validate();
                     areaPanel.repaint();
+                    navbar.removeAll();
+                    navbar.add(titleListTicket, BorderLayout.CENTER);
+                    navbar.add(titleSpace, BorderLayout.WEST);
+                    navbar.add(navLogin, BorderLayout.EAST);
+                    navbar.validate();
+                    navbar.repaint();
                     currentTo = selected;
                 }
             }

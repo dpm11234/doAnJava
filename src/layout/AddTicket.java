@@ -7,6 +7,7 @@ package layout;
 
 import bus.NhaXeBUS;
 import bus.TuyenBUS;
+import com.sun.awt.AWTUtilities;
 import createUI.ButtonImage;
 import createUI.DatePickerAdd;
 import createUI.ImagePanel;
@@ -16,6 +17,7 @@ import createUI.SelectDown;
 import createUI.TwoDots;
 import dto.NhaXeDTO;
 import dto.TuyenDTO;
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -29,10 +31,13 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.HierarchyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -75,6 +80,7 @@ public class AddTicket extends JPanel {
     Input inputTime, inputLicensePlate, inputPrice, inputSet;
 
     public AddTicket() {
+        System.out.println(frame.getInsets());
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -193,6 +199,7 @@ public class AddTicket extends JPanel {
 
         this.add(loginBg, BorderLayout.CENTER);
         addEvents();
+        this.setBackground(Color.red);
     }
 
     public void addEvents() {
@@ -219,17 +226,46 @@ public class AddTicket extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                if(handleAddTicket()) {
-//
+//                    JOptionPane.showMessageDialog(frame2, "OK");
 //                } else {
-//                    JOptionPane.showMessageDialog(null, "Fail");
+//                    JOptionPane.showMessageDialog(frame2, "Fail");
 //                }
+//                JDialog d = new JDialog(frame, "dialog Box");
+//                d.getRootPane().setOpaque(false);
+//                d.getContentPane().setBackground(new Color(0, 0, 0, 0));
+//                d.setBackground(new Color(0, 0, 0, 0));
+//                d.setSize(100, 100);
+
+                // set visibility of dialog 
+//                d.setVisible(true);
+//                UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
+                //JOptionPane optionPane = new JOptionPane("Question?",  JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
+                JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Đăng nhập thất bại", 1);
 //                popUp = new PopUp("Thanh cong");
 //                popUp.setModal(true);
 //                popUp.setVisible(true);
-               JFrame test = new JFrame("test");
-               test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-               test.setSize(300, 400);
-               test.setVisible(true);
+//               JFrame test = new JFrame("test");
+//               test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//               test.setSize(300, 400);
+//               test.setVisible(true);
+                //handleAddTicket();
+//                final AWTEventListener hierarchyListener = new AWTEventListener() {
+//
+//                    @Override
+//                    public void eventDispatched(AWTEvent event) {
+//                        final HierarchyEvent he = (HierarchyEvent) event;
+//                        if (HierarchyEvent.HIERARCHY_CHANGED == he.getID() && he.getComponent() instanceof JOptionPane) {
+//                            final JDialog dlg = (JDialog) SwingUtilities.windowForComponent(he.getChangedParent());
+//                            if (dlg != null && !dlg.isUndecorated()) {
+//                                dlg.setUndecorated(true);
+//                            }
+//                        }
+//                    }
+//                };
+//                Toolkit.getDefaultToolkit().addAWTEventListener(hierarchyListener, AWTEvent.HIERARCHY_EVENT_MASK);
+//                JOptionPane.showMessageDialog(null, "No Border!!!");
+//                Toolkit.getDefaultToolkit().removeAWTEventListener(hierarchyListener);
+//                JOptionPane.showMessageDialog(null, "With Border!!!");
             }
         });
     }

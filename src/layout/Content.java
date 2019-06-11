@@ -21,8 +21,8 @@ public class Content extends JPanel {
     public static Navbar navbar;
     public static JPanel areaPanel;
     public static Home home;
-    public static Login login;
     public static Dashboard dashboard;
+    public static Login login;
     public static AddTicket addTicket;
     public static BookedTicket bookedTicket;
     public static EditTicket editTicket;
