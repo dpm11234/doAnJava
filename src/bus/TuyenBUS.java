@@ -20,7 +20,13 @@ public class TuyenBUS {
     public static int addTicket(TuyenDTO tuyen) {
         int res = -1;
 
+        if(tuyen.getGia() < 0) {
+            return -3;
+        }
 
+        if(tuyen.getSoLuong() < 0) {
+            return -4;
+        }
 
         res = TuyenDAO.addTicket(tuyen);
 
@@ -37,6 +43,14 @@ public class TuyenBUS {
     
      public static int editTicket(String maTuyen, TuyenDTO tuyen) {
         int res = -1;
+
+         if(tuyen.getGia() < 0) {
+             return -3;
+         }
+
+         if(tuyen.getSoLuong() < 0) {
+             return -4;
+         }
 
         res = TuyenDAO.editTicket(maTuyen, tuyen);
 

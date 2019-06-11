@@ -182,27 +182,35 @@ public class PickTicket extends JPanel {
         submitSave.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                khachHang.setMaNX(tuyen.getMaNX());
-                khachHang.setMaTuyen(tuyen.getMaTuyen());
-                khachHang.setHoTen(inputName.getText());
-                khachHang.setSdt(inputPhone.getText());
-                khachHang.setThoiGianDat(Timestamp.valueOf(LocalDateTime.now()));
-                khachHang.setSoVeDat(Integer.parseInt(list[index]));
 
-                int res = KhachHangBUS.addCustomer(khachHang);
-                
-                if(res == 1){
-                    JOptionPane.showMessageDialog(null, "Đặt vé thành công", "Thông báo", 1);
-                    areaPanel.removeAll();
-                    areaPanel.add(home);
-                    areaPanel.validate();
-                    areaPanel.repaint();
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Đặt vé thất bại ", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                switch (handlePickTicket()) {
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "Đặt vé thành công", "Thành công", 1);
+                        areaPanel.removeAll();
+                        areaPanel.add(home);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                        break;
+                    case -2:
+                        JOptionPane.showMessageDialog(null, "Tên không hợp lệ", "Thất bại", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case -3:
+                        JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Thất bại", JOptionPane.ERROR_MESSAGE);
+                        break;
                 }
             }
         });
+    }
+
+    public int handlePickTicket() {
+        khachHang.setMaNX(tuyen.getMaNX());
+        khachHang.setMaTuyen(tuyen.getMaTuyen());
+        khachHang.setHoTen(inputName.getText());
+        khachHang.setSdt(inputPhone.getText());
+        khachHang.setThoiGianDat(Timestamp.valueOf(LocalDateTime.now()));
+        khachHang.setSoVeDat(Integer.parseInt(list[index]));
+
+        return KhachHangBUS.addCustomer(khachHang);
     }
 
 }
