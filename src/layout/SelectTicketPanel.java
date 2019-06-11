@@ -98,12 +98,22 @@ public class SelectTicketPanel extends JPanel {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
+                    selectTo.setCompoBox(list2);
+
+                    for(String item : list2) {
+                        if(item.equals(list[selected])) {
+                            selectTo.get().removeItem(item);
+                        }
+                    }
+
                 ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[selected], list2[currentTo], dateTime);
                     selectTicketPanel.getSelectFrom().get().setSelectedItem(list[selected]);
                     dashboard.getBgDashboard().removeAll();
                     dashboard.getBgDashboard().add(selectTicketPanel);
                     dashboard.getKa().removeAll();
                     dashboard.showTicket(danhSachTuyen);
+                selectTicketPanel.validate();
+                selectTicketPanel.repaint();
                 dashboard.getKa().validate();
                 dashboard.getKa().repaint();
                 dashboard.getHi().validate();
@@ -135,8 +145,19 @@ public class SelectTicketPanel extends JPanel {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
+                selectFrom.setCompoBox(list);
+
+                    for(String item : list) {
+                        if(item.equals(list2[selected])) {
+                            selectFrom.get().removeItem(item);
+                        }
+                    }
+
+
                 ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[selected], dateTime);
                 selectTicketPanel.getSelectTo().get().setSelectedItem(list2[selected]);
+                selectTicketPanel.validate();
+                selectTicketPanel.repaint();
                 dashboard.getBgDashboard().removeAll();
                 dashboard.getBgDashboard().add(selectTicketPanel);
                 dashboard.getKa().removeAll();

@@ -89,7 +89,7 @@ public class TuyenDAO {
 
     public static int deleteTicket(String maTuyen) {
         String sql = "DELETE FROM TUYEN WHERE MATUYEN = '" + maTuyen + "'";
-        String sql2 = "DELETE FROM KHACHHANG WHERE MATUYEN = '" + maTuyen +"'";
+        String sql2 = "DELETE FROM KHACHHANG WHERE MATUYEN = '" + maTuyen + "'";
         DataAccessHelper helper = new DataAccessHelper();
         int res = -1;
         helper.open();
@@ -101,7 +101,7 @@ public class TuyenDAO {
     }
 
     public static int editTicket(String maTuyen, TuyenDTO tuyen) {
-        String sql = "UPDATE TUYEN SET DIEMDEN = " + "N'" + tuyen.getDiemDen() + "'" + ", DIEMXUATPHAT = " + "N'" + tuyen.getDiemXuatPhat() + "'" + ", TGKHOIHANH = " + "'" + tuyen.getThoiGianKhoiHanh() + "'" + ", TONGGHE = " + tuyen.getTongGhe()+ ", BSX = " + "'" + tuyen.getBienSoXe()+ "'" + ", SOLUONG = " + tuyen.getSoLuong()+ ",GIA = " + tuyen.getGia()+ " WHERE MATUYEN = '" + maTuyen + "'";
+        String sql = "UPDATE TUYEN SET DIEMDEN = " + "N'" + tuyen.getDiemDen() + "'" + ", DIEMXUATPHAT = " + "N'" + tuyen.getDiemXuatPhat() + "'" + ", TGKHOIHANH = " + "'" + tuyen.getThoiGianKhoiHanh() + "'" + ", TONGGHE = " + tuyen.getTongGhe() + ", BSX = " + "'" + tuyen.getBienSoXe() + "'" + ", SOLUONG = " + tuyen.getSoLuong() + ",GIA = " + tuyen.getGia() + " WHERE MATUYEN = '" + maTuyen + "'";
         DataAccessHelper helper = new DataAccessHelper();
         System.out.println(sql);
         int res = -1;
@@ -144,8 +144,38 @@ public class TuyenDAO {
             helper.displayError(ex);
         }
 
-
         return danhSachTuyen;
+    }
+
+    public static int countEmptySeat(String maTuyen) {
+        String sql = "SELECT TONGGHE, SOLUONG FROM TUYEN WHERE MATUYEN = " + "'" + maTuyen + "'";
+        String sql2 = "SELECT COUNT(MATUYEN), SUM(SOVEDAT) FROM KHACHHANG WHERE MATUYEN = " + "'" + maTuyen + "'";
+        DataAccessHelper helper = new DataAccessHelper();
+        helper.open();
+        ResultSet resultSet = helper.excuteQuery(sql);
+        ResultSet resultSet2 = helper.excuteQuery(sql2);
+        int result = 0;
+        int count = 0;
+        int tongGhe = 0;
+        int daDat = 0;
+        int datTruoc = 0;
+        try {
+            while (resultSet2.next()) {
+                count = resultSet2.getInt("COUNT(MATUYEN)");
+                daDat = resultSet2.getInt("SUM(SOVEDAT)");
+            }
+            while (resultSet.next()) {
+                tongGhe = resultSet.getInt("TONGGHE");
+                datTruoc = resultSet.getInt("SOLUONG");
+                if (count == 0) {
+                    daDat = 0;
+                }
+                result = tongGhe - daDat - datTruoc;
+            }
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        }
+        return result;
     }
 
     public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
@@ -179,8 +209,6 @@ public class TuyenDAO {
             helper.displayError(ex);
         }
 
-
         return danhSachTuyen;
     }
-
 }

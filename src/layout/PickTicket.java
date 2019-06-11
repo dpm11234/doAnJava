@@ -55,6 +55,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 import java.util.Locale;
+import static layout.Content.areaPanel;
+import static layout.Content.home;
 import static util.Session.*;
 
 /**
@@ -188,6 +190,17 @@ public class PickTicket extends JPanel {
                 khachHang.setSoVeDat(Integer.parseInt(list[index]));
 
                 int res = KhachHangBUS.addCustomer(khachHang);
+                
+                if(res == 1){
+                    JOptionPane.showMessageDialog(null, "Đặt vé thành công", "Thông báo", 1);
+                    areaPanel.removeAll();
+                    areaPanel.add(home);
+                    areaPanel.validate();
+                    areaPanel.repaint();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Đặt vé thất bại ", "Thông báo", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

@@ -218,13 +218,11 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if(handleAddTicket()) {
-//                    JOptionPane.showMessageDialog(null, "Thành công");
-//                } else {
-//                    System.out.println("fail");
-//                    JOptionPane.showMessageDialog(null, "Fail");
-//                }
-                System.out.println(handleAddTicket());
+                if (handleAddTicket() == -1) {
+                    JOptionPane.showMessageDialog(null, "Tạo thành công", "Thông báo", 1);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Tạo thất bại", "Thông báo", 0);
+                }
             }
         });
     }
@@ -267,16 +265,16 @@ public class AddTicket extends JPanel {
             ex.printStackTrace();
         }
 
-        int res = TuyenBUS.addTicket(tuyen);
-        boolean rs = NhaXeBUS.updateNhaXe(res);
-        if (rs) {
-            ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
-            areaPanel.removeAll();
-            Dashboard dashBoard = new Dashboard(null);
-            areaPanel.add(dashBoard);
-            areaPanel.validate();
-            areaPanel.repaint();
-        }
+//        int res = TuyenBUS.addTicket(tuyen);
+//        boolean rs = NhaXeBUS.updateNhaXe(res);
+//        if (rs) {
+//            ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+//            areaPanel.removeAll();
+//            Dashboard dashBoard = new Dashboard(null);
+//            areaPanel.add(dashBoard);
+//            areaPanel.validate();
+//            areaPanel.repaint();
+//        }
         return -1;
     }
 

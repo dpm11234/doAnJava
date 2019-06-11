@@ -75,11 +75,6 @@ public class Dashboard extends JPanel {
         UIManager.put("ScrollBar.darkShadow", new Color(0, 0, 0, 0));
         UIManager.put("ScrollBar.highlight", new Color(0, 0, 0, 0));
         UIManager.put("ScrollBar.shadow", new Color(0, 0, 0, 0));
-//        UIManager.put("ScrollBar.thumbHighlight", new Color(0, 0, 0, 0));
-//        UIManager.put("ScrollBar.thumbShadow", new Color(0, 0, 0, 0));
-//        UIManager.put("ScrollBar.width", 16);
-
-        UIManager.put("control", new Color(0, 0, 0, 0));
         JPanel jp = new JPanel();
         ka = new JPanel();
 

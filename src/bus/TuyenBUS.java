@@ -51,4 +51,8 @@ public class TuyenBUS {
     public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
         return TuyenDAO.getAllByTrip(startingPoint, destination, time);
     }
+   
+    public static int countemptySeat(String maTuyen){
+        return TuyenDAO.countEmptySeat(maTuyen);
+    }
 }

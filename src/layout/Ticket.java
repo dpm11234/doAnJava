@@ -6,6 +6,7 @@
 package layout;
 
 import bus.NhaXeBUS;
+import bus.TuyenBUS;
 import createUI.ImagePanel;
 import dto.TuyenDTO;
 
@@ -23,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -90,7 +92,7 @@ public class Ticket extends JPanel {
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
         
-        chair = new JLabel("Trống: " + tuyen.getSoLuong());
+        chair = new JLabel("Trống: " + TuyenBUS.countemptySeat(tuyen.getMaTuyen()));
         chair.setFont(fontPrice);
         chair.setPreferredSize(new Dimension(80, 27));
         chair.setIcon(new ImageIcon(new ImageIcon("images/armchair2.png").getImage().getScaledInstance(14, 14, Image.SCALE_DEFAULT)));

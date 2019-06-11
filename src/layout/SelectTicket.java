@@ -19,7 +19,7 @@ import java.util.Date;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-
+import static layout.SlideBar.*;
 
 // import UI
 
@@ -199,9 +199,7 @@ public class SelectTicket extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = c1.getSelectedIndex();
-//                    areaPanel.remove(home);
-//                    areaPanel.remove(login);
-                DefaultListSelectionModel model = new DefaultListSelectionModel();
+
 
 
                     JFormattedTextField textField = datePicker.getTextField();
@@ -217,6 +215,17 @@ public class SelectTicket extends JPanel {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
+
+                    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(list2);
+                    c2.setModel(model);
+
+                    for(String item: list2) {
+                        if(item.equals(list[selected])) {
+                            c2.removeItem(item);
+                        }
+                    }
+                    selectTicket.validate();
+                    selectTicket.repaint();
 
                     areaPanel.removeAll();
                     homeSelect = new HomeSelect(list[selected], list2[currentTo], dateTime);
@@ -234,10 +243,6 @@ public class SelectTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int selected = c2.getSelectedIndex();
 
-//                    areaPanel.remove(home);
-//                    areaPanel.remove(login);
-//                    areaPanel.add(listTicket);
-
                     JFormattedTextField textField = datePicker.getTextField();
                     Date date = new Date();
                     Timestamp dateTimestamp = null;
@@ -251,6 +256,16 @@ public class SelectTicket extends JPanel {
                     } catch (Exception ex) {
                         ex.printStackTrace();
                     }
+
+                    DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(list);
+
+                    for(String item: list) {
+                        if(item.equals(list2[selected])){
+                            c1.removeItem(item);
+                        }
+                    }
+                selectTicket.validate();
+                selectTicket.repaint();
 
                     areaPanel.removeAll();
                     homeSelect = new HomeSelect(list[currentFrom], list2[selected], dateTime);

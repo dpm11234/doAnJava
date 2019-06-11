@@ -34,6 +34,9 @@ import static layout.Content.areaPanel;
 import static layout.Content.login;
 import createUI.ImagePanel;
 import createUI.JPanelInput;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static layout.Content.navbar;
 
 import dto.TuyenDTO;
