@@ -6,6 +6,7 @@
 package layout;
 
 import bus.NhaXeBUS;
+import bus.TuyenBUS;
 import createUI.ImagePanel;
 import dto.TuyenDTO;
 
@@ -23,6 +24,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -93,7 +95,7 @@ public class Ticket extends JPanel {
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
         
-        chair = new JLabel("Trống: " + tuyen.getSoLuong());
+        chair = new JLabel("Trống: " + TuyenBUS.countemptySeat(tuyen.getMaTuyen()));
         chair.setFont(fontPrice);
         chair.setPreferredSize(new Dimension(80, 27));
         chair.setIcon(new ImageIcon(new ImageIcon("images/armchair2.png").getImage().getScaledInstance(14, 14, Image.SCALE_DEFAULT)));
@@ -237,7 +239,7 @@ public class Ticket extends JPanel {
         
         submit = new JButton();
         submit.setPreferredSize(new Dimension(30, 71));
-        submit.setBackground(new Color(0, 0, 0));
+        submit.setBackground(new Color(0, 0, 0, 0));
         submit.setForeground(Color.white);
         submit.setRolloverEnabled(false);
         submit.setBorderPainted(false);
@@ -295,7 +297,7 @@ public class Ticket extends JPanel {
         
         JLabel typeBus = new JLabel("");
         typeBus.setPreferredSize(new Dimension(122, 33));
-        typeBus.setIcon(new ImageIcon(new ImageIcon("images/32c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
+        typeBus.setIcon(new ImageIcon(new ImageIcon("images/"+ tuyen.getTongGhe() +"c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
         

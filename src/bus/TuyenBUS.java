@@ -3,6 +3,9 @@ package bus;
 import dao.TuyenDAO;
 import dto.TuyenDTO;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TuyenBUS {
@@ -17,6 +20,14 @@ public class TuyenBUS {
     public static int addTicket(TuyenDTO tuyen) {
         int res = -1;
 
+        if(tuyen.getGia() < 0) {
+            return -3;
+        }
+
+        if(tuyen.getSoLuong() < 0) {
+            return -4;
+        }
+
         res = TuyenDAO.addTicket(tuyen);
 
         return res;
@@ -26,12 +37,20 @@ public class TuyenBUS {
         int res = -1;
 
         res = TuyenDAO.deleteTicket(maTuyen);
-
+        
         return res;
     }
     
      public static int editTicket(String maTuyen, TuyenDTO tuyen) {
         int res = -1;
+
+         if(tuyen.getGia() < 0) {
+             return -3;
+         }
+
+         if(tuyen.getSoLuong() < 0) {
+             return -4;
+         }
 
         res = TuyenDAO.editTicket(maTuyen, tuyen);
 
@@ -39,7 +58,15 @@ public class TuyenBUS {
     }
     
 
-    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
-        return TuyenDAO.getAllByTrip(startingPoint, destination);
+    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination, LocalDateTime time) {
+        return TuyenDAO.getAllByTrip(startingPoint, destination, time);
+    }
+
+    public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
+        return TuyenDAO.getAllByTrip(startingPoint, destination, time);
+    }
+   
+    public static int countemptySeat(String maTuyen){
+        return TuyenDAO.countEmptySeat(maTuyen);
     }
 }

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+
 public class KhachHangDAO {
 
     public static ArrayList<KhachHangDTO> getAll(String maNX, String maTuyen) {
@@ -52,7 +54,6 @@ public class KhachHangDAO {
                 + "', '" + khachHang.getSdt()
                 + "', " + khachHang.getSoVeDat()
                 + ", '" + khachHang.getThoiGianDat() + "')";
-
         helper.open();
 
         res = helper.excuteUpdate(sql);
@@ -67,7 +68,6 @@ public class KhachHangDAO {
         DataAccessHelper helper = new DataAccessHelper();
 
         String sql = "DELETE FROM KHACHHANG WHERE id = " + id;
-
         helper.open();
 
         res = helper.excuteUpdate(sql);

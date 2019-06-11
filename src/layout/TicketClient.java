@@ -5,6 +5,7 @@
  */
 package layout;
 
+import bus.TuyenBUS;
 import createUI.ImagePanel;
 import dto.TuyenDTO;
 
@@ -47,7 +48,7 @@ public class TicketClient extends JPanel {
     public JPanel buttonListBooked, buttonListBookedH, buttonEdit, buttonEditH;
     private TuyenDTO tuyenXe;
 
-    public TicketClient(TuyenDTO tuyen) {
+    public TicketClient(TuyenDTO tuyen){
 
         this.tuyenXe = tuyen;
         this.setLayout(new BorderLayout());
@@ -88,7 +89,7 @@ public class TicketClient extends JPanel {
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
 
-        chair = new JLabel("Trống: " + tuyen.getSoLuong());
+        chair = new JLabel("Trống: "+TuyenBUS.countemptySeat(tuyen.getMaTuyen()));
         chair.setFont(fontPrice);
         chair.setPreferredSize(new Dimension(80, 27));
         chair.setIcon(new ImageIcon(new ImageIcon("images/armchair2.png").getImage().getScaledInstance(14, 14, Image.SCALE_DEFAULT)));

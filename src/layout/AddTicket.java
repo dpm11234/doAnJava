@@ -225,52 +225,49 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                if(handleAddTicket()) {
-//                    JOptionPane.showMessageDialog(frame2, "OK");
-//                } else {
-//                    JOptionPane.showMessageDialog(frame2, "Fail");
-//                }
-//                JDialog d = new JDialog(frame, "dialog Box");
-//                d.getRootPane().setOpaque(false);
-//                d.getContentPane().setBackground(new Color(0, 0, 0, 0));
-//                d.setBackground(new Color(0, 0, 0, 0));
-//                d.setSize(100, 100);
-
-                // set visibility of dialog 
-//                d.setVisible(true);
-//                UIManager.put("OptionPane.minimumSize",new Dimension(300, 120));
-                //JOptionPane optionPane = new JOptionPane("Question?",  JOptionPane.QUESTION_MESSAGE, JOptionPane.YES_NO_OPTION);
-                JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Đăng nhập thất bại", 1);
-//                popUp = new PopUp("Thanh cong");
-//                popUp.setModal(true);
-//                popUp.setVisible(true);
-//               JFrame test = new JFrame("test");
-//               test.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-//               test.setSize(300, 400);
-//               test.setVisible(true);
-                //handleAddTicket();
-//                final AWTEventListener hierarchyListener = new AWTEventListener() {
-//
-//                    @Override
-//                    public void eventDispatched(AWTEvent event) {
-//                        final HierarchyEvent he = (HierarchyEvent) event;
-//                        if (HierarchyEvent.HIERARCHY_CHANGED == he.getID() && he.getComponent() instanceof JOptionPane) {
-//                            final JDialog dlg = (JDialog) SwingUtilities.windowForComponent(he.getChangedParent());
-//                            if (dlg != null && !dlg.isUndecorated()) {
-//                                dlg.setUndecorated(true);
-//                            }
-//                        }
-//                    }
-//                };
-//                Toolkit.getDefaultToolkit().addAWTEventListener(hierarchyListener, AWTEvent.HIERARCHY_EVENT_MASK);
-//                JOptionPane.showMessageDialog(null, "No Border!!!");
-//                Toolkit.getDefaultToolkit().removeAWTEventListener(hierarchyListener);
-//                JOptionPane.showMessageDialog(null, "With Border!!!");
+                switch (handleAddTicket()) {
+                    case 1:
+                        boolean rs = NhaXeBUS.updateNhaXe(1);
+                        if (rs) {
+                            ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
+                            areaPanel.removeAll();
+                            Dashboard dashBoard = new Dashboard(null);
+                            areaPanel.add(dashBoard);
+                            areaPanel.validate();
+                            areaPanel.repaint();
+                        }
+                        JOptionPane.showMessageDialog(null, "Tạo thành công", "Thành công", 1);
+                        break;
+                    case -2:
+                        JOptionPane.showMessageDialog(null, "Giờ khởi hành không hợp lệ", "Thất bại", 1);
+                        break;
+                    case -3:
+                        JOptionPane.showMessageDialog(null, "Giá không hợp lệ", "Thất bại", 1);
+                        break;
+                    case -4:
+                        JOptionPane.showMessageDialog(null, "Số đã đặt không hợp lệ", "Thất bại", 1);
+                }
             }
         });
     }
 
-    public boolean handleAddTicket() {
+    public int handleAddTicket() {
+
+        String regexTime = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]?";
+        if(!inputTime.getText().matches(regexTime)) {
+            return -2;
+        }
+
+        String regexGia = "[0-9]+";
+        if(!inputPrice.getText().matches(regexGia)) {
+            return -3;
+        }
+
+        String regexDaDat = "[0-9]+";
+        if(!inputSet.getText().matches(regexDaDat)) {
+            return -4;
+        }
+
         String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
         tuyen.setMaTuyen(maTuyen);
 
@@ -287,8 +284,9 @@ public class AddTicket extends JPanel {
         tuyen.setDiemXuatPhat(list[indexFrom]);
 
         tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
-
         JFormattedTextField textField = datePicker.getTextField();
+
+
         String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
         Date date = new Date();
         Timestamp gioKhoiHanh;
@@ -301,17 +299,7 @@ public class AddTicket extends JPanel {
             ex.printStackTrace();
         }
 
-        int res = TuyenBUS.addTicket(tuyen);
-        boolean rs = NhaXeBUS.updateNhaXe(res);
-        if (rs) {
-            ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
-            areaPanel.removeAll();
-            Dashboard dashBoard = new Dashboard();
-            areaPanel.add(dashBoard);
-            areaPanel.validate();
-            areaPanel.repaint();
-        }
-        return rs;
+        return TuyenBUS.addTicket(tuyen);
     }
 
 }

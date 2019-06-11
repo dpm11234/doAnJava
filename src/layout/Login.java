@@ -34,8 +34,12 @@ import static layout.Content.areaPanel;
 import static layout.Content.login;
 import createUI.ImagePanel;
 import createUI.JPanelInput;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static layout.Content.navbar;
 
+import dto.TuyenDTO;
 import jdk.nashorn.internal.scripts.JO;
 import static layout.Content.addTicket;
 import layout.Dashboard;
@@ -360,8 +364,9 @@ public class Login extends JPanel {
                     spaceHello.setPreferredSize(new Dimension(20, 50));
                     Font fontHello = new Font("SansSerif", Font.BOLD, 15);
                     hello.setFont(fontHello);
+                    ArrayList<TuyenDTO> danhSachTuyen = null;
+                    dashboard = new Dashboard(danhSachTuyen);
                     areaPanel.remove(login);
-                    dashboard = new Dashboard();
                     areaPanel.add(dashboard, BorderLayout.CENTER);
                     navbar.remove(navBackHome);
                     navbar.add(navIsLogin, BorderLayout.EAST);

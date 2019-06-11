@@ -39,7 +39,6 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import static layout.Main.heightGet;
 import layout.SelectTicketPanel;
-import static layout.SelectTicketPanel.selectFrom;
 import layout.Ticket;
 
 /**
@@ -51,13 +50,13 @@ public class Dashboard extends JPanel {
     private ImagePanel bgDashboard;
 //    ImageScroll hi;
     static SelectTicketPanel selectTicketPanel;
-    static Ticket ticket2, ticket3, ticket4, ticket5, ticket6;
+
     static TicketClient ticket;
 
-    public ArrayList<TuyenDTO> danhSachTuyen;
+    private JPanel ka;
+    private JScrollPane hi;
 
-    public Dashboard() {
-        danhSachTuyen = new ArrayList<>();
+    public Dashboard(ArrayList<TuyenDTO> danhSachTuyen) {
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         this.setLayout(new BorderLayout());
         try {
@@ -77,30 +76,18 @@ public class Dashboard extends JPanel {
         UIManager.put("ScrollBar.highlight", new Color(0, 0, 0, 0));
         UIManager.put("ScrollBar.shadow", new Color(0, 0, 0, 0));
         JPanel jp = new JPanel();
-        JPanel ka = new JPanel();
-        int height = 0;
-        ka.setPreferredSize(new Dimension(790, height));
+        ka = new JPanel();
+
+        ka.setPreferredSize(new Dimension(790, 0));
         ka.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251, 0));
 
-        int countTuyen = 1;
-        danhSachTuyen = TuyenBUS.getAllByMaNX();
-        for(TuyenDTO tuyen : danhSachTuyen) {
-            ticket = new TicketClient(tuyen);
-            ticket.setPreferredSize(new Dimension(380, 118));
-            
-            if (countTuyen % 2 != 0) {
-                height += 133;
-            }
-            countTuyen++;
-            ka.setPreferredSize(new Dimension(790, height));
-            ka.add(ticket);
-        }
+        showTicket(danhSachTuyen);
         
         JViewport viewport = new JViewport();
         viewport.setView(ka);
-        JScrollPane hi = new JScrollPane();
+        hi = new JScrollPane();
         hi.setViewport(viewport);
         hi.setPreferredSize(new Dimension(810, heightGet - 220));
         hi.setBorder(borderInputPass);
@@ -143,5 +130,36 @@ public class Dashboard extends JPanel {
                 bgDashboard.revalidate();
             }
         });
+    }
+
+    public void showTicket(ArrayList<TuyenDTO> danhSachTuyen) {
+        int height = 0;
+        int countTuyen = 1;
+        if(danhSachTuyen == null) {
+            danhSachTuyen = TuyenBUS.getAll();
+        }
+        for(TuyenDTO tuyen : danhSachTuyen) {
+            ticket = new TicketClient(tuyen);
+            ticket.setPreferredSize(new Dimension(380, 118));
+
+            if (countTuyen % 2 != 0) {
+                height += 133;
+            }
+            countTuyen++;
+            ka.setPreferredSize(new Dimension(790, height));
+            ka.add(ticket);
+        }
+    }
+
+    public ImagePanel getBgDashboard() {
+        return bgDashboard;
+    }
+
+    public JPanel getKa() {
+        return this.ka;
+    }
+
+    public JScrollPane getHi() {
+        return this.hi;
     }
 }

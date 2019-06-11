@@ -55,6 +55,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 import java.util.Locale;
+import static layout.Content.areaPanel;
+import static layout.Content.home;
 import static util.Session.*;
 
 /**
@@ -180,16 +182,35 @@ public class PickTicket extends JPanel {
         submitSave.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                khachHang.setMaNX(tuyen.getMaNX());
-                khachHang.setMaTuyen(tuyen.getMaTuyen());
-                khachHang.setHoTen(inputName.getText());
-                khachHang.setSdt(inputPhone.getText());
-                khachHang.setThoiGianDat(Timestamp.valueOf(LocalDateTime.now()));
-                khachHang.setSoVeDat(Integer.parseInt(list[index]));
 
-                int res = KhachHangBUS.addCustomer(khachHang);
+                switch (handlePickTicket()) {
+                    case 1:
+                        JOptionPane.showMessageDialog(null, "Đặt vé thành công", "Thành công", 1);
+                        areaPanel.removeAll();
+                        areaPanel.add(home);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                        break;
+                    case -2:
+                        JOptionPane.showMessageDialog(null, "Tên không hợp lệ", "Thất bại", JOptionPane.ERROR_MESSAGE);
+                        break;
+                    case -3:
+                        JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Thất bại", JOptionPane.ERROR_MESSAGE);
+                        break;
+                }
             }
         });
+    }
+
+    public int handlePickTicket() {
+        khachHang.setMaNX(tuyen.getMaNX());
+        khachHang.setMaTuyen(tuyen.getMaTuyen());
+        khachHang.setHoTen(inputName.getText());
+        khachHang.setSdt(inputPhone.getText());
+        khachHang.setThoiGianDat(Timestamp.valueOf(LocalDateTime.now()));
+        khachHang.setSoVeDat(Integer.parseInt(list[index]));
+
+        return KhachHangBUS.addCustomer(khachHang);
     }
 
 }
