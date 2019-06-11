@@ -9,7 +9,7 @@
 //import java.awt.event.MouseEvent;
 //import javax.swing.JFrame;
 //
-//// import Layout
+//// import Layouta
 //import layout.Content;
 //import layout.SlideBarMain;
 //

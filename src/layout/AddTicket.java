@@ -7,6 +7,7 @@ package layout;
 
 import bus.NhaXeBUS;
 import bus.TuyenBUS;
+import com.sun.awt.AWTUtilities;
 import createUI.ButtonImage;
 import createUI.DatePickerAdd;
 import createUI.ImagePanel;
@@ -16,6 +17,7 @@ import createUI.SelectDown;
 import createUI.TwoDots;
 import dto.NhaXeDTO;
 import dto.TuyenDTO;
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -29,10 +31,13 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.AWTEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.HierarchyEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -75,6 +80,7 @@ public class AddTicket extends JPanel {
     Input inputTime, inputLicensePlate, inputPrice, inputSet;
 
     public AddTicket() {
+        System.out.println(frame.getInsets());
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -193,6 +199,7 @@ public class AddTicket extends JPanel {
 
         this.add(loginBg, BorderLayout.CENTER);
         addEvents();
+        this.setBackground(Color.red);
     }
 
     public void addEvents() {

@@ -36,6 +36,9 @@ import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
 import static layout.Dashboard.selectTicketPanel;
 import static layout.Content.*;
+import static layout.Navbar.navBackSelect;
+import static layout.Navbar.navLogin;
+import static layout.Navbar.titleSpace;
 
 /**
  *
@@ -61,7 +64,7 @@ public class Ticket extends JPanel {
             exp.printStackTrace();
         }
         
-        MatteBorder borderTest = new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0));
+        MatteBorder borderTest = new MatteBorder(2, 2, 2, 2, new Color(0, 0, 0));
         Font fontPrice = new Font("SansSerif", Font.PLAIN, 12);
         
         
@@ -224,7 +227,7 @@ public class Ticket extends JPanel {
         
         // Button submit
         
-        JPanel submitBg = new JPanel(new GridBagLayout());
+        JPanel submitBg = new JPanel(new BorderLayout());
         try {
             Image imgButtonLogin = null;
             imgButtonLogin = ImageIO.read(new File("images/bg/submit6.png"));
@@ -242,7 +245,7 @@ public class Ticket extends JPanel {
         submit.setBorderPainted(false);
         submit.setFocusPainted(false);
         submit.setContentAreaFilled(false);
-        submitBg.add(submit);
+        submitBg.add(submit, BorderLayout.NORTH);
         submitBg.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         JLabel submitSpaceTop = new JLabel();
@@ -322,6 +325,15 @@ public class Ticket extends JPanel {
         
         bgTicket.add(left);
         bgTicket.add(right);
+        
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
+        
+        JLabel titleListTicket = new JLabel("Đặt Vé");
+        titleListTicket.setPreferredSize(new Dimension(100, 60));
+        titleListTicket.setVerticalAlignment(JLabel.CENTER);
+        titleListTicket.setHorizontalAlignment(JLabel.CENTER);
+        titleListTicket.setFont(fontTextTitle);
+        titleListTicket.setForeground(new Color(140, 140, 140));
 
         this.submit.addActionListener(new ActionListener() {
             @Override
@@ -329,9 +341,14 @@ public class Ticket extends JPanel {
                 areaPanel.removeAll();
                 pickTicket = new PickTicket(tuyen);
                 areaPanel.add(pickTicket);
-
                 areaPanel.validate();
                 areaPanel.repaint();
+                navbar.removeAll();
+                navbar.add(titleListTicket, BorderLayout.CENTER);
+                navbar.add(navBackSelect, BorderLayout.WEST);
+                navbar.add(navLogin, BorderLayout.EAST);
+                navbar.validate();
+                navbar.repaint();
             }
         });
     }
