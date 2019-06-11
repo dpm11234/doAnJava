@@ -218,18 +218,18 @@ public class AddTicket extends JPanel {
         submit.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(handleAddTicket()) {
-                    JOptionPane.showMessageDialog(null, "Thành công");
-                } else {
-                    System.out.println("fail");
-                    JOptionPane.showMessageDialog(null, "Fail");
-                }
-
+//                if(handleAddTicket()) {
+//                    JOptionPane.showMessageDialog(null, "Thành công");
+//                } else {
+//                    System.out.println("fail");
+//                    JOptionPane.showMessageDialog(null, "Fail");
+//                }
+                System.out.println(handleAddTicket());
             }
         });
     }
 
-    public boolean handleAddTicket() {
+    public int handleAddTicket() {
 
         String maTuyen = ssNhaXe.getMaNX() + "MDD" + ssNhaXe.getSoTuyen();
         tuyen.setMaTuyen(maTuyen);
@@ -249,9 +249,11 @@ public class AddTicket extends JPanel {
         tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
         JFormattedTextField textField = datePicker.getTextField();
 
-        if(!textField.toString().contains(":")) {
-            return false;
+        String regexTime = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]?";
+        if(!inputTime.getText().matches(regexTime)) {
+            return -2;
         }
+
 
         String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
         Date date = new Date();
@@ -275,7 +277,7 @@ public class AddTicket extends JPanel {
             areaPanel.validate();
             areaPanel.repaint();
         }
-        return rs;
+        return -1;
     }
 
 }
