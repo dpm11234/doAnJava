@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="14e3f3f5-e4cd-4cfa-9210-5065ff24b5e4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/bus/KhachHangBUS.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/bus/KhachHangBUS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/bus/TuyenBUS.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/bus/TuyenBUS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/AddTicket$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/AddTicket$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/layout/AddTicket.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/layout/AddTicket.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bus/KhachHangBUS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bus/KhachHangBUS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bus/TuyenBUS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/bus/TuyenBUS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/layout/AddTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/layout/AddTicket.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -17,78 +25,80 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/NhaXeDAO.java">
+        <entry file="file://$PROJECT_DIR$/src/dao/TuyenDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="56" column="26" lean-forward="true" selection-start-line="56" selection-start-column="26" selection-end-line="56" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1804">
+              <caret line="87" selection-start-line="87" selection-end-line="87" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/layout/SlideBar.java">
+        <entry file="file://$PROJECT_DIR$/src/layout/Login.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="30" column="31" lean-forward="true" selection-start-line="30" selection-start-column="31" selection-end-line="30" selection-end-column="31" />
+            <state relative-caret-position="7018">
+              <caret line="367" column="20" selection-start-line="367" selection-start-column="20" selection-end-line="367" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/layout/SelectTicket.java">
+        <entry file="file://$PROJECT_DIR$/src/layout/AddTicket.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="205" column="48" lean-forward="true" selection-start-line="205" selection-start-column="48" selection-end-line="205" selection-end-column="48" />
+            <state relative-caret-position="274">
+              <caret line="194" lean-forward="true" selection-start-line="194" selection-end-line="194" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#7208#7209#0" expanded="true" />
+                <element signature="e#7297#7298#0" expanded="true" />
+                <element signature="e#7462#7463#0" expanded="true" />
+                <element signature="e#7546#7547#0" expanded="true" />
+                <element signature="e#7713#7714#0" expanded="true" />
+                <element signature="e#7802#7803#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/layout/Ticket.java">
+        <entry file="file://$PROJECT_DIR$/src/bus/TuyenBUS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-528">
-              <caret line="199" selection-start-line="199" selection-end-line="199" />
+            <state relative-caret-position="264">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bus/KhachHangBUS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="66">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/layout/PickTicket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2926">
+              <caret line="189" column="62" selection-start-line="189" selection-start-column="62" selection-end-line="189" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/createUI/ButtonImage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="880">
+              <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1902#1903#0" expanded="true" />
+                <element signature="e#1936#1937#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/bus/NhaXeBUS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#420#421#0" expanded="true" />
-                <element signature="e#469#470#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/layout/HomeSelect.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="94" column="9" selection-start-line="94" selection-start-column="9" selection-end-line="94" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dao/TuyenDAO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="100" column="92" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="92" />
             </state>
           </provider>
         </entry>
@@ -96,8 +106,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/layout/Content.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="682">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
@@ -137,10 +147,13 @@
         <option value="$PROJECT_DIR$/src/layout/EditTicket.java" />
         <option value="$PROJECT_DIR$/src/layout/Content.java" />
         <option value="$PROJECT_DIR$/src/dao/TuyenDAO.java" />
-        <option value="$PROJECT_DIR$/src/bus/TuyenBUS.java" />
         <option value="$PROJECT_DIR$/src/layout/Ticket.java" />
         <option value="$PROJECT_DIR$/src/layout/HomeSelect.java" />
         <option value="$PROJECT_DIR$/src/layout/SelectTicket.java" />
+        <option value="$PROJECT_DIR$/src/bus/KhachHangBUS.java" />
+        <option value="$PROJECT_DIR$/src/layout/PickTicket.java" />
+        <option value="$PROJECT_DIR$/src/bus/TuyenBUS.java" />
+        <option value="$PROJECT_DIR$/src/layout/AddTicket.java" />
       </list>
     </option>
   </component>
@@ -160,8 +173,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,6 +198,12 @@
               <item name="do-an-java" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="do-an-java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="do-an-java" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="do-an-java" type="b2602c69:ProjectViewProjectNode" />
@@ -310,9 +329,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27919462" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19597316" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -321,7 +339,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39664805" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39664805" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -370,16 +388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="968">
           <caret line="62" column="32" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/layout/Login.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7722">
-          <caret line="397" column="17" selection-start-line="397" selection-start-column="17" selection-end-line="397" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -486,27 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/layout/Content.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dao/TuyenDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="100" column="92" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bus/TuyenBUS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dao/NhaXeDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -559,6 +546,78 @@
           <caret line="205" column="48" lean-forward="true" selection-start-line="205" selection-start-column="48" selection-end-line="205" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dao/TuyenDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1804">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/Login.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7018">
+          <caret line="367" column="20" selection-start-line="367" selection-start-column="20" selection-end-line="367" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bus/TuyenBUS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bus/KhachHangBUS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/PickTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2926">
+          <caret line="189" column="62" selection-start-line="189" selection-start-column="62" selection-end-line="189" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/createUI/ButtonImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+          <folding>
+            <element signature="e#1902#1903#0" expanded="true" />
+            <element signature="e#1936#1937#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/Content.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/layout/AddTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="194" lean-forward="true" selection-start-line="194" selection-end-line="194" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7208#7209#0" expanded="true" />
+            <element signature="e#7297#7298#0" expanded="true" />
+            <element signature="e#7462#7463#0" expanded="true" />
+            <element signature="e#7546#7547#0" expanded="true" />
+            <element signature="e#7713#7714#0" expanded="true" />
+            <element signature="e#7802#7803#0" expanded="true" />
           </folding>
         </state>
       </provider>

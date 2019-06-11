@@ -233,7 +233,7 @@ public class BookedTicket extends JPanel {
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251));
-        height = 20 * 40;
+        height = danhSachKhachHang.size() * 40;
         if (height > heightGet - 251) {
             boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 142));
         } else {

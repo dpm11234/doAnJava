@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/EditTicket.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/MenuDashboard.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/bus/TuyenBUS.java</file>
@@ -13,6 +14,11 @@
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/dao/TuyenDAO.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Ticket.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/BookedTicket.java</file>
+=======
+            <file>file:/E:/data/java-workspace/do-an-java/src/main/main.java</file>
+            <file>file:/E:/data/java-workspace/do-an-java/src/layout/Main.java</file>
+            <file>file:/E:/data/java-workspace/do-an-java/src/util/DataAccessHelper.java</file>
+>>>>>>> d1110ef91b269365a0b27b1b917b19e7d1b56844
         </group>
     </open-files>
 </project-private>

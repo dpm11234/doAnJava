@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+
 public class KhachHangDAO {
 
     public static ArrayList<KhachHangDTO> getAll(String maNX, String maTuyen) {

@@ -1,6 +1,8 @@
 package createUI;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,7 +21,9 @@ public class DatePicker extends JPanel {
     JLabel datePickerSpace, leftAlignDatePicker, rightAlignDatePicker;
     JPanel alignDatePicker;
     JButton changeButton;
-    
+    private JDatePickerImpl datePicker;
+    private JFormattedTextField textField;
+
     public DatePicker(int heightSpace) {
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(26, 126, 218));
@@ -61,9 +65,9 @@ public class DatePicker extends JPanel {
         p.put("text.year", "năm");
         
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-        JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
+        datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
         
-        JFormattedTextField textField = datePicker.getJFormattedTextField();
+        textField = datePicker.getJFormattedTextField();
 
         datePicker.setShowYearButtons(false);
         datePicker.setTextEditable(false);
@@ -95,7 +99,7 @@ public class DatePicker extends JPanel {
         
         this.add(datePickerSpace, BorderLayout.NORTH);
         this.add(alignDatePicker, BorderLayout.CENTER);
-        
+
     }
     
     public class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
@@ -117,6 +121,18 @@ public class DatePicker extends JPanel {
 
             return "";
         }
+    }
+
+    public JButton getChangeButton() {
+        return this.changeButton;
+    }
+
+    public JDatePickerImpl getDatePicker() {
+        return this.datePicker;
+    }
+
+    public JFormattedTextField getTextField() {
+        return textField;
     }
     
 }

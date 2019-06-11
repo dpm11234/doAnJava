@@ -5,13 +5,14 @@ import util.DataAccessHelper;
 import static util.Session.*;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAll() {
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-        String sql = "select * from TUYEN";
+        String sql = "SELECT * FROM TUYEN WHERE MANX = '" + ssNhaXe.getMaNX() + "';";
         DataAccessHelper helper = new DataAccessHelper();
 
         helper.open();
@@ -112,11 +113,10 @@ public class TuyenDAO {
         return res;
     }
 
-    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination) {
+    public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination, LocalDateTime time) {
 
-        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "';";
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
         DataAccessHelper helper = new DataAccessHelper();
-
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
 
         helper.open();
@@ -176,6 +176,39 @@ public class TuyenDAO {
             helper.displayError(ex);
         }
         return result;
+    public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
+
+        String sql = "SELECT * FROM TUYEN, NHAXE WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        DataAccessHelper helper = new DataAccessHelper();
+        ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+        System.out.println(sql);
+        helper.open();
+
+        ResultSet resultSet = helper.excuteQuery(sql);
+
+        try {
+
+            while (resultSet.next()) {
+                TuyenDTO tuyen = new TuyenDTO(
+                        resultSet.getString("MANX"),
+                        resultSet.getString("MATUYEN"),
+                        resultSet.getString("DIEMDEN"),
+                        resultSet.getString("DIEMXUATPHAT"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
+                        resultSet.getInt("TONGGHE"),
+                        resultSet.getString("BSX"),
+                        resultSet.getInt("SOLUONG"),
+                        resultSet.getInt("GIA")
+                );
+                danhSachTuyen.add(tuyen);
+            }
+
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        }
+
+
+        return danhSachTuyen;
     }
 
 }

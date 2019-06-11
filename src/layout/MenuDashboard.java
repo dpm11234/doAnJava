@@ -5,6 +5,8 @@
  */
 package layout;
 
+import dto.TuyenDTO;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -125,7 +128,7 @@ public class MenuDashboard extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 areaPanel.removeAll();
-                dashboard = new Dashboard();
+                dashboard = new Dashboard(null);
                 areaPanel.add(dashboard);
 
                 areaPanel.validate();
