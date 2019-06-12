@@ -30,7 +30,8 @@ public class KhachHangDAO {
                         resultSet.getString("HOTEN"),
                         resultSet.getString("SDT"),
                         resultSet.getInt("SOVEDAT"),
-                        resultSet.getTimestamp("THOIGIANDAT")
+                        resultSet.getTimestamp("THOIGIANDAT"),
+                        resultSet.getInt("KT")
                 );
                 danhSachKhachHang.add(khachHang);
             }

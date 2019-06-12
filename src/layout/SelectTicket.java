@@ -36,8 +36,8 @@ import static layout.Navbar.titleSpace;
  * @author my pc
  */
 public class SelectTicket extends JPanel {
-    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
-    String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
+    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
+    String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
     static boolean checkClickJCompoBox1, checkClickJCompoBox2;
     static JComboBox c1, c2;
     int currentTo, currentFrom;

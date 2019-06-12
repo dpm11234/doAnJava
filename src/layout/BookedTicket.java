@@ -283,9 +283,9 @@ public class BookedTicket extends JPanel {
         boxListBooked.add(titleTable);
         boxListBooked.add(hi);
         bgBooked.add(boxListBooked);
-        
+
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 16);
-        
+
         JLabel noTicket = new JLabel("Chưa Có Khách Đặt Mua!");
         noTicket.setPreferredSize(new Dimension(width, 40));
         noTicket.setVerticalAlignment(JLabel.CENTER);
@@ -356,7 +356,7 @@ public class BookedTicket extends JPanel {
                     }
                     count++;
                 }
-                
+
                 if (count <= 0) {
                     ka.add(noTicket);
                 }
@@ -663,6 +663,22 @@ public class BookedTicket extends JPanel {
                     boxButtonDelete.add(boxButtonDeleteT);
                     boxButtonDelete.validate();
                     boxButtonDelete.repaint();
+                }
+            });
+
+            delete.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa?", "Thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (check == 0) {
+                        int res = KhachHangBUS.deleteCustomer(khachHang.getId());
+                        areaPanel.removeAll();
+                        bookedTicket = new BookedTicket(tuyen);
+                        areaPanel.add(bookedTicket);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                    }
+
                 }
             });
 

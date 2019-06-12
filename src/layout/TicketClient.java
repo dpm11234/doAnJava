@@ -402,17 +402,5 @@ public class TicketClient extends JPanel {
         bgTicket.add(left);
         bgTicket.add(right);
 
-
-        clickListBooked.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                areaPanel.removeAll();
-                bookedTicket = new BookedTicket(tuyenXe);
-                areaPanel.add(bookedTicket);
-                areaPanel.validate();
-                areaPanel.repaint();
-            }
-        });
-
     }
 }

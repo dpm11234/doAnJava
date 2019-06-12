@@ -61,8 +61,8 @@ import static util.Session.*;
  */
 public class EditTicket extends JPanel {
 
-    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
-    String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
+    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
+    String list2[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
     String listKind[] = {"16", "24", "29", "34", "36", "39", "47", "52"};
     static boolean checkClickJCompoBox1, checkClickJCompoBox2, checkClickJCompoBoxKind;
     static SelectDown compoBoxFrom, compoBoxTo, compoBoxKind;
@@ -82,7 +82,8 @@ public class EditTicket extends JPanel {
 //        this.tuyen.setDiemXuatPhat(this.list[0]);
 //        this.tuyen.setDiemDen(this.list2[0]);
         this.tuyen = tuyen;
-
+        indexFrom = setIndex(tuyen.getDiemXuatPhat());
+        indexTo = setIndex(tuyen.getDiemDen());
         JPanel loginBg = new JPanel();
         try {
             Image imgLogin = null;
@@ -288,17 +289,17 @@ public class EditTicket extends JPanel {
 
     public int handleEditTicket() {
         String regexTime = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]?";
-        if(!inputTime.getText().matches(regexTime)) {
+        if (!inputTime.getText().matches(regexTime)) {
             return -2;
         }
 
         String regexGia = "[0-9]+";
-        if(!inputPrice.getText().matches(regexGia)) {
+        if (!inputPrice.getText().matches(regexGia)) {
             return -3;
         }
 
         String regexDaDat = "[0-9]+";
-        if(!inputSet.getText().matches(regexDaDat)) {
+        if (!inputSet.getText().matches(regexDaDat)) {
             return -4;
         }
 
@@ -331,4 +332,21 @@ public class EditTicket extends JPanel {
         return TuyenBUS.editTicket(tuyen.getMaTuyen(), tuyen);
     }
 
+    public int setIndex(String value) {
+        switch (value) {
+            case "TP.HCM":
+                return 0;
+            case "Đồng Nai":
+                return 1;
+            case "Bình Dương":
+                return 2;
+            case "Vũng Tàu":
+                return 3;
+            case "Long An":
+                return 4;
+            case "Tây Ninh":
+                return 5;
+        }
+        return -1;
+    }
 }
