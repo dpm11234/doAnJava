@@ -311,7 +311,7 @@ public class AddTicket extends JPanel {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        
         return TuyenBUS.addTicket(tuyen);
     }
 

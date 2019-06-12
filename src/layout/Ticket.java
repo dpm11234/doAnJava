@@ -25,9 +25,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -74,7 +76,10 @@ public class Ticket extends JPanel {
         leftTop.setBackground(new Color(0, 0, 0, 0));
 
         // giá vé
-        price = new JLabel(tuyen.getGia() + "");
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+        String gia = en.format(tuyen.getGia());
+        price = new JLabel(gia + "đ");
         price.setFont(fontPrice);
         price.setPreferredSize(new Dimension(130, 27));
         price.setIcon(new ImageIcon(new ImageIcon("images/money.png").getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT)));
