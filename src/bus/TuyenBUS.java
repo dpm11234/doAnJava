@@ -74,6 +74,10 @@ public class TuyenBUS {
         return TuyenDAO.getAllByTrip(startingPoint, destination, time);
     }
 
+    public static ArrayList<TuyenDTO> getAllByTripClient(String startingPoint, String destination, LocalDateTime time) {
+        return TuyenDAO.getAllByTripClient(startingPoint, destination, time);
+    }
+
     public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
         return TuyenDAO.getAllByTrip(startingPoint, destination, time);
     }

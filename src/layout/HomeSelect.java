@@ -94,8 +94,7 @@ public class HomeSelect extends JPanel {
 
 
         int countTuyen = 1;
-        danhSachTuyen = TuyenBUS.getAllByTrip(startingPoint, destination, time);
-        System.out.println(danhSachTuyen.size());
+        danhSachTuyen = TuyenBUS.getAllByTripClient(startingPoint, destination, time);
         if(danhSachTuyen.size() > 0) {
             for(TuyenDTO tuyen : danhSachTuyen) {
                 ticket = new Ticket(tuyen);
