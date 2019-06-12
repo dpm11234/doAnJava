@@ -54,6 +54,11 @@ import java.util.Date;
 import java.util.Locale;
 import static layout.Content.areaPanel;
 import static layout.Content.dashboard;
+import static layout.Content.navbar;
+import static layout.Login.hello;
+import static layout.MenuDashboard.panelTicketTitle;
+import static layout.Navbar.navIsLogin;
+import static layout.TicketClient.titleEdit;
 import static util.Session.*;
 
 /**
@@ -248,15 +253,21 @@ public class EditTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 switch (handleEditTicket()) {
                     case 1:
+                        JOptionPane.showMessageDialog(null, "Sửa thành công", "Thành công", 1);
                         areaPanel.removeAll();
                         areaPanel.add(dashboard);
                         dashboard.getKa().removeAll();
                         dashboard.showTicket(TuyenBUS.getAll());
                         dashboard.getKa().validate();
                         dashboard.getKa().repaint();
+                        navbar.removeAll();
+                        navbar.add(navIsLogin, BorderLayout.EAST);
+                        navbar.add(panelTicketTitle, BorderLayout.CENTER);
+                        navbar.add(hello, BorderLayout.WEST);
+                        navbar.validate();
+                        navbar.repaint();
                         areaPanel.validate();
                         areaPanel.repaint();
-                        JOptionPane.showMessageDialog(null, "Sửa thành công", "Thành công", 1);
                         break;
                     case -2:
                         JOptionPane.showMessageDialog(null, "Giờ khởi hành không hợp lệ", "Thất bại", 1);
@@ -281,6 +292,12 @@ public class EditTicket extends JPanel {
                         JOptionPane.showMessageDialog(null, "Xóa thành công", "Thông báo", 1);
                         areaPanel.removeAll();
                         dashboard = new Dashboard(null);
+                        navbar.removeAll();
+                        navbar.add(navIsLogin, BorderLayout.EAST);
+                        navbar.add(panelTicketTitle, BorderLayout.CENTER);
+                        navbar.add(hello, BorderLayout.WEST);
+                        navbar.validate();
+                        navbar.repaint();
                         areaPanel.add(dashboard);
                         areaPanel.validate();
                         areaPanel.repaint();

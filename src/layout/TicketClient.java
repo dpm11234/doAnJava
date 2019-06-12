@@ -52,6 +52,7 @@ public class TicketClient extends JPanel {
     private JLabel price, chair, startingPoint, destination, day;
     public JPanel buttonListBooked, buttonListBookedH, buttonEdit, buttonEditH;
     private TuyenDTO tuyenXe;
+    static JLabel titleEdit;
 
     public TicketClient(TuyenDTO tuyen){
 
@@ -73,7 +74,7 @@ public class TicketClient extends JPanel {
         leftTop.setPreferredSize(new Dimension(258, 27));
         leftTop.setBackground(new Color(0, 0, 0, 0));
 
-        // giĂ¡ vĂ©
+        // giá vé
         price = new JLabel(tuyen.getGia() + "");
         price.setFont(fontPrice);
         price.setPreferredSize(new Dimension(130, 27));
@@ -90,7 +91,7 @@ public class TicketClient extends JPanel {
         priceJPanel.add(priceSpace, BorderLayout.WEST);
         priceJPanel.add(price, BorderLayout.CENTER);
 
-        // Sá»‘ gháº¿ trá»‘ng
+        // Số ghế trống
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
 
@@ -117,7 +118,7 @@ public class TicketClient extends JPanel {
         leftCenterInfo.setPreferredSize(new Dimension(258, 27));
         leftCenterInfo.setBackground(new Color(0, 0, 0, 0));
 
-        // Tuyáº¿n xe
+        // Tuyến xe
         JPanel buses = new JPanel(new BorderLayout());
         buses.setPreferredSize(new Dimension(258, 27));
         buses.setBackground(new Color(0, 0, 0, 0));
@@ -145,7 +146,7 @@ public class TicketClient extends JPanel {
         buses.add(arrow, BorderLayout.CENTER);
         buses.add(destination, BorderLayout.EAST);
 
-        // Thá»�i gian khá»Ÿi hĂ nh
+        // Thời gian khởi hành
         JPanel time = new JPanel(new BorderLayout());
         time.setPreferredSize(new Dimension(258, 27));
         time.setBackground(new Color(0, 0, 0, 0));
@@ -181,7 +182,7 @@ public class TicketClient extends JPanel {
         time.add(oclock, BorderLayout.CENTER);
         time.add(hours, BorderLayout.EAST);
 
-        // TĂªn nhĂ  xe
+        // Tên nhà xe
         JPanel company = new JPanel(new GridBagLayout());
         company.setPreferredSize(new Dimension(258, 30));
         company.setBackground(new Color(244, 244, 244, 0));
@@ -379,7 +380,7 @@ public class TicketClient extends JPanel {
         
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
         
-        JLabel titleEdit = new JLabel("Chỉnh Sửa Tuyến");
+        titleEdit = new JLabel("Chỉnh Sửa Tuyến");
         titleEdit.setPreferredSize(new Dimension(150, 60));
         titleEdit.setVerticalAlignment(JLabel.CENTER);
         titleEdit.setHorizontalAlignment(JLabel.CENTER);

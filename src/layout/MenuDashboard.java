@@ -36,7 +36,7 @@ import static layout.Navbar.titleSpace;
  */
 public class MenuDashboard extends JPanel {
     static JPanel panelTicket, createTicket;
-    static JLabel namePanelTicket, nameCreateTicket;
+    static JLabel namePanelTicket, nameCreateTicket, panelTicketTitle;
     public MenuDashboard() {
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(9, 114, 201));
@@ -123,7 +123,7 @@ public class MenuDashboard extends JPanel {
         createTicketTicket.setFont(fontTextTitle);
         createTicketTicket.setForeground(new Color(140, 140, 140));
         
-        JLabel panelTicketTitle = new JLabel("Quản Lý Danh Sách Vé");
+        panelTicketTitle = new JLabel("Quản Lý Danh Sách Vé");
         panelTicketTitle.setPreferredSize(new Dimension(150, 60));
         panelTicketTitle.setVerticalAlignment(JLabel.CENTER);
         panelTicketTitle.setHorizontalAlignment(JLabel.CENTER);
