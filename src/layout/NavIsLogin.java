@@ -5,11 +5,7 @@
  */
 package layout;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -41,7 +37,7 @@ public class NavIsLogin extends JPanel {
     public NavIsLogin() {
         borderSignIn = new MatteBorder(0, 0, 0, 0, new Color(227, 228, 231));
         borderSignIn.getBaseline(this, 1, 40);
-
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.setLayout(new GridBagLayout());
         this.setPreferredSize(new Dimension(160, 60));
         this.setBackground(new Color(242, 243, 245));

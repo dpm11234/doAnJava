@@ -8,8 +8,10 @@ package layout;
 import bus.TuyenBUS;
 import createUI.DatePicker;
 import createUI.DatePickerWhite;
+import dao.TuyenDAO;
 import dto.TuyenDTO;
 import layout.SelectWhite;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -38,15 +40,15 @@ import static layout.Dashboard.selectTicketPanel;
 import static layout.Content.homeSelect;
 import static layout.MenuDashboard.panelTicket;
 import static layout.SelectTicket.c1;
+import static layout.SelectTicket.c2;
 
 /**
- *
  * @author my pc
  */
 public class SelectTicketPanel extends JPanel {
 
-    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
-    String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
+    String list[] = {"Tất cả", "TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
+    String list2[] = {"Tất cả", "Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
     int currentTo, currentFrom;
     static ListTicket listTicket;
     private SelectWhite selectFrom, selectTo;
@@ -85,33 +87,34 @@ public class SelectTicketPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = selectFrom.get().getSelectedIndex();
-                    JFormattedTextField textField = datePicker.getTextField();
+                JFormattedTextField textField = datePicker.getTextField();
 
-                    Date date = new Date();
-                    Timestamp dateTimestamp = null;
-                    LocalDateTime dateTime = null;
-                    try {
-                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                        date = format.parse(textField.getText());
-                        dateTimestamp = new Timestamp(date.getTime());
-                        dateTime = dateTimestamp.toLocalDateTime();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+                Date date = new Date();
+                Timestamp dateTimestamp = null;
+                LocalDateTime dateTime = null;
+                try {
+                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                    date = format.parse(textField.getText());
+                    dateTimestamp = new Timestamp(date.getTime());
+                    dateTime = dateTimestamp.toLocalDateTime();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                ArrayList<TuyenDTO> danhSachTuyen = null;
+
+                if((selectTo.get().getSelectedIndex() == 0)) {
+                    danhSachTuyen = TuyenBUS.getAllByStart(list[selected], dateTime);
+                    if(selected == 0) {
+                        danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
                     }
-                    selectTo.setCompoBox(list2);
+                } else {
+                    danhSachTuyen = TuyenBUS.getAllByTrip(list[selected], list2[currentTo], dateTime);
+                }
 
-                    for(String item : list2) {
-                        if(item.equals(list[selected])) {
-                            selectTo.get().removeItem(item);
-                        }
-                    }
-
-                ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[selected], list2[currentTo], dateTime);
-                    selectTicketPanel.getSelectFrom().get().setSelectedItem(list[selected]);
-                    dashboard.getBgDashboard().removeAll();
-                    dashboard.getBgDashboard().add(selectTicketPanel);
-                    dashboard.getKa().removeAll();
-                    dashboard.showTicket(danhSachTuyen);
+                dashboard.getBgDashboard().removeAll();
+                dashboard.getBgDashboard().add(selectTicketPanel);
+                dashboard.getKa().removeAll();
+                dashboard.showTicket(danhSachTuyen);
                 selectTicketPanel.validate();
                 selectTicketPanel.repaint();
                 dashboard.getKa().validate();
@@ -123,7 +126,7 @@ public class SelectTicketPanel extends JPanel {
                 dashboard.getBgDashboard().repaint();
                 dashboard.validate();
                 dashboard.repaint();
-                    currentFrom = selected;
+                currentFrom = selected;
             }
 
         });
@@ -132,36 +135,37 @@ public class SelectTicketPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selected = selectTo.get().getSelectedIndex();
-                    JFormattedTextField textField = datePicker.getTextField();
+                JFormattedTextField textField = datePicker.getTextField();
+                System.out.println(selected);
+                Date date = new Date();
+                Timestamp dateTimestamp = null;
+                LocalDateTime dateTime = null;
+                try {
+                    DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+                    date = format.parse(textField.getText());
+                    dateTimestamp = new Timestamp(date.getTime());
+                    dateTime = dateTimestamp.toLocalDateTime();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 
-                    Date date = new Date();
-                    Timestamp dateTimestamp = null;
-                    LocalDateTime dateTime = null;
-                    try {
-                        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
-                        date = format.parse(textField.getText());
-                        dateTimestamp = new Timestamp(date.getTime());
-                        dateTime = dateTimestamp.toLocalDateTime();
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+                ArrayList<TuyenDTO> danhSachTuyen = null;
+                if(selectFrom.get().getSelectedIndex() == 0) {
+                    danhSachTuyen = TuyenBUS.getAllByDest(list2[selected], dateTime);
+                    if(selected == 0) {
+                        danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
                     }
-                selectFrom.setCompoBox(list);
-
-                    for(String item : list) {
-                        if(item.equals(list2[selected])) {
-                            selectFrom.get().removeItem(item);
-                        }
-                    }
+                } else {
+                    danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[selected], dateTime);
+                }
 
 
-                ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[selected], dateTime);
-                selectTicketPanel.getSelectTo().get().setSelectedItem(list2[selected]);
-                selectTicketPanel.validate();
-                selectTicketPanel.repaint();
                 dashboard.getBgDashboard().removeAll();
                 dashboard.getBgDashboard().add(selectTicketPanel);
                 dashboard.getKa().removeAll();
                 dashboard.showTicket(danhSachTuyen);
+                selectTicketPanel.validate();
+                selectTicketPanel.repaint();
                 dashboard.getKa().validate();
                 dashboard.getKa().repaint();
                 dashboard.getHi().validate();
@@ -193,7 +197,20 @@ public class SelectTicketPanel extends JPanel {
                     ex.printStackTrace();
                 }
 
-                ArrayList<TuyenDTO> danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
+                ArrayList<TuyenDTO> danhSachTuyen = null;
+                System.out.println(currentFrom);
+                System.out.println(currentTo);
+                if(currentTo == 0) {
+                    danhSachTuyen = TuyenBUS.getAllByStart(list[currentFrom], dateTime);
+                    if(currentFrom == 0) {
+                        danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
+                    }
+                } else if(currentFrom == 0) {
+                    danhSachTuyen = TuyenBUS.getAllByStart(list2[currentTo], dateTime);
+                } else {
+                    TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
+                }
+
                 dashboard.getKa().removeAll();
                 dashboard.showTicket(danhSachTuyen);
                 dashboard.getKa().removeAll();

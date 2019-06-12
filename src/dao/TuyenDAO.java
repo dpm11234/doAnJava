@@ -1,5 +1,6 @@
 package dao;
 
+import com.mysql.cj.jdbc.result.ResultSetImpl;
 import dto.TuyenDTO;
 import util.DataAccessHelper;
 import static util.Session.*;
@@ -42,6 +43,108 @@ public class TuyenDAO {
         return danhSachTuyen;
     }
 
+    public static ArrayList<TuyenDTO> getAllByStart(String startingPoint, LocalDateTime time) {
+        String sql = "SELECT * FROM TUYEN WHERE DIEMXUATPHAT = '" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        DataAccessHelper helper = new DataAccessHelper();
+        helper.open();
+
+        ResultSet resultSet = null;
+        ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+        try {
+            resultSet = helper.excuteQuery(sql);
+
+            while (resultSet.next()) {
+                TuyenDTO tuyen = new TuyenDTO(
+                        resultSet.getString("MANX"),
+                        resultSet.getString("MATUYEN"),
+                        resultSet.getString("DIEMDEN"),
+                        resultSet.getString("DIEMXUATPHAT"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
+                        resultSet.getInt("TONGGHE"),
+                        resultSet.getString("BSX"),
+                        resultSet.getInt("SOLUONG"),
+                        resultSet.getInt("GIA")
+                );
+                danhSachTuyen.add(tuyen);
+            }
+
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        } finally {
+            helper.close();
+        }
+
+        return danhSachTuyen;
+    }
+
+    public static ArrayList<TuyenDTO> getAllByDest(String dest, LocalDateTime time) {
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = '" + dest + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        DataAccessHelper helper = new DataAccessHelper();
+        helper.open();
+
+        ResultSet resultSet = null;
+        ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+        try {
+            resultSet = helper.excuteQuery(sql);
+
+            while (resultSet.next()) {
+                TuyenDTO tuyen = new TuyenDTO(
+                        resultSet.getString("MANX"),
+                        resultSet.getString("MATUYEN"),
+                        resultSet.getString("DIEMDEN"),
+                        resultSet.getString("DIEMXUATPHAT"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
+                        resultSet.getInt("TONGGHE"),
+                        resultSet.getString("BSX"),
+                        resultSet.getInt("SOLUONG"),
+                        resultSet.getInt("GIA")
+                );
+                danhSachTuyen.add(tuyen);
+            }
+
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        } finally {
+            helper.close();
+        }
+
+        return danhSachTuyen;
+    }
+
+    public static ArrayList<TuyenDTO> getAllByTime(LocalDateTime time) {
+        String sql = "SELECT * FROM TUYEN WHERE YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        DataAccessHelper helper = new DataAccessHelper();
+        helper.open();
+        System.out.println(sql);
+        ResultSet resultSet = null;
+        ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+        try {
+            resultSet = helper.excuteQuery(sql);
+
+            while (resultSet.next()) {
+                TuyenDTO tuyen = new TuyenDTO(
+                        resultSet.getString("MANX"),
+                        resultSet.getString("MATUYEN"),
+                        resultSet.getString("DIEMDEN"),
+                        resultSet.getString("DIEMXUATPHAT"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
+                        resultSet.getInt("TONGGHE"),
+                        resultSet.getString("BSX"),
+                        resultSet.getInt("SOLUONG"),
+                        resultSet.getInt("GIA")
+                );
+                danhSachTuyen.add(tuyen);
+            }
+
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        } finally {
+            helper.close();
+        }
+
+        return danhSachTuyen;
+    }
+
     public static ArrayList<TuyenDTO> getAllByMaNX() {
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
         String sql = "select * from TUYEN WHERE MANX = " + ssNhaXe.getMaNX();
@@ -66,7 +169,7 @@ public class TuyenDAO {
                 danhSachTuyen.add(tuyen);
             }
         } catch (SQLException ex) {
-
+            helper.displayError(ex);
         } finally {
             helper.close();
         }
@@ -75,7 +178,7 @@ public class TuyenDAO {
     }
 
     public static int addTicket(TuyenDTO tuyen) {
-        String sql = "INSERT INTO TUYEN VALUES ('" + tuyen.getMaNX() + "', '" + tuyen.getMaTuyen() + "', N'" + tuyen.getDiemXuatPhat() + "', N'" + tuyen.getDiemDen() + "', '" + tuyen.getThoiGianKhoiHanh() + "'," + tuyen.getTongGhe() + "," + "'" + tuyen.getBienSoXe() + "'," + tuyen.getSoLuong() + "," + tuyen.getGia() + ");";
+        String sql = "INSERT INTO TUYEN VALUES ('" + tuyen.getMaNX() + "', '" + tuyen.getMaTuyen() + "', N'" + tuyen.getDiemDen() + "', N'" + tuyen.getDiemXuatPhat() + "', '" + tuyen.getThoiGianKhoiHanh() + "'," + tuyen.getTongGhe() + "," + "'" + tuyen.getBienSoXe() + "'," + tuyen.getSoLuong() + "," + tuyen.getGia() + ");";
         DataAccessHelper helper = new DataAccessHelper();
         int res = -1;
 
@@ -103,7 +206,7 @@ public class TuyenDAO {
     public static int editTicket(String maTuyen, TuyenDTO tuyen) {
         String sql = "UPDATE TUYEN SET DIEMDEN = " + "N'" + tuyen.getDiemDen() + "'" + ", DIEMXUATPHAT = " + "N'" + tuyen.getDiemXuatPhat() + "'" + ", TGKHOIHANH = " + "'" + tuyen.getThoiGianKhoiHanh() + "'" + ", TONGGHE = " + tuyen.getTongGhe() + ", BSX = " + "'" + tuyen.getBienSoXe() + "'" + ", SOLUONG = " + tuyen.getSoLuong() + ",GIA = " + tuyen.getGia() + " WHERE MATUYEN = '" + maTuyen + "'";
         DataAccessHelper helper = new DataAccessHelper();
-        System.out.println(sql);
+
         int res = -1;
         helper.open();
 
