@@ -57,6 +57,10 @@ import javax.swing.text.JTextComponent;
 import java.util.Locale;
 import static layout.Content.areaPanel;
 import static layout.Content.home;
+import static layout.Content.homeSelect;
+import static layout.Content.navbar;
+import static layout.NavBackSelect.titleListTicket;
+import static layout.Navbar.navLogin;
 import static util.Session.*;
 
 /**
@@ -126,9 +130,9 @@ public class PickTicket extends JPanel {
         JPanel selectRow3 = new JPanel(new BorderLayout());
         selectRow3.setPreferredSize(new Dimension(300, 40));
         selectRow3.setBackground(new Color(255, 255, 255));
-        
+
         inputPhone = new Input("Số điện thoại", "phone2");
-        
+
         selectRow3.add(inputPhone, BorderLayout.CENTER);
 
         // Submit
@@ -173,21 +177,24 @@ public class PickTicket extends JPanel {
         compoBoxBookNum.getCompoBox().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                index= compoBoxBookNum.getCompoBox().getSelectedIndex();
+                index = compoBoxBookNum.getCompoBox().getSelectedIndex();
             }
         });
-        
+
         // Event
-        
         submitSave.getButton().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 switch (handlePickTicket()) {
                     case 1:
-                        JOptionPane.showMessageDialog(null, "Đặt vé thành công", "Thành công", 1);
+                        JOptionPane.showMessageDialog(null, "Đặt vé thành công, nhà xe sẽ liên hệ ngay với bạn", "Thành công", 1);
+                        navbar.removeAll();
+                        navbar.add(navLogin, BorderLayout.EAST);
+                        navbar.validate();
+                        navbar.repaint();
                         areaPanel.removeAll();
-                        areaPanel.add(home);
+                        areaPanel.add(homeSelect);
                         areaPanel.validate();
                         areaPanel.repaint();
                         break;

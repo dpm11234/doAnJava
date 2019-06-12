@@ -58,7 +58,11 @@ import java.util.Date;
 import java.util.Locale;
 import static layout.Content.areaPanel;
 import static layout.Content.dashboard;
+import static layout.Content.navbar;
+import static layout.Login.hello;
 import static layout.Main.frame;
+import static layout.MenuDashboard.panelTicketTitle;
+import static layout.Navbar.navIsLogin;
 import static util.Session.*;
 
 /**
@@ -230,8 +234,15 @@ public class AddTicket extends JPanel {
                     case 1:
                         boolean rs = NhaXeBUS.updateNhaXe(1);
                         if (rs) {
+                            JOptionPane.showMessageDialog(null, "Tạo thành công", "Thành công", 1);
                             ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
                             areaPanel.removeAll();
+                            navbar.removeAll();
+                            navbar.add(navIsLogin, BorderLayout.EAST);
+                            navbar.add(panelTicketTitle, BorderLayout.CENTER);
+                            navbar.add(hello, BorderLayout.WEST);
+                            navbar.validate();
+                            navbar.repaint();
                             areaPanel.add(dashboard);
                             dashboard.getKa().removeAll();
                             dashboard.showTicket(TuyenBUS.getAll());
@@ -240,7 +251,6 @@ public class AddTicket extends JPanel {
                             areaPanel.validate();
                             areaPanel.repaint();
                         }
-                        JOptionPane.showMessageDialog(null, "Tạo thành công", "Thành công", 1);
                         break;
                     case -2:
                         JOptionPane.showMessageDialog(null, "Giờ khởi hành không hợp lệ", "Thất bại", JOptionPane.ERROR_MESSAGE);
@@ -260,17 +270,17 @@ public class AddTicket extends JPanel {
     public int handleAddTicket() {
 
         String regexTime = "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]?";
-        if(!inputTime.getText().matches(regexTime)) {
+        if (!inputTime.getText().matches(regexTime)) {
             return -2;
         }
 
         String regexGia = "[0-9]+";
-        if(!inputPrice.getText().matches(regexGia)) {
+        if (!inputPrice.getText().matches(regexGia)) {
             return -3;
         }
 
         String regexDaDat = "[0-9]+";
-        if(!inputSet.getText().matches(regexDaDat)) {
+        if (!inputSet.getText().matches(regexDaDat)) {
             return -4;
         }
 
@@ -292,7 +302,6 @@ public class AddTicket extends JPanel {
         tuyen.setTongGhe(Integer.parseInt(listKind[indexKind]));
         JFormattedTextField textField = datePicker.getTextField();
 
-
         String txtGioKhoiHanh = textField.getText() + " " + inputTime.getText();
         Date date = new Date();
         Timestamp gioKhoiHanh;
@@ -304,7 +313,7 @@ public class AddTicket extends JPanel {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        
         return TuyenBUS.addTicket(tuyen);
     }
 

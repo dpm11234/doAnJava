@@ -24,8 +24,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,8 +54,9 @@ public class TicketClient extends JPanel {
     private JLabel price, chair, startingPoint, destination, day;
     public JPanel buttonListBooked, buttonListBookedH, buttonEdit, buttonEditH;
     private TuyenDTO tuyenXe;
+    static JLabel titleEdit;
 
-    public TicketClient(TuyenDTO tuyen){
+    public TicketClient(TuyenDTO tuyen) {
 
         this.tuyenXe = tuyen;
         this.setLayout(new BorderLayout());
@@ -73,8 +76,11 @@ public class TicketClient extends JPanel {
         leftTop.setPreferredSize(new Dimension(258, 27));
         leftTop.setBackground(new Color(0, 0, 0, 0));
 
-        // giĂ¡ vĂ©
-        price = new JLabel(tuyen.getGia() + "");
+        // giá vé
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+        String gia = en.format(tuyen.getGia());
+        price = new JLabel(gia + "đ");
         price.setFont(fontPrice);
         price.setPreferredSize(new Dimension(130, 27));
         price.setIcon(new ImageIcon(new ImageIcon("images/money.png").getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT)));
@@ -90,11 +96,11 @@ public class TicketClient extends JPanel {
         priceJPanel.add(priceSpace, BorderLayout.WEST);
         priceJPanel.add(price, BorderLayout.CENTER);
 
-        // Sá»‘ gháº¿ trá»‘ng
+        // Số ghế trống
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
 
-        chair = new JLabel("Trống: "+TuyenBUS.countemptySeat(tuyen.getMaTuyen()));
+        chair = new JLabel("Trống: " + TuyenBUS.countemptySeat(tuyen.getMaTuyen()));
         chair.setFont(fontPrice);
         chair.setPreferredSize(new Dimension(80, 27));
         chair.setIcon(new ImageIcon(new ImageIcon("images/armchair2.png").getImage().getScaledInstance(14, 14, Image.SCALE_DEFAULT)));
@@ -117,7 +123,7 @@ public class TicketClient extends JPanel {
         leftCenterInfo.setPreferredSize(new Dimension(258, 27));
         leftCenterInfo.setBackground(new Color(0, 0, 0, 0));
 
-        // Tuyáº¿n xe
+        // Tuyến xe
         JPanel buses = new JPanel(new BorderLayout());
         buses.setPreferredSize(new Dimension(258, 27));
         buses.setBackground(new Color(0, 0, 0, 0));
@@ -145,7 +151,7 @@ public class TicketClient extends JPanel {
         buses.add(arrow, BorderLayout.CENTER);
         buses.add(destination, BorderLayout.EAST);
 
-        // Thá»�i gian khá»Ÿi hĂ nh
+        // Thời gian khởi hành
         JPanel time = new JPanel(new BorderLayout());
         time.setPreferredSize(new Dimension(258, 27));
         time.setBackground(new Color(0, 0, 0, 0));
@@ -164,7 +170,6 @@ public class TicketClient extends JPanel {
         // format giá»�
 //        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 //        String timeStart = date.format(timeFormatter);
-
         JLabel hours = new JLabel(dateTime.format(formatterTime));
         hours.setPreferredSize(new Dimension(121, 27));
         hours.setFont(fontPrice);
@@ -181,7 +186,7 @@ public class TicketClient extends JPanel {
         time.add(oclock, BorderLayout.CENTER);
         time.add(hours, BorderLayout.EAST);
 
-        // TĂªn nhĂ  xe
+        // Tên nhà xe
         JPanel company = new JPanel(new GridBagLayout());
         company.setPreferredSize(new Dimension(258, 30));
         company.setBackground(new Color(244, 244, 244, 0));
@@ -352,11 +357,11 @@ public class TicketClient extends JPanel {
         // Loáº¡i xe
         JLabel typeBus = new JLabel("");
         typeBus.setPreferredSize(new Dimension(122, 33));
-        typeBus.setIcon(new ImageIcon(new ImageIcon("images/"+ tuyen.getTongGhe() +"c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
+        typeBus.setIcon(new ImageIcon(new ImageIcon("images/" + tuyen.getTongGhe() + "c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel totalChair = new JLabel(tuyen.getTongGhe()+" chỗ");
+        JLabel totalChair = new JLabel(tuyen.getTongGhe() + " chỗ");
         totalChair.setPreferredSize(new Dimension(122, 25));
         totalChair.setFont(fontPrice);
         totalChair.setForeground(Color.black);
@@ -376,16 +381,16 @@ public class TicketClient extends JPanel {
 
         right.add(rightTop, BorderLayout.NORTH);
         right.add(rightCenter, BorderLayout.CENTER);
-        
+
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
-        
-        JLabel titleEdit = new JLabel("Chỉnh Sửa Tuyến");
+
+        titleEdit = new JLabel("Chỉnh Sửa Tuyến");
         titleEdit.setPreferredSize(new Dimension(150, 60));
         titleEdit.setVerticalAlignment(JLabel.CENTER);
         titleEdit.setHorizontalAlignment(JLabel.CENTER);
         titleEdit.setFont(fontTextTitle);
         titleEdit.setForeground(new Color(140, 140, 140));
-        
+
         JLabel titleListBooked = new JLabel("Danh Sách Khách Đặt Vé");
         titleListBooked.setPreferredSize(new Dimension(150, 60));
         titleListBooked.setVerticalAlignment(JLabel.CENTER);
@@ -409,8 +414,8 @@ public class TicketClient extends JPanel {
                 navbar.repaint();
             }
         });
-        
-        clickListBooked.addActionListener(new ActionListener(){
+
+        clickListBooked.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 areaPanel.removeAll();
@@ -429,7 +434,7 @@ public class TicketClient extends JPanel {
                 navbar.validate();
                 navbar.repaint();
             }
-            
+
         });
 
         bgTicket.add(left);
