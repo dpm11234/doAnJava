@@ -107,6 +107,8 @@ public class SelectTicketPanel extends JPanel {
                     if(selected == 0) {
                         danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
                     }
+                } else if(selected == 0) {
+                    danhSachTuyen = TuyenBUS.getAllByDest(list2[currentTo], dateTime);
                 } else {
                     danhSachTuyen = TuyenBUS.getAllByTrip(list[selected], list2[currentTo], dateTime);
                 }
@@ -155,6 +157,8 @@ public class SelectTicketPanel extends JPanel {
                     if(selected == 0) {
                         danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
                     }
+                } else if(selected == 0){
+                    danhSachTuyen = TuyenBUS.getAllByStart(list[currentFrom], dateTime);
                 } else {
                     danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[selected], dateTime);
                 }
@@ -208,7 +212,7 @@ public class SelectTicketPanel extends JPanel {
                 } else if(currentFrom == 0) {
                     danhSachTuyen = TuyenBUS.getAllByStart(list2[currentTo], dateTime);
                 } else {
-                    TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
+                    danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
                 }
 
                 dashboard.getKa().removeAll();

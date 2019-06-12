@@ -7,6 +7,7 @@ import static util.Session.*;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TuyenDAO {
@@ -221,7 +222,44 @@ public class TuyenDAO {
         String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+        helper.open();
 
+        ResultSet resultSet = helper.excuteQuery(sql);
+
+        try {
+
+            while (resultSet.next()) {
+                TuyenDTO tuyen = new TuyenDTO(
+                        resultSet.getString("MANX"),
+                        resultSet.getString("MATUYEN"),
+                        resultSet.getString("DIEMDEN"),
+                        resultSet.getString("DIEMXUATPHAT"),
+                        resultSet.getTimestamp("TGKHOIHANH"),
+                        resultSet.getInt("TONGGHE"),
+                        resultSet.getString("BSX"),
+                        resultSet.getInt("SOLUONG"),
+                        resultSet.getInt("GIA")
+                );
+                danhSachTuyen.add(tuyen);
+            }
+
+        } catch (SQLException ex) {
+            helper.displayError(ex);
+        }
+
+        return danhSachTuyen;
+    }
+
+    public static ArrayList<TuyenDTO> getAllByTripClient(String startingPoint, String destination, LocalDateTime time) {
+
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+        LocalDateTime now = LocalDateTime.now();
+
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND YEAR(TGKHOIHANH) >= '" + now.getYear() + "' AND MONTH(TGKHOIHANH) >= '" + now.getMonthValue() + "' AND DAY(TGKHOIHANH) >= '" + now.getDayOfMonth() + "';";
+        DataAccessHelper helper = new DataAccessHelper();
+        ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
+        System.out.println(sql);
         helper.open();
 
         ResultSet resultSet = helper.excuteQuery(sql);

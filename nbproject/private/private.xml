@@ -6,9 +6,10 @@
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/SelectTicketPanel.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/dao/KhachHangDAO.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/dto/KhachHangDTO.java</file>
-            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/PickTicket.java</file>
-            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/bus/KhachHangBUS.java</file>
+            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Login.java</file>
+            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/util/DataAccessHelper.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/dao/TuyenDAO.java</file>
+            <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/Ticket.java</file>
             <file>file:/D:/Hoc%20Tap/DoAnJAVA/doAnJava/src/layout/BookedTicket.java</file>
         </group>
     </open-files>

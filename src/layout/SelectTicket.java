@@ -291,7 +291,6 @@ public class SelectTicket extends JPanel {
                     DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
                     date = format.parse(textField.getText());
                     Timestamp dateTimestamp = new Timestamp(date.getTime());
-                    System.out.println(dateTimestamp);
                     dateTime = dateTimestamp.toLocalDateTime();
                     homeSelect = new HomeSelect(list[currentFrom], list2[currentTo], dateTime);
                     areaPanel.removeAll();
