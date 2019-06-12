@@ -566,14 +566,6 @@ public class BookedTicket extends JPanel {
                 }
             });
 
-            if (khachHang.getKT() == 0) {
-                boxButtonCheckT.add(check);
-                boxButtonCheck.add(boxButtonCheckT);
-            } else {
-                boxButtonCheckTHover.add(check);
-                boxButtonCheck.add(boxButtonCheckTHover);
-            }
-
             Line line0 = new Line();
 
             JLabel name = new JLabel(khachHang.getHoTen());
@@ -673,6 +665,28 @@ public class BookedTicket extends JPanel {
                     boxButtonDelete.repaint();
                 }
             });
+            
+            if (khachHang.getKT() == 0) {
+                this.setBackground(new Color(239, 241, 242));
+                boxButtonCheck.setBackground(new Color(239, 241, 242));
+                boxButtonCheckT.setBackground(new Color(239, 241, 242));
+                boxButtonCheckTHover.setBackground(new Color(239, 241, 242));
+                boxButtonDelete.setBackground(new Color(239, 241, 242));
+                boxButtonDeleteT.setBackground(new Color(239, 241, 242));
+                boxButtonDeleteTHover.setBackground(new Color(239, 241, 242));
+                boxButtonCheckT.add(check);
+                boxButtonCheck.add(boxButtonCheckT);
+            } else {
+                this.setBackground(new Color(199, 224, 195));
+                boxButtonCheck.setBackground(new Color(199, 224, 195));
+                boxButtonCheckT.setBackground(new Color(199, 224, 195));
+                boxButtonCheckTHover.setBackground(new Color(199, 224, 195));
+                boxButtonDelete.setBackground(new Color(199, 224, 195));
+                boxButtonDeleteT.setBackground(new Color(199, 224, 195));
+                boxButtonDeleteTHover.setBackground(new Color(199, 224, 195));
+                boxButtonCheckTHover.add(check);
+                boxButtonCheck.add(boxButtonCheckTHover);
+            }
 
             boxButtonDeleteT.add(delete);
             boxButtonDelete.add(boxButtonDeleteT);
@@ -805,14 +819,6 @@ public class BookedTicket extends JPanel {
                 }
             });
 
-            if (khachHang.getKT() == 0) {
-                boxButtonCheckT.add(check);
-                boxButtonCheck.add(boxButtonCheckT);
-            } else {
-                boxButtonCheckTHover.add(check);
-                boxButtonCheck.add(boxButtonCheckTHover);
-            }
-
             Line line0 = new Line();
 
             JLabel name = new JLabel(khachHang.getHoTen());
@@ -928,6 +934,29 @@ public class BookedTicket extends JPanel {
 
                 }
             });
+            
+
+            if (khachHang.getKT() == 0) {
+                this.setBackground(new Color(255, 255, 255));
+                boxButtonCheck.setBackground(new Color(255, 255, 255));
+                boxButtonCheckT.setBackground(new Color(255, 255, 255));
+                boxButtonCheckTHover.setBackground(new Color(255, 255, 255));
+                boxButtonDelete.setBackground(new Color(255, 255, 255));
+                boxButtonDeleteT.setBackground(new Color(255, 255, 255));
+                boxButtonDeleteTHover.setBackground(new Color(255, 255, 255));
+                boxButtonCheckT.add(check);
+                boxButtonCheck.add(boxButtonCheckT);
+            } else {
+                this.setBackground(new Color(199, 224, 195));
+                boxButtonCheck.setBackground(new Color(199, 224, 195));
+                boxButtonCheckT.setBackground(new Color(199, 224, 195));
+                boxButtonCheckTHover.setBackground(new Color(199, 224, 195));
+                boxButtonDelete.setBackground(new Color(199, 224, 195));
+                boxButtonDeleteT.setBackground(new Color(199, 224, 195));
+                boxButtonDeleteTHover.setBackground(new Color(199, 224, 195));
+                boxButtonCheckTHover.add(check);
+                boxButtonCheck.add(boxButtonCheckTHover);
+            }
 
             boxButtonDeleteT.add(delete);
             boxButtonDelete.add(boxButtonDeleteT);
