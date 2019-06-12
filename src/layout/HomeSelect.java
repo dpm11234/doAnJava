@@ -12,8 +12,10 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -94,8 +96,7 @@ public class HomeSelect extends JPanel {
 
 
         int countTuyen = 1;
-        danhSachTuyen = TuyenBUS.getAllByTrip(startingPoint, destination, time);
-        System.out.println(danhSachTuyen.size());
+        danhSachTuyen = TuyenBUS.getAllByTripClient(startingPoint, destination, time);
         if(danhSachTuyen.size() > 0) {
             for(TuyenDTO tuyen : danhSachTuyen) {
                 ticket = new Ticket(tuyen);
@@ -110,6 +111,12 @@ public class HomeSelect extends JPanel {
         } else {
 //            ka.setPreferredSize(new Dimension(790, 50));
 ////            ka.add(showTitle);
+            LocalDateTime now = LocalDateTime.now();
+            Timestamp timestampNow = Timestamp.valueOf(now);
+            Timestamp timestampQ = Timestamp.valueOf(time);
+            if(timestampNow.getTime() > timestampQ.getTime()) {
+                message.setText("Ngày không hợp lệ");
+            }
             bgDashboard.add(showTitle);
         }
         

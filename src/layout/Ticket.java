@@ -343,8 +343,9 @@ public class Ticket extends JPanel {
                 areaPanel.add(pickTicket);
                 areaPanel.validate();
                 areaPanel.repaint();
-                navbar.removeAll();
+//                navbar.removeAll();
                 navbar.add(navLogin, BorderLayout.EAST);
+                navbar.add(navBackSelect, BorderLayout.WEST);
                 navbar.validate();
                 navbar.repaint();
             }
