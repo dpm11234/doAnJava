@@ -24,8 +24,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,7 +56,7 @@ public class TicketClient extends JPanel {
     private TuyenDTO tuyenXe;
     static JLabel titleEdit;
 
-    public TicketClient(TuyenDTO tuyen){
+    public TicketClient(TuyenDTO tuyen) {
 
         this.tuyenXe = tuyen;
         this.setLayout(new BorderLayout());
@@ -75,7 +77,10 @@ public class TicketClient extends JPanel {
         leftTop.setBackground(new Color(0, 0, 0, 0));
 
         // giá vé
-        price = new JLabel(tuyen.getGia() + "");
+        Locale localeEN = new Locale("en", "EN");
+        NumberFormat en = NumberFormat.getInstance(localeEN);
+        String gia = en.format(tuyen.getGia());
+        price = new JLabel(gia + "đ");
         price.setFont(fontPrice);
         price.setPreferredSize(new Dimension(130, 27));
         price.setIcon(new ImageIcon(new ImageIcon("images/money.png").getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT)));
@@ -95,7 +100,7 @@ public class TicketClient extends JPanel {
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
 
-        chair = new JLabel("Trống: "+TuyenBUS.countemptySeat(tuyen.getMaTuyen()));
+        chair = new JLabel("Trống: " + TuyenBUS.countemptySeat(tuyen.getMaTuyen()));
         chair.setFont(fontPrice);
         chair.setPreferredSize(new Dimension(80, 27));
         chair.setIcon(new ImageIcon(new ImageIcon("images/armchair2.png").getImage().getScaledInstance(14, 14, Image.SCALE_DEFAULT)));
@@ -165,7 +170,6 @@ public class TicketClient extends JPanel {
         // format giá»�
 //        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 //        String timeStart = date.format(timeFormatter);
-
         JLabel hours = new JLabel(dateTime.format(formatterTime));
         hours.setPreferredSize(new Dimension(121, 27));
         hours.setFont(fontPrice);
@@ -353,11 +357,11 @@ public class TicketClient extends JPanel {
         // Loáº¡i xe
         JLabel typeBus = new JLabel("");
         typeBus.setPreferredSize(new Dimension(122, 33));
-        typeBus.setIcon(new ImageIcon(new ImageIcon("images/"+ tuyen.getTongGhe() +"c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
+        typeBus.setIcon(new ImageIcon(new ImageIcon("images/" + tuyen.getTongGhe() + "c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
 
-        JLabel totalChair = new JLabel(tuyen.getTongGhe()+" chỗ");
+        JLabel totalChair = new JLabel(tuyen.getTongGhe() + " chỗ");
         totalChair.setPreferredSize(new Dimension(122, 25));
         totalChair.setFont(fontPrice);
         totalChair.setForeground(Color.black);
@@ -377,16 +381,16 @@ public class TicketClient extends JPanel {
 
         right.add(rightTop, BorderLayout.NORTH);
         right.add(rightCenter, BorderLayout.CENTER);
-        
+
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
-        
+
         titleEdit = new JLabel("Chỉnh Sửa Tuyến");
         titleEdit.setPreferredSize(new Dimension(150, 60));
         titleEdit.setVerticalAlignment(JLabel.CENTER);
         titleEdit.setHorizontalAlignment(JLabel.CENTER);
         titleEdit.setFont(fontTextTitle);
         titleEdit.setForeground(new Color(140, 140, 140));
-        
+
         JLabel titleListBooked = new JLabel("Danh Sách Khách Đặt Vé");
         titleListBooked.setPreferredSize(new Dimension(150, 60));
         titleListBooked.setVerticalAlignment(JLabel.CENTER);
@@ -410,8 +414,8 @@ public class TicketClient extends JPanel {
                 navbar.repaint();
             }
         });
-        
-        clickListBooked.addActionListener(new ActionListener(){
+
+        clickListBooked.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 areaPanel.removeAll();
@@ -430,7 +434,7 @@ public class TicketClient extends JPanel {
                 navbar.validate();
                 navbar.repaint();
             }
-            
+
         });
 
         bgTicket.add(left);
