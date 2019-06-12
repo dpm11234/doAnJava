@@ -263,7 +263,7 @@ public class AddTicket extends JPanel {
                     case -5:
                         JOptionPane.showMessageDialog(null, "Biển số xe không hợp lệ", "Thất bại", 0);
                     case -6:
-                        JOptionPane.showMessageDialog(null, "Ngày không hợp lệ", "Thất bại", 0);
+                        JOptionPane.showMessageDialog(null, "Thời gian khởi hành không hợp lệ", "Thất bại", 0);
                 }
             }
         });

@@ -30,15 +30,17 @@ public class TuyenBUS {
             return -4;
         }
 
-        String regex = "[0-9]{2}[a-zA-Z][0-9][\\-][0-9]{4,5}";
+        String regex = "[0-9]{2}[a-zA-Z][0-9] [\\-] [0-9]{4,5}";
 
         if(!tuyen.getBienSoXe().matches(regex)) {
             return -5;
         }
 
-        java.util.Date date = Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
-
-        if(date.getTime() > tuyen.getThoiGianKhoiHanh().getTime()) {
+        LocalDateTime date = LocalDateTime.now();
+        Timestamp dateTimespam = Timestamp.valueOf(date);
+        System.out.println(dateTimespam);
+        System.out.println(tuyen.getThoiGianKhoiHanh());
+        if(dateTimespam.getTime() > tuyen.getThoiGianKhoiHanh().getTime()) {
             return -6;
         }
 
