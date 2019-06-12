@@ -14,7 +14,7 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAll() {
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-        String sql = "SELECT * FROM TUYEN WHERE MANX = '" + ssNhaXe.getMaNX() + "';";
+        String sql = "SELECT * FROM TUYEN WHERE MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
 
         helper.open();
@@ -45,7 +45,7 @@ public class TuyenDAO {
     }
 
     public static ArrayList<TuyenDTO> getAllByStart(String startingPoint, LocalDateTime time) {
-        String sql = "SELECT * FROM TUYEN WHERE DIEMXUATPHAT = '" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        String sql = "SELECT * FROM TUYEN WHERE DIEMXUATPHAT = '" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         helper.open();
 
@@ -79,7 +79,7 @@ public class TuyenDAO {
     }
 
     public static ArrayList<TuyenDTO> getAllByDest(String dest, LocalDateTime time) {
-        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = '" + dest + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = '" + dest + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         helper.open();
 
@@ -113,7 +113,7 @@ public class TuyenDAO {
     }
 
     public static ArrayList<TuyenDTO> getAllByTime(LocalDateTime time) {
-        String sql = "SELECT * FROM TUYEN WHERE YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        String sql = "SELECT * FROM TUYEN WHERE YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         helper.open();
         System.out.println(sql);
@@ -148,7 +148,7 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByMaNX() {
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-        String sql = "select * from TUYEN WHERE MANX = " + ssNhaXe.getMaNX();
+        String sql = "select * from TUYEN WHERE MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
 
         helper.open();
@@ -219,7 +219,7 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByTrip(String startingPoint, String destination, LocalDateTime time) {
 
-        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
         helper.open();
@@ -256,7 +256,7 @@ public class TuyenDAO {
 
         LocalDateTime now = LocalDateTime.now();
 
-        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND YEAR(TGKHOIHANH) >= '" + now.getYear() + "' AND MONTH(TGKHOIHANH) >= '" + now.getMonthValue() + "' AND DAY(TGKHOIHANH) >= '" + now.getDayOfMonth() + "';";
+        String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND YEAR(TGKHOIHANH) >= '" + now.getYear() + "' AND MONTH(TGKHOIHANH) >= '" + now.getMonthValue() + "' AND DAY(TGKHOIHANH) >= '" + now.getDayOfMonth() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
         System.out.println(sql);
@@ -321,7 +321,7 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByTripAndMaNX(String startingPoint, String destination, LocalDateTime time) {
 
-        String sql = "SELECT * FROM TUYEN, NHAXE WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
+        String sql = "SELECT * FROM TUYEN, NHAXE WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
         System.out.println(sql);

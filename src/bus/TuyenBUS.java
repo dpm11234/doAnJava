@@ -28,6 +28,12 @@ public class TuyenBUS {
             return -4;
         }
 
+        String regex = "[0-9]{2}[a-zA-Z][0-9][\\-][0-9]{4,5}";
+
+        if(!tuyen.getBienSoXe().matches(regex)) {
+            return -5;
+        }
+
         res = TuyenDAO.addTicket(tuyen);
 
         return res;
