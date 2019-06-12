@@ -3,15 +3,8 @@ package layout;
 import bus.TuyenBUS;
 import createUI.ImagePanel;
 import createUI.ImageScroll;
-import java.awt.Adjustable;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.HeadlessException;
-import java.awt.Image;
+
+import java.awt.*;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.MouseAdapter;
@@ -34,6 +27,7 @@ import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.swing.plaf.ColorUIResource;
 import static layout.Content.areaPanel;
+import static layout.Main.widthGet;
 import static layout.MenuDashboard.panelTicket;
 
 // import Layout
@@ -84,18 +78,39 @@ public class HomeSelect extends JPanel {
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251, 0));
 
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 28);
+        JPanel showTitle = new JPanel(new BorderLayout());
+        showTitle.setPreferredSize(new Dimension(widthGet - 280, 50));
+
+        JLabel message = new JLabel("Không có vé");
+        message.setVerticalAlignment(JLabel.CENTER);
+        showTitle.setBackground(new Color(0, 0, 0, 0));
+        message.setHorizontalAlignment(JLabel.CENTER);
+        message.setPreferredSize(new Dimension(widthGet - 280, 50));
+        message.setFont(fontTextTitle);
+        message.setForeground(new Color(0, 0, 0, 184));
+        showTitle.add(message, BorderLayout.CENTER);
+
+
+
         int countTuyen = 1;
         danhSachTuyen = TuyenBUS.getAllByTrip(startingPoint, destination, time);
-        for(TuyenDTO tuyen : danhSachTuyen) {
-            ticket = new Ticket(tuyen);
-            ticket.setPreferredSize(new Dimension(380, 118));
-            
-            if (countTuyen % 2 != 0) {
-                height += 133;
+        System.out.println(danhSachTuyen.size());
+        if(danhSachTuyen.size() > 0) {
+            for(TuyenDTO tuyen : danhSachTuyen) {
+                ticket = new Ticket(tuyen);
+                ticket.setPreferredSize(new Dimension(380, 118));
+                if (countTuyen % 2 != 0) {
+                    height += 133;
+                }
+                countTuyen++;
+                ka.setPreferredSize(new Dimension(790, height));
+                ka.add(ticket);
             }
-            countTuyen++;
-            ka.setPreferredSize(new Dimension(790, height));
-            ka.add(ticket);
+        } else {
+//            ka.setPreferredSize(new Dimension(790, 50));
+////            ka.add(showTitle);
+            bgDashboard.add(showTitle);
         }
         
         JViewport viewport = new JViewport();

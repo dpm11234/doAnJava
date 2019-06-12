@@ -134,21 +134,35 @@ public class Dashboard extends JPanel {
     }
 
     public void showTicket(ArrayList<TuyenDTO> danhSachTuyen) {
-        int height = 0;
-        int countTuyen = 1;
+
+        JPanel showTitle = new JPanel();
+//        showTitle.setSize(new Dimension(150, 50));
+        JLabel message = new JLabel("Không có vé");
+
+        showTitle.add(message);
+
         if(danhSachTuyen == null) {
             danhSachTuyen = TuyenBUS.getAll();
         }
-        for(TuyenDTO tuyen : danhSachTuyen) {
-            ticket = new TicketClient(tuyen);
-            ticket.setPreferredSize(new Dimension(380, 118));
 
-            if (countTuyen % 2 != 0) {
-                height += 133;
+        if(danhSachTuyen.size() > 0) {
+            int height = 0;
+            int countTuyen = 1;
+
+            for(TuyenDTO tuyen : danhSachTuyen) {
+                ticket = new TicketClient(tuyen);
+                ticket.setPreferredSize(new Dimension(380, 118));
+
+                if (countTuyen % 2 != 0) {
+                    height += 133;
+                }
+                countTuyen++;
+                ka.setPreferredSize(new Dimension(790, height));
+                ka.add(ticket);
             }
-            countTuyen++;
-            ka.setPreferredSize(new Dimension(790, height));
-            ka.add(ticket);
+        } else {
+            ka.setPreferredSize(new Dimension(790, 50));
+            ka.add(showTitle);
         }
     }
 

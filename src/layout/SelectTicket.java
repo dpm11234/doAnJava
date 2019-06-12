@@ -204,7 +204,7 @@ public class SelectTicket extends JPanel {
         titleListTicket.setHorizontalAlignment(JLabel.CENTER);
         titleListTicket.setFont(fontTextTitle);
         titleListTicket.setForeground(new Color(140, 140, 140));
-        
+
         c1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -220,7 +220,6 @@ public class SelectTicket extends JPanel {
                     date = format.parse(textField.getText());
                     dateTimestamp = new Timestamp(date.getTime());
                     dateTime = dateTimestamp.toLocalDateTime();
-                    System.out.println(dateTimestamp);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -21,7 +21,7 @@ public class DataAccessHelper {
 //            conn = DriverManager
 //                    .getConnection("jdbc:mysql://13.76.36.22:3306/doan", "root", "282828");
             conn = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3307/doanjava", "root", "282828");
+                    .getConnection("jdbc:mysql://localhost:3306/doanjava", "root", "123123Mau");
 
         } catch (Exception e) {
             e.printStackTrace();
