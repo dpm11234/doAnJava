@@ -45,7 +45,6 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByStart(String startingPoint, LocalDateTime time) {
         String sql = "SELECT * FROM TUYEN WHERE DIEMXUATPHAT = '" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
-        System.out.println(sql);
         DataAccessHelper helper = new DataAccessHelper();
         helper.open();
 
@@ -80,7 +79,6 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByDest(String dest, LocalDateTime time) {
         String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = '" + dest + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
-        System.out.println(sql);
         DataAccessHelper helper = new DataAccessHelper();
         helper.open();
 
@@ -115,10 +113,9 @@ public class TuyenDAO {
 
     public static ArrayList<TuyenDTO> getAllByTime(LocalDateTime time) {
         String sql = "SELECT * FROM TUYEN WHERE YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "';";
-        System.out.println(sql);
         DataAccessHelper helper = new DataAccessHelper();
         helper.open();
-
+        System.out.println(sql);
         ResultSet resultSet = null;
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
         try {

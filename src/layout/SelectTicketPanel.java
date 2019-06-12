@@ -102,7 +102,7 @@ public class SelectTicketPanel extends JPanel {
                 }
                 ArrayList<TuyenDTO> danhSachTuyen = null;
 
-                if((c2.getSelectedIndex() == 0)) {
+                if((selectTo.get().getSelectedIndex() == 0)) {
                     danhSachTuyen = TuyenBUS.getAllByStart(list[selected], dateTime);
                     if(selected == 0) {
                         danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
@@ -150,7 +150,7 @@ public class SelectTicketPanel extends JPanel {
                 }
 
                 ArrayList<TuyenDTO> danhSachTuyen = null;
-                if(c1.getSelectedIndex() == 0) {
+                if(selectFrom.get().getSelectedIndex() == 0) {
                     danhSachTuyen = TuyenBUS.getAllByDest(list2[selected], dateTime);
                     if(selected == 0) {
                         danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
@@ -198,13 +198,15 @@ public class SelectTicketPanel extends JPanel {
                 }
 
                 ArrayList<TuyenDTO> danhSachTuyen = null;
-
+                System.out.println(currentFrom);
+                System.out.println(currentTo);
                 if(currentTo == 0) {
                     danhSachTuyen = TuyenBUS.getAllByStart(list[currentFrom], dateTime);
+                    if(currentFrom == 0) {
+                        danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
+                    }
                 } else if(currentFrom == 0) {
                     danhSachTuyen = TuyenBUS.getAllByStart(list2[currentTo], dateTime);
-                } else if(currentTo == 0 && currentFrom == 0) {
-                    danhSachTuyen = TuyenBUS.getAllByTime(dateTime);
                 } else {
                     TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
                 }

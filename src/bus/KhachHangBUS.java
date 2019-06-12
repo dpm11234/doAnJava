@@ -6,13 +6,15 @@ import dto.KhachHangDTO;
 import java.util.ArrayList;
 
 public class KhachHangBUS {
+    static String ascii = "a-zAÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶEÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢUÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐaáàảãạâấầẩẫậăắằẳẵặeéèẻẽẹêếềểễệiíìỉĩịoóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựyýỳỷỹỵđ";
 
     public static ArrayList<KhachHangDTO> getAll(String maNX, String maTuyen) {
         return KhachHangDAO.getAll(maNX, maTuyen);
     }
 
     public static int addCustomer(KhachHangDTO khachHang) {
-        String regexName = "[a-z]{2,}";
+
+        String regexName = "[[a-zA-Z" + ascii + "]+[\\ ]+" + "[a-zA-Z" + ascii + "]]+";
 
         if(khachHang.getHoTen().equals("Họ tên") || !khachHang.getHoTen().matches(regexName)) {
             return -2;
