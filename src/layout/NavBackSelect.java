@@ -22,6 +22,7 @@ import static layout.Content.*;
 public class NavBackSelect extends JPanel{
     final MatteBorder borderSignIn;
     static JButton btnBackLogin;
+    static JLabel titleListTicket;
     public NavBackSelect() {
         borderSignIn = new MatteBorder(0, 0, 0, 0, new Color(227, 228, 231));
         borderSignIn.getBaseline(this, 1, 40);
@@ -49,7 +50,7 @@ public class NavBackSelect extends JPanel{
 
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
 
-        JLabel titleListTicket = new JLabel("Danh Sách Vé");
+        titleListTicket = new JLabel("Danh Sách Vé");
         titleListTicket.setPreferredSize(new Dimension(100, 60));
         titleListTicket.setVerticalAlignment(JLabel.CENTER);
         titleListTicket.setHorizontalAlignment(JLabel.CENTER);
