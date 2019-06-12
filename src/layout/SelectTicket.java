@@ -258,7 +258,6 @@ public class SelectTicket extends JPanel {
                     date = format.parse(textField.getText());
                     dateTimestamp = new Timestamp(date.getTime());
                     dateTime = dateTimestamp.toLocalDateTime();
-                    System.out.println(dateTimestamp);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
