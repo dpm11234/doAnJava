@@ -61,13 +61,14 @@ import static util.Session.ssNhaXe;
  * @author my pc
  */
 public class Login extends JPanel {
+
     private JTextField user;
     private JPasswordField textPass;
     static JLabel hello, spaceHello;
-    
+
     public Login() {
         this.setLayout(new BorderLayout());
-        
+
         JPanel loginBg = new JPanel();
         try {
             Image imgLogin = null;
@@ -78,7 +79,7 @@ public class Login extends JPanel {
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }
-        
+
         JPanel loginFormLayout = new JPanel(new GridBagLayout());
         loginFormLayout.setPreferredSize(new Dimension(230, 300));
         loginFormLayout.setBackground(new Color(255, 255, 255));
@@ -303,8 +304,7 @@ public class Login extends JPanel {
         // JLable đăng ký
         JLabel regLinkSpace = new JLabel("");
         regLinkSpace.setPreferredSize(new Dimension(230, 20));
-        
-        
+
         JLabel regLink = new JLabel("Đăng ký trở thành nhà xe  →");
         Font fontRegLink = new Font("SansSerif", Font.ITALIC, 14);
         regLink.setFont(fontRegLink);
@@ -347,11 +347,11 @@ public class Login extends JPanel {
         loginSpace.setBackground(new Color(200, 12, 223, 0));
         loginBg.add(loginFormLayout);
         loginBg.add(loginSpace);
-        
+
         this.add(loginBg, BorderLayout.CENTER);
-        
+
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
-        
+
         JLabel titleListTicket = new JLabel("Quản Lý Danh Sách Vé");
         titleListTicket.setPreferredSize(new Dimension(150, 60));
         titleListTicket.setVerticalAlignment(JLabel.CENTER);
@@ -362,9 +362,9 @@ public class Login extends JPanel {
         buttonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(login()) {
+                if (login()) {
                     menuDashboard = new MenuDashboard();
-                    hello = new JLabel("<html>Xin chào nhà xe: <font color='#3b78db'>" + ssNhaXe.getTenNX() +"</font></html>");
+                    hello = new JLabel("<html>Xin chào nhà xe: <font color='#3b78db'>" + ssNhaXe.getTenNX() + "</font></html>");
                     hello.setIcon(new ImageIcon(new ImageIcon("images/10x10.png").getImage().getScaledInstance(20, 50, Image.SCALE_DEFAULT)));
                     spaceHello = new JLabel();
                     spaceHello.setPreferredSize(new Dimension(20, 50));
@@ -393,26 +393,96 @@ public class Login extends JPanel {
                 }
             }
         });
-
+        user.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (login()) {
+                        menuDashboard = new MenuDashboard();
+                        hello = new JLabel("<html>Xin chào nhà xe: <font color='#3b78db'>" + ssNhaXe.getTenNX() + "</font></html>");
+                        hello.setIcon(new ImageIcon(new ImageIcon("images/10x10.png").getImage().getScaledInstance(20, 50, Image.SCALE_DEFAULT)));
+                        spaceHello = new JLabel();
+                        spaceHello.setPreferredSize(new Dimension(20, 50));
+                        Font fontHello = new Font("SansSerif", Font.BOLD, 15);
+                        hello.setFont(fontHello);
+                        hello.setForeground(new Color(140, 140, 140));
+                        ArrayList<TuyenDTO> danhSachTuyen = null;
+                        dashboard = new Dashboard(danhSachTuyen);
+                        areaPanel.remove(login);
+                        areaPanel.add(dashboard, BorderLayout.CENTER);
+                        navbar.remove(navBackHome);
+                        navbar.add(navIsLogin, BorderLayout.EAST);
+                        navbar.add(titleListTicket, BorderLayout.CENTER);
+                        navbar.add(hello, BorderLayout.WEST);
+                        //navbar.add(spaceHello, BorderLayout.WEST);
+                        slideBar.remove(selectTicket);
+                        slideBar.add(menuDashboard, BorderLayout.CENTER);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                        navbar.validate();
+                        navbar.repaint();
+                        slideBar.validate();
+                        slideBar.repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Đăng nhập thất bại", 1);
+                    }
+                }
+            }
+        });
+        textPass.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    if (login()) {
+                        menuDashboard = new MenuDashboard();
+                        hello = new JLabel("<html>Xin chào nhà xe: <font color='#3b78db'>" + ssNhaXe.getTenNX() + "</font></html>");
+                        hello.setIcon(new ImageIcon(new ImageIcon("images/10x10.png").getImage().getScaledInstance(20, 50, Image.SCALE_DEFAULT)));
+                        spaceHello = new JLabel();
+                        spaceHello.setPreferredSize(new Dimension(20, 50));
+                        Font fontHello = new Font("SansSerif", Font.BOLD, 15);
+                        hello.setFont(fontHello);
+                        hello.setForeground(new Color(140, 140, 140));
+                        ArrayList<TuyenDTO> danhSachTuyen = null;
+                        dashboard = new Dashboard(danhSachTuyen);
+                        areaPanel.remove(login);
+                        areaPanel.add(dashboard, BorderLayout.CENTER);
+                        navbar.remove(navBackHome);
+                        navbar.add(navIsLogin, BorderLayout.EAST);
+                        navbar.add(titleListTicket, BorderLayout.CENTER);
+                        navbar.add(hello, BorderLayout.WEST);
+                        //navbar.add(spaceHello, BorderLayout.WEST);
+                        slideBar.remove(selectTicket);
+                        slideBar.add(menuDashboard, BorderLayout.CENTER);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                        navbar.validate();
+                        navbar.repaint();
+                        slideBar.validate();
+                        slideBar.repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Tài khoản hoặc mật khẩu không đúng", "Đăng nhập thất bại", 1);
+                    }
+                }
+            }
+        });
     }
-    
+
     public boolean login() {
 
         ArrayList<NhaXeDTO> dsNhaXe = new ArrayList<>();
         dsNhaXe = NhaXeBUS.getAll();
 
         NhaXeDTO nhaXe;
-        for(NhaXeDTO nx : dsNhaXe) {
+        for (NhaXeDTO nx : dsNhaXe) {
             nhaXe = nx;
-            if(nhaXe.getUsername().equals(user.getText())) {
-                if(nhaXe.getPassword().equals(textPass.getText())) {
+            if (nhaXe.getUsername().equals(user.getText())) {
+                if (nhaXe.getPassword().equals(textPass.getText())) {
                     isLogin = true;
                     ssNhaXe = nhaXe;
                     return true;
+                } else {
+                    System.out.println("Pass sai!");
                 }
-                else{
-                    System.out.println("Pass sai!"); 
-               }
             }
         }
 
