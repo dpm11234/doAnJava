@@ -256,7 +256,25 @@ public class BookedTicket extends JPanel {
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251));
+        
+        
+
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 16);
+
+        JLabel noTicket = new JLabel("Chưa Có Khách Đặt Mua!");
+        noTicket.setPreferredSize(new Dimension(width, 40));
+        noTicket.setVerticalAlignment(JLabel.CENTER);
+        noTicket.setHorizontalAlignment(JLabel.CENTER);
+        noTicket.setForeground(new Color(100, 100, 100));
+        noTicket.setFont(fontTextTitle);
+        
         height = danhSachKhachHang.size() * 40;
+
+        if (danhSachKhachHang.size() <= 0) {
+            height = 40;
+            ka.setPreferredSize(new Dimension(widthGet - 130 - 270 - 17, height));
+            ka.add(noTicket);
+        }
         if (height > heightGet - 251) {
             boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 142));
         } else {
@@ -304,15 +322,6 @@ public class BookedTicket extends JPanel {
         boxListBooked.add(hi);
         bgBooked.add(boxListBooked);
 
-        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 16);
-
-        JLabel noTicket = new JLabel("Chưa Có Khách Đặt Mua!");
-        noTicket.setPreferredSize(new Dimension(width, 40));
-        noTicket.setVerticalAlignment(JLabel.CENTER);
-        noTicket.setHorizontalAlignment(JLabel.CENTER);
-        noTicket.setForeground(new Color(100, 100, 100));
-        noTicket.setFont(fontTextTitle);
-
         this.add(bgBooked);
 
         addComponentListener(new ComponentAdapter() {
@@ -348,6 +357,7 @@ public class BookedTicket extends JPanel {
                 }
                 infoTicket.setPreferredSize(new Dimension(widthG, 40));
                 titleTable.setPreferredSize(new Dimension(widthG, 38));
+
                 ka.setPreferredSize(new Dimension(widthG - 17, height));
                 if (height > heightGet - 251) {
                     hi.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 251));
@@ -379,12 +389,19 @@ public class BookedTicket extends JPanel {
                     count++;
                 }
 
-                if (count <= 0) {
+                if (danhSachKhachHang.size() <= 0) {
+                    height = 40;
+                    noTicket.setPreferredSize(new Dimension(widthG - 17, 40));
+                    ka.setPreferredSize(new Dimension(widthG - 17, height));
                     ka.add(noTicket);
                 }
 
+                bgBooked.validate();
+                bgBooked.repaint();
+
                 timeBooked.revalidate();
                 boxListBooked.revalidate();
+
             }
         });
 
