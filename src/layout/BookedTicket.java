@@ -35,6 +35,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultButtonModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -336,13 +337,13 @@ public class BookedTicket extends JPanel {
                 } else {
                     width = widthG;
                 }
-                int widthOutLine = width - 5;
+                int widthOutLine2 = width - 5;
 
-                float checkW2 = (float) widthOutLine / 100 * 10;
-                float nameW2 = (float) widthOutLine / 100 * 26;
-                float phoneW2 = (float) widthOutLine / 100 * 19;
-                float totalW2 = (float) widthOutLine / 100 * 13;
-                float timeW2 = (float) widthOutLine / 100 * 21;
+                float checkW2 = (float) widthOutLine2 / 100 * 10;
+                float nameW2 = (float) widthOutLine2 / 100 * 26;
+                float phoneW2 = (float) widthOutLine2 / 100 * 19;
+                float totalW2 = (float) widthOutLine2 / 100 * 13;
+                float timeW2 = (float) widthOutLine2 / 100 * 21;
 
                 int checkW = Math.round(checkW2) + 1;
                 int nameW = Math.round(nameW2);
@@ -365,6 +366,7 @@ public class BookedTicket extends JPanel {
                 } else {
                     hi.setPreferredSize(new Dimension(widthGet - 130 - 270, height));
                 }
+                check.setPreferredSize(new Dimension(checkW, 38));
                 name.setPreferredSize(new Dimension(nameW, 38));
                 phone.setPreferredSize(new Dimension(phoneW, 38));
                 totalTicket.setPreferredSize(new Dimension(totalW, 38));
@@ -499,6 +501,7 @@ public class BookedTicket extends JPanel {
             check.setBorderPainted(false);
             check.setFocusPainted(false);
             check.setContentAreaFilled(false);
+            check.setModel(new FixedStateButtonModel());
             check.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
             try {
@@ -632,6 +635,7 @@ public class BookedTicket extends JPanel {
             delete.setBorderPainted(false);
             delete.setFocusPainted(false);
             delete.setContentAreaFilled(false);
+            delete.setModel(new FixedStateButtonModel());
             delete.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
             try {
@@ -756,6 +760,7 @@ public class BookedTicket extends JPanel {
             check.setBorderPainted(false);
             check.setFocusPainted(false);
             check.setContentAreaFilled(false);
+            check.setModel(new FixedStateButtonModel());
             check.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
             try {
@@ -869,6 +874,7 @@ public class BookedTicket extends JPanel {
             delete.setBorderPainted(false);
             delete.setFocusPainted(false);
             delete.setContentAreaFilled(false);
+            delete.setModel(new FixedStateButtonModel());
             delete.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
             try {
@@ -939,5 +945,24 @@ public class BookedTicket extends JPanel {
             this.add(boxButtonDelete);
 
         }
+    }
+    
+    public class FixedStateButtonModel extends DefaultButtonModel    {
+
+        @Override
+        public boolean isPressed() {
+            return false;
+        }
+
+        @Override
+        public boolean isRollover() {
+            return false;
+        }
+
+        @Override
+        public void setRollover(boolean b) {
+            //NOOP
+        }
+
     }
 }
