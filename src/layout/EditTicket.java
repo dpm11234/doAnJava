@@ -43,6 +43,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -128,9 +129,10 @@ public class EditTicket extends JPanel {
         selectTime.setBackground(new Color(255, 255, 255));
         LocalDateTime time = tuyen.getThoiGianKhoiHanh().toLocalDateTime();
 
-        datePicker = new DatePickerAdd(9);
-        datePicker.getTextField().setText(time.getDayOfMonth() + "-" + time.getMonthValue() + "-" + time.getYear());
+        String date = new SimpleDateFormat("dd-MM-yyyy").format(tuyen.getThoiGianKhoiHanh());
 
+        datePicker = new DatePickerAdd(9);
+        datePicker.getTextField().setText(date);
         TwoDots dot1 = new TwoDots();
         inputTime = new Input("Giờ khởi hành", "time-oclock");
 
@@ -246,8 +248,11 @@ public class EditTicket extends JPanel {
                 switch (handleEditTicket()) {
                     case 1:
                         areaPanel.removeAll();
-                        Dashboard dashBoard = new Dashboard(null);
-                        areaPanel.add(dashBoard);
+                        areaPanel.add(dashboard);
+                        dashboard.getKa().removeAll();
+                        dashboard.showTicket(TuyenBUS.getAll());
+                        dashboard.getKa().validate();
+                        dashboard.getKa().repaint();
                         areaPanel.validate();
                         areaPanel.repaint();
                         JOptionPane.showMessageDialog(null, "Sửa thành công", "Thành công", 1);
@@ -317,7 +322,7 @@ public class EditTicket extends JPanel {
         Date date = new Date();
         Timestamp gioKhoiHanh;
         try {
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy hh:mm");
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             date = format.parse(txtGioKhoiHanh);
             gioKhoiHanh = new Timestamp(date.getTime());
             tuyen.setThoiGianKhoiHanh(gioKhoiHanh);

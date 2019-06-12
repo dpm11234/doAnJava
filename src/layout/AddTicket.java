@@ -52,6 +52,7 @@ import javax.swing.text.JTextComponent;
 import java.util.Date;
 import java.util.Locale;
 import static layout.Content.areaPanel;
+import static layout.Content.dashboard;
 import static layout.Main.frame;
 import static util.Session.*;
 
@@ -224,21 +225,24 @@ public class AddTicket extends JPanel {
                         if (rs) {
                             ssNhaXe.setSoTuyen(ssNhaXe.getSoTuyen() + 1);
                             areaPanel.removeAll();
-                            Dashboard dashBoard = new Dashboard(null);
-                            areaPanel.add(dashBoard);
+                            areaPanel.add(dashboard);
+                            dashboard.getKa().removeAll();
+                            dashboard.showTicket(TuyenBUS.getAll());
+                            dashboard.getKa().validate();
+                            dashboard.getKa().repaint();
                             areaPanel.validate();
                             areaPanel.repaint();
                         }
                         JOptionPane.showMessageDialog(null, "Tạo thành công", "Thành công", 1);
                         break;
                     case -2:
-                        JOptionPane.showMessageDialog(null, "Giờ khởi hành không hợp lệ", "Thất bại", 1);
+                        JOptionPane.showMessageDialog(null, "Giờ khởi hành không hợp lệ", "Thất bại", JOptionPane.ERROR_MESSAGE);
                         break;
                     case -3:
-                        JOptionPane.showMessageDialog(null, "Giá không hợp lệ", "Thất bại", 1);
+                        JOptionPane.showMessageDialog(null, "Giá không hợp lệ", "Thất bại", 0);
                         break;
                     case -4:
-                        JOptionPane.showMessageDialog(null, "Số đã đặt không hợp lệ", "Thất bại", 1);
+                        JOptionPane.showMessageDialog(null, "Số đã đặt không hợp lệ", "Thất bại", 0);
                 }
             }
         });
@@ -284,7 +288,7 @@ public class AddTicket extends JPanel {
         Date date = new Date();
         Timestamp gioKhoiHanh;
         try {
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
             date = format.parse(txtGioKhoiHanh);
             gioKhoiHanh = new Timestamp(date.getTime());
             tuyen.setThoiGianKhoiHanh(gioKhoiHanh);
