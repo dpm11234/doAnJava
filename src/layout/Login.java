@@ -41,6 +41,7 @@ import static layout.Content.navbar;
 
 import dto.TuyenDTO;
 import jdk.nashorn.internal.scripts.JO;
+import static layout.Content.addTicket;
 import layout.Dashboard;
 import static layout.Navbar.navIsLogin;
 import static layout.Navbar.navBackHome;

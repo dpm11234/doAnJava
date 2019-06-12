@@ -49,7 +49,7 @@ public class TuyenBUS {
         int res = -1;
 
         res = TuyenDAO.deleteTicket(maTuyen);
-
+        
         return res;
     }
     

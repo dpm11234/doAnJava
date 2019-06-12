@@ -275,14 +275,17 @@ public class EditTicket extends JPanel {
                 int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa?", "Thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (check == 0) {
                     int res = TuyenBUS.deleteTicket(tuyen.getMaTuyen());
-                    JOptionPane.showMessageDialog(null, "Xóa thành công", "Thông báo", 1);
-                    if (res != 1) {
+                    System.out.println(res);
+                    if (res == 0) {
+                        JOptionPane.showMessageDialog(null, "Xóa thành công", "Thông báo", 1);
+                        areaPanel.removeAll();
+                        dashboard = new Dashboard(null);
+                        areaPanel.add(dashboard);
+                        areaPanel.validate();
+                        areaPanel.repaint();
+                    } else {
                         JOptionPane.showMessageDialog(null, "Xóa thất bại", "Thông báo", JOptionPane.ERROR_MESSAGE);
                     }
-                    areaPanel.removeAll();
-                    areaPanel.add(dashboard);
-                    areaPanel.validate();
-                    areaPanel.repaint();
                 }
             }
         });
