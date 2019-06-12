@@ -353,25 +353,37 @@ public class Login extends JPanel {
         // Lưu tài khoản thôi
         this.user.setText("tk01");
         this.textPass.setText("admin");
+        
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
+        
+        JLabel titleListTicket = new JLabel("Quản Lý Danh Sách Vé");
+        titleListTicket.setPreferredSize(new Dimension(150, 60));
+        titleListTicket.setVerticalAlignment(JLabel.CENTER);
+        titleListTicket.setHorizontalAlignment(JLabel.CENTER);
+        titleListTicket.setFont(fontTextTitle);
+        titleListTicket.setForeground(new Color(140, 140, 140));
 
         buttonLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(login()) {
                     menuDashboard = new MenuDashboard();
-                    hello = new JLabel("Xin chào nhà xe: " + ssNhaXe.getTenNX());
+                    hello = new JLabel("<html>Xin chào nhà xe: <font color='#3b78db'>" + ssNhaXe.getTenNX() +"</font></html>");
+                    hello.setIcon(new ImageIcon(new ImageIcon("images/10x10.png").getImage().getScaledInstance(20, 50, Image.SCALE_DEFAULT)));
                     spaceHello = new JLabel();
                     spaceHello.setPreferredSize(new Dimension(20, 50));
                     Font fontHello = new Font("SansSerif", Font.BOLD, 15);
                     hello.setFont(fontHello);
+                    hello.setForeground(new Color(140, 140, 140));
                     ArrayList<TuyenDTO> danhSachTuyen = null;
                     dashboard = new Dashboard(danhSachTuyen);
                     areaPanel.remove(login);
                     areaPanel.add(dashboard, BorderLayout.CENTER);
                     navbar.remove(navBackHome);
                     navbar.add(navIsLogin, BorderLayout.EAST);
-                    navbar.add(hello, BorderLayout.CENTER);
-                    navbar.add(spaceHello, BorderLayout.WEST);
+                    navbar.add(titleListTicket, BorderLayout.CENTER);
+                    navbar.add(hello, BorderLayout.WEST);
+                    //navbar.add(spaceHello, BorderLayout.WEST);
                     slideBar.remove(selectTicket);
                     slideBar.add(menuDashboard, BorderLayout.CENTER);
                     areaPanel.validate();

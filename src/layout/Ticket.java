@@ -344,8 +344,6 @@ public class Ticket extends JPanel {
                 areaPanel.validate();
                 areaPanel.repaint();
                 navbar.removeAll();
-                navbar.add(titleListTicket, BorderLayout.CENTER);
-                navbar.add(navBackSelect, BorderLayout.WEST);
                 navbar.add(navLogin, BorderLayout.EAST);
                 navbar.validate();
                 navbar.repaint();

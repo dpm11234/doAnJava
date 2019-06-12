@@ -68,6 +68,7 @@ public class Dashboard extends JPanel {
         } catch (IOException | HeadlessException exp) {
             exp.printStackTrace();
         }
+        
 
         selectTicketPanel = new SelectTicketPanel();
         JLabel test = new JLabel("Menu quản trị");

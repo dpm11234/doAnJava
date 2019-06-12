@@ -69,9 +69,7 @@ public class NavIsLogin extends JPanel {
                 areaPanel.removeAll();
                 areaPanel.add(home, BorderLayout.CENTER);
                 slideBar.remove(menuDashboard);
-                navbar.remove(navIsLogin);
-                navbar.remove(hello);
-                navbar.remove(spaceHello);
+                navbar.removeAll();
                 navbar.add(navLogin, BorderLayout.EAST);
 
 //                SelectTicket selectTicket2 = new SelectTicket();
