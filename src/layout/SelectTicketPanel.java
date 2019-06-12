@@ -208,7 +208,7 @@ public class SelectTicketPanel extends JPanel {
                 } else if(currentFrom == 0) {
                     danhSachTuyen = TuyenBUS.getAllByStart(list2[currentTo], dateTime);
                 } else {
-                    TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
+                    danhSachTuyen = TuyenBUS.getAllByTrip(list[currentFrom], list2[currentTo], dateTime);
                 }
 
                 dashboard.getKa().removeAll();

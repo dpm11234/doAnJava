@@ -222,7 +222,6 @@ public class TuyenDAO {
         String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "';";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-
         helper.open();
 
         ResultSet resultSet = helper.excuteQuery(sql);
