@@ -94,7 +94,7 @@ public class KhachHangDTO {
         this.thoiGianDat = thoiGianDat;
     }
 
-    public int getKT(int kt) {
+    public int getKT() {
         return kt;
     }
 

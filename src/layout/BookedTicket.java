@@ -61,6 +61,7 @@ public class BookedTicket extends JPanel {
     private ArrayList<KhachHangDTO> danhSachKhachHang;
     private TuyenDTO tuyen;
     static JPanel spaceTop;
+    JPanel ka;
     int rePP = 0;
 
     public BookedTicket(TuyenDTO tuyen) {
@@ -251,7 +252,7 @@ public class BookedTicket extends JPanel {
         UIManager.put("ScrollBar.background", new Color(219, 220, 221));
         UIManager.put("ScrollBar.highlight", new Color(252, 210, 33, 0));
 
-        JPanel ka = new JPanel();
+        ka = new JPanel();
         ka.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         ka.setBorder(borderInputPass);
@@ -399,7 +400,6 @@ public class BookedTicket extends JPanel {
 //        });
         this.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent e) {
-                System.out.println("hihi");
                 if (rePP == 0) {
                     bgBooked.validate();
                     bgBooked.repaint();
@@ -409,7 +409,6 @@ public class BookedTicket extends JPanel {
         });
         hi.addMouseMotionListener(new MouseAdapter() {
             public void mouseMoved(MouseEvent e) {
-                System.out.println("hihi");
                 if (rePP == 0) {
                     bgBooked.validate();
                     bgBooked.repaint();
@@ -501,28 +500,59 @@ public class BookedTicket extends JPanel {
                 exp.printStackTrace();
             };
 
-            check.addMouseListener(new MouseAdapter() {
-                public void mouseEntered(MouseEvent e) {
-                    boxButtonCheckTHover.add(check);
-                    boxButtonCheck.remove(boxButtonCheckT);
-                    boxButtonCheck.add(boxButtonCheckTHover);
-                    boxButtonCheck.validate();
-                    boxButtonCheck.repaint();
+//            check.addMouseListener(new MouseAdapter() {
+//                public void mouseEntered(MouseEvent e) {
+//                    boxButtonCheckTHover.add(check);
+//                    boxButtonCheck.remove(boxButtonCheckT);
+//                    boxButtonCheck.add(boxButtonCheckTHover);
+//                    boxButtonCheck.validate();
+//                    boxButtonCheck.repaint();
+//                }
+//            });
+//
+//            check.addMouseListener(new MouseAdapter() {
+//                public void mouseExited(MouseEvent e) {
+//                    boxButtonCheckT.add(check);
+//                    boxButtonCheck.remove(boxButtonCheckTHover);
+//                    boxButtonCheck.add(boxButtonCheckT);
+//                    boxButtonCheck.validate();
+//                    boxButtonCheck.repaint();
+//                }
+//            });
+
+            check.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    if (khachHang.getKT() == 0) {
+                        khachHang.setKT(1);
+                        KhachHangBUS.updateCheck(khachHang);
+                    } else {
+                        khachHang.setKT(0);
+                        KhachHangBUS.updateCheck(khachHang);
+                    }
+                    ka.removeAll();
+                    int count = 0;
+
+                    for (KhachHangDTO khachHang : danhSachKhachHang) {
+                        if (count % 2 == 0) {
+                            ka.add(new ListBookedB(khachHang));
+                        } else {
+                            ka.add(new ListBookedW(khachHang));
+                        }
+                        count++;
+                    }
+                    ka.validate();
+                    ka.repaint();
                 }
             });
 
-            check.addMouseListener(new MouseAdapter() {
-                public void mouseExited(MouseEvent e) {
-                    boxButtonCheckT.add(check);
-                    boxButtonCheck.remove(boxButtonCheckTHover);
-                    boxButtonCheck.add(boxButtonCheckT);
-                    boxButtonCheck.validate();
-                    boxButtonCheck.repaint();
-                }
-            });
-
-            boxButtonCheckT.add(check);
-            boxButtonCheck.add(boxButtonCheckT);
+            if (khachHang.getKT() == 0) {
+                boxButtonCheckT.add(check);
+                boxButtonCheck.add(boxButtonCheckT);
+            } else {
+                boxButtonCheckTHover.add(check);
+                boxButtonCheck.add(boxButtonCheckTHover);
+            }
 
             Line line0 = new Line();
 
@@ -727,28 +757,39 @@ public class BookedTicket extends JPanel {
                 exp.printStackTrace();
             };
 
-            check.addMouseListener(new MouseAdapter() {
-                public void mouseEntered(MouseEvent e) {
-                    boxButtonCheckTHover.add(check);
-                    boxButtonCheck.remove(boxButtonCheckT);
-                    boxButtonCheck.add(boxButtonCheckTHover);
-                    boxButtonCheck.validate();
-                    boxButtonCheck.repaint();
+            check.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    if (khachHang.getKT() == 0) {
+                        khachHang.setKT(1);
+                        KhachHangBUS.updateCheck(khachHang);
+                    } else {
+                        khachHang.setKT(0);
+                        KhachHangBUS.updateCheck(khachHang);
+                    }
+                    ka.removeAll();
+                    int count = 0;
+
+                    for (KhachHangDTO khachHang : danhSachKhachHang) {
+                        if (count % 2 == 0) {
+                            ka.add(new ListBookedB(khachHang));
+                        } else {
+                            ka.add(new ListBookedW(khachHang));
+                        }
+                        count++;
+                    }
+                    ka.validate();
+                    ka.repaint();
                 }
             });
 
-            check.addMouseListener(new MouseAdapter() {
-                public void mouseExited(MouseEvent e) {
-                    boxButtonCheckT.add(check);
-                    boxButtonCheck.remove(boxButtonCheckTHover);
-                    boxButtonCheck.add(boxButtonCheckT);
-                    boxButtonCheck.validate();
-                    boxButtonCheck.repaint();
-                }
-            });
-
-            boxButtonCheckT.add(check);
-            boxButtonCheck.add(boxButtonCheckT);
+            if (khachHang.getKT() == 0) {
+                boxButtonCheckT.add(check);
+                boxButtonCheck.add(boxButtonCheckT);
+            } else {
+                boxButtonCheckTHover.add(check);
+                boxButtonCheck.add(boxButtonCheckTHover);
+            }
 
             Line line0 = new Line();
 

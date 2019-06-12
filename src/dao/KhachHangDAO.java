@@ -78,5 +78,20 @@ public class KhachHangDAO {
         return res;
 
     }
+    
+    public static int updateCheck(KhachHangDTO khachHang){
+        int res = 0;
+        DataAccessHelper helper = new DataAccessHelper();
+
+        String sql = "UPDATE KHACHHANG SET KT = "+khachHang.getKT()+ " WHERE id = " +"'" +khachHang.getId()+"'";
+        System.out.println(sql);
+        helper.open();
+
+        res = helper.excuteUpdate(sql);
+
+        helper.close();
+
+        return res;
+    }
 
 }
