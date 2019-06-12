@@ -3,10 +3,12 @@ package bus;
 import dao.TuyenDAO;
 import dto.TuyenDTO;
 
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class TuyenBUS {
     public static ArrayList<TuyenDTO> getAll() {
@@ -32,6 +34,12 @@ public class TuyenBUS {
 
         if(!tuyen.getBienSoXe().matches(regex)) {
             return -5;
+        }
+
+        java.util.Date date = Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+        if(date.getTime() > tuyen.getThoiGianKhoiHanh().getTime()) {
+            return -6;
         }
 
         res = TuyenDAO.addTicket(tuyen);

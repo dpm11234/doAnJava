@@ -116,13 +116,9 @@ public class HomeSelect extends JPanel {
         } else {
 //            ka.setPreferredSize(new Dimension(790, 50));
 ////            ka.add(showTitle);
-            LocalDate now = LocalDate.now();
+
             Date date = Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 
-
-            System.out.println(date.getTime());
-
-            System.out.println(now.toString());
             Timestamp timestampQ = Timestamp.valueOf(time);
             if(date.getTime() > timestampQ.getTime()) {
                 message.setText("Ngày không hợp lệ");
