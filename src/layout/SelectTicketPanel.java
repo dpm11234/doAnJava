@@ -47,8 +47,8 @@ import static layout.SelectTicket.c2;
  */
 public class SelectTicketPanel extends JPanel {
 
-    String list[] = {"Tất cả", "TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
-    String list2[] = {"Tất cả", "Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
+    String list[] = {"Tất cả", "TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
+    String list2[] = {"Tất cả", "Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
     int currentTo, currentFrom;
     static ListTicket listTicket;
     private SelectWhite selectFrom, selectTo;

@@ -13,11 +13,12 @@ public class KhachHangDTO {
     private String sdt;
     private int soVeDat;
     private Timestamp thoiGianDat;
+    private int kt;
 
     public KhachHangDTO() {
     }
 
-    public KhachHangDTO(int id, String maNX, String maTuyen, String hoTen, String sdt, int soVeDat, Timestamp thoiGianDat) {
+    public KhachHangDTO(int id, String maNX, String maTuyen, String hoTen, String sdt, int soVeDat, Timestamp thoiGianDat, int kt) {
         this.id = id;
         this.maNX = maNX;
         this.maTuyen = maTuyen;
@@ -25,6 +26,7 @@ public class KhachHangDTO {
         this.sdt = sdt;
         this.soVeDat = soVeDat;
         this.thoiGianDat = thoiGianDat;
+        this.kt = kt;
     }
 
     public KhachHangDTO(String maNX, String maTuyen, String hoTen, String sdt, int soVeDat, Timestamp thoiGianDat) {
@@ -90,5 +92,13 @@ public class KhachHangDTO {
 
     public void setThoiGianDat(Timestamp thoiGianDat) {
         this.thoiGianDat = thoiGianDat;
+    }
+
+    public int getKT() {
+        return kt;
+    }
+
+    public void setKT(int kt) {
+        this.kt = kt;
     }
 }

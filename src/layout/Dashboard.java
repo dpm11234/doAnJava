@@ -35,9 +35,11 @@ import static layout.MenuDashboard.panelTicket;
 
 // import Layout
 import dto.TuyenDTO;
+import java.awt.GridBagLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import static layout.Main.heightGet;
+import static layout.Main.widthGet;
 import layout.SelectTicketPanel;
 import layout.Ticket;
 
@@ -113,7 +115,6 @@ public class Dashboard extends JPanel {
         spaceScorll.setPreferredSize(new Dimension(810, 10));
         bgDashboard.add(selectTicketPanel);
         bgDashboard.add(spaceScorll);
-
         bgDashboard.add(hi);
         
         bgDashboard.addMouseListener(new MouseAdapter() {

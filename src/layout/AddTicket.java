@@ -67,8 +67,8 @@ import static util.Session.*;
  */
 public class AddTicket extends JPanel {
 
-    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
-    String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tay Ninh"};
+    String list[] = {"TP.HCM", "Đồng Nai", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
+    String list2[] = {"Đồng Nai", "TP.HCM", "Bình Dương", "Vũng Tàu", "Long An", "Tây Ninh"};
     String listKind[] = {"16", "24", "29", "34", "36", "39", "47", "52"};
     static boolean checkClickJCompoBox1, checkClickJCompoBox2, checkClickJCompoBoxKind;
     static SelectDown compoBoxFrom, compoBoxTo, compoBoxKind;

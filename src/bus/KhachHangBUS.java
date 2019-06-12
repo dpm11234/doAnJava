@@ -32,5 +32,9 @@ public class KhachHangBUS {
     public static int deleteCustomer(int id) {
         return KhachHangDAO.deleteCustomer(id);
     }
+    
+    public static int updateCheck(KhachHangDTO khachHang){
+        return KhachHangDAO.updateCheck(khachHang);
+    }
 
 }
