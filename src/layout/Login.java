@@ -350,10 +350,6 @@ public class Login extends JPanel {
         
         this.add(loginBg, BorderLayout.CENTER);
         
-        // Lưu tài khoản thôi
-        this.user.setText("tk01");
-        this.textPass.setText("admin");
-        
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
         
         JLabel titleListTicket = new JLabel("Quản Lý Danh Sách Vé");
