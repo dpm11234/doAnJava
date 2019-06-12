@@ -185,7 +185,7 @@ public class PickTicket extends JPanel {
 
                 switch (handlePickTicket()) {
                     case 1:
-                        JOptionPane.showMessageDialog(null, "Đặt vé thành công", "Thành công", 1);
+                        JOptionPane.showMessageDialog(null, "Đặt vé thành công, nhà xe sẽ liên hệ ngay với bạn", "Thành công", 1);
                         areaPanel.removeAll();
                         areaPanel.add(home);
                         areaPanel.validate();
