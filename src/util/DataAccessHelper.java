@@ -14,14 +14,11 @@ public class DataAccessHelper {
 
     public void open() {
         try {
-//            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
 //            conn = DriverManager
 //                    .getConnection("jdbc:mysql://remotemysql.com:3306/7jjFv7zPcq", "7jjFv7zPcq", "Eba3hfJfFj");
-
-//            conn = DriverManager
-//                    .getConnection("jdbc:mysql://13.76.36.22:3306/doan", "root", "282828");
             conn = DriverManager
-                    .getConnection("jdbc:mysql://localhost:3307/doanjava", "root", "282828");
+                    .getConnection("jdbc:mysql://localhost:3306/doanjava", "root", "");
 
         } catch (Exception e) {
             e.printStackTrace();

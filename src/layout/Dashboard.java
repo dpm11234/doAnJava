@@ -35,9 +35,11 @@ import static layout.MenuDashboard.panelTicket;
 
 // import Layout
 import dto.TuyenDTO;
+import java.awt.GridBagLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import static layout.Main.heightGet;
+import static layout.Main.widthGet;
 import layout.SelectTicketPanel;
 import layout.Ticket;
 
@@ -113,7 +115,6 @@ public class Dashboard extends JPanel {
         spaceScorll.setPreferredSize(new Dimension(810, 10));
         bgDashboard.add(selectTicketPanel);
         bgDashboard.add(spaceScorll);
-
         bgDashboard.add(hi);
         
         bgDashboard.addMouseListener(new MouseAdapter() {
@@ -134,21 +135,35 @@ public class Dashboard extends JPanel {
     }
 
     public void showTicket(ArrayList<TuyenDTO> danhSachTuyen) {
-        int height = 0;
-        int countTuyen = 1;
+
+        JPanel showTitle = new JPanel();
+//        showTitle.setSize(new Dimension(150, 50));
+        JLabel message = new JLabel("Không có vé");
+
+        showTitle.add(message);
+
         if(danhSachTuyen == null) {
             danhSachTuyen = TuyenBUS.getAll();
         }
-        for(TuyenDTO tuyen : danhSachTuyen) {
-            ticket = new TicketClient(tuyen);
-            ticket.setPreferredSize(new Dimension(380, 118));
 
-            if (countTuyen % 2 != 0) {
-                height += 133;
+        if(danhSachTuyen.size() > 0) {
+            int height = 0;
+            int countTuyen = 1;
+
+            for(TuyenDTO tuyen : danhSachTuyen) {
+                ticket = new TicketClient(tuyen);
+                ticket.setPreferredSize(new Dimension(380, 118));
+
+                if (countTuyen % 2 != 0) {
+                    height += 133;
+                }
+                countTuyen++;
+                ka.setPreferredSize(new Dimension(790, height));
+                ka.add(ticket);
             }
-            countTuyen++;
-            ka.setPreferredSize(new Dimension(790, height));
-            ka.add(ticket);
+        } else {
+            ka.setPreferredSize(new Dimension(790, 50));
+            ka.add(showTitle);
         }
     }
 

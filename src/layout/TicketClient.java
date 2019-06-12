@@ -352,7 +352,7 @@ public class TicketClient extends JPanel {
         // Loáº¡i xe
         JLabel typeBus = new JLabel("");
         typeBus.setPreferredSize(new Dimension(122, 33));
-        typeBus.setIcon(new ImageIcon(new ImageIcon("images/32c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
+        typeBus.setIcon(new ImageIcon(new ImageIcon("images/"+ tuyen.getTongGhe() +"c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
         typeBus.setVerticalAlignment(JLabel.CENTER);
         typeBus.setHorizontalAlignment(JLabel.CENTER);
 
