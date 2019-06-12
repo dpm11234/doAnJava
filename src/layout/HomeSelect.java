@@ -11,10 +11,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
@@ -36,6 +39,8 @@ import static layout.MenuDashboard.panelTicket;
 import dto.TuyenDTO;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.Date;
+
 import static layout.Main.heightGet;
 import layout.SelectTicketPanel;
 import layout.Ticket;
@@ -111,10 +116,15 @@ public class HomeSelect extends JPanel {
         } else {
 //            ka.setPreferredSize(new Dimension(790, 50));
 ////            ka.add(showTitle);
-            LocalDateTime now = LocalDateTime.now();
-            Timestamp timestampNow = Timestamp.valueOf(now);
+            LocalDate now = LocalDate.now();
+            Date date = Date.from(LocalDate.now().atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+
+
+            System.out.println(date.getTime());
+
+            System.out.println(now.toString());
             Timestamp timestampQ = Timestamp.valueOf(time);
-            if(timestampNow.getTime() > timestampQ.getTime()) {
+            if(date.getTime() > timestampQ.getTime()) {
                 message.setText("Ngày không hợp lệ");
             }
             bgDashboard.add(showTitle);
