@@ -1,24 +1,19 @@
 package layout;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 import static layout.Content.areaPanel;
 import static layout.Content.home;
 import static layout.Content.login;
 import static layout.Content.navbar;
-import static layout.Navbar.navLogin;
-import static layout.Navbar.navBackHome;
+import static layout.Navbar.*;
 import static layout.SelectTicket.listTicket;
 import static util.Session.isLogin;
+import static layout.Content.*;
 
 /**
  *
@@ -30,7 +25,7 @@ public class NavBackSelect extends JPanel{
     public NavBackSelect() {
         borderSignIn = new MatteBorder(0, 0, 0, 0, new Color(227, 228, 231));
         borderSignIn.getBaseline(this, 1, 40);
-        
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         this.setLayout(new GridBagLayout());
         this.setPreferredSize(new Dimension(160, 60));
         this.setBackground(new Color(242, 243, 245));
@@ -51,21 +46,42 @@ public class NavBackSelect extends JPanel{
         btnBackLogin.setPreferredSize(new Dimension(120, 30));
         
         this.add(btnBackLogin);
+
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
+
+        JLabel titleListTicket = new JLabel("Danh Sách Vé");
+        titleListTicket.setPreferredSize(new Dimension(100, 60));
+        titleListTicket.setVerticalAlignment(JLabel.CENTER);
+        titleListTicket.setHorizontalAlignment(JLabel.CENTER);
+        titleListTicket.setFont(fontTextTitle);
+        titleListTicket.setForeground(new Color(140, 140, 140));
         
         btnBackLogin.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                areaPanel.remove(login);
-                areaPanel.remove(listTicket);
-                areaPanel.add(home, BorderLayout.CENTER);
-                navbar.remove(navBackHome);
+//                areaPanel.remove(login);
+//                areaPanel.remove(listTicket);
+//                areaPanel.add(home, BorderLayout.CENTER);
+//                navbar.remove(navBackHome);
+//                navbar.add(navLogin, BorderLayout.EAST);
+//                areaPanel.validate();
+//                areaPanel.repaint();
+//                navbar.validate();
+//                navbar.repaint();
+
+
+                areaPanel.removeAll();
+                areaPanel.add(homeSelect);
+                navbar.removeAll();
                 navbar.add(navLogin, BorderLayout.EAST);
+                navbar.add(titleListTicket, BorderLayout.CENTER);
                 areaPanel.validate();
                 areaPanel.repaint();
                 navbar.validate();
                 navbar.repaint();
             }
         });
+
     }
     
     public JButton getbtnLogin() {

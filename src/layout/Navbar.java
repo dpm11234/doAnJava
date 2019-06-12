@@ -1,9 +1,6 @@
 package layout;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.MatteBorder;
@@ -41,6 +38,8 @@ public class Navbar extends JPanel{
         navBackHome = new NavBackHome();
         navIsLogin = new NavIsLogin();
         navBackSelect = new NavBackSelect();
+
+
         this.add(titleSpace, BorderLayout.WEST);
         this.add(navLogin, BorderLayout.EAST);
     }

@@ -32,6 +32,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -46,6 +48,7 @@ import static layout.Content.areaPanel;
 import static layout.Main.heightGet;
 import static layout.Main.widthGet;
 import static layout.Content.*;
+import static layout.MenuDashboard.createTicket;
 
 /**
  *
@@ -57,7 +60,8 @@ public class BookedTicket extends JPanel {
     public int height;
     private ArrayList<KhachHangDTO> danhSachKhachHang;
     private TuyenDTO tuyen;
-    static JLabel spaceTop;
+    static JPanel spaceTop;
+    int rePP = 0;
 
     public BookedTicket(TuyenDTO tuyen) {
 
@@ -71,17 +75,20 @@ public class BookedTicket extends JPanel {
         } else {
             width = widthArea;
         }
-        int widthOutLine = width - 4;
-        float nameW2 = (float) widthOutLine / 100 * 29;
-        float phoneW2 = (float) widthOutLine / 100 * 23;
-        float totalW2 = (float) widthOutLine / 100 * 16;
+        int widthOutLine = width - 5;
+
+        float checkW2 = (float) widthOutLine / 100 * 10;
+        float nameW2 = (float) widthOutLine / 100 * 26;
+        float phoneW2 = (float) widthOutLine / 100 * 19;
+        float totalW2 = (float) widthOutLine / 100 * 13;
         float timeW2 = (float) widthOutLine / 100 * 21;
 
-        int nameW = Math.round(nameW2) + 1;
+        int checkW = Math.round(checkW2) + 1;
+        int nameW = Math.round(nameW2);
         int phoneW = Math.round(phoneW2);
         int totalW = Math.round(totalW2);
         int timeW = Math.round(timeW2);
-        int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+        int deleteW = widthOutLine - (checkW + nameW + phoneW + totalW + timeW);
 
         this.setLayout(new BorderLayout());
         try {
@@ -99,9 +106,10 @@ public class BookedTicket extends JPanel {
         JPanel boxListBooked = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         boxListBooked.setBackground(new Color(255, 255, 255, 0));
 
-        spaceTop = new JLabel();
+        spaceTop = new JPanel(new BorderLayout());
         spaceTop.setPreferredSize(new Dimension(800, 30));
-        spaceTop.setBackground(new Color(95, 152, 244, 0));
+        spaceTop.setBackground(new Color(255, 255, 255, 0));
+        //spaceTop.setIcon(new ImageIcon(new ImageIcon("images/10x10.png").getImage().getScaledInstance(800, 30, Image.SCALE_DEFAULT)));
 
         JPanel infoTicket = new JPanel(new BorderLayout());
         infoTicket.setPreferredSize(new Dimension(widthGet - 130 - 270, 40));
@@ -175,7 +183,17 @@ public class BookedTicket extends JPanel {
         titleTable.setBackground(new Color(255, 255, 255));
         titleTable.setBorder(borderBox);
 
+        JLabel check = new JLabel("Xác nhận");
+        check.setPreferredSize(new Dimension(checkW, 38));
+        check.setHorizontalAlignment(JLabel.CENTER);
+        check.setForeground(new Color(117, 120, 122));
+        check.setHorizontalAlignment(JLabel.CENTER);
+        check.setVerticalAlignment(JLabel.CENTER);
+
+        Line line0 = new Line();
+
         JLabel name = new JLabel("Tên");
+        System.out.println(nameW);
         name.setPreferredSize(new Dimension(nameW, 38));
         name.setHorizontalAlignment(JLabel.CENTER);
         name.setForeground(new Color(117, 120, 122));
@@ -218,6 +236,8 @@ public class BookedTicket extends JPanel {
         delete.setHorizontalAlignment(JLabel.CENTER);
         delete.setVerticalAlignment(JLabel.CENTER);
 
+        titleTable.add(check);
+        titleTable.add(line0);
         titleTable.add(name);
         titleTable.add(line1);
         titleTable.add(phone);
@@ -306,18 +326,20 @@ public class BookedTicket extends JPanel {
                 } else {
                     width = widthG;
                 }
-                int widthOutLine = width - 4;
+                int widthOutLine = width - 5;
 
-                float nameW2 = (float) widthOutLine / 100 * 29;
-                float phoneW2 = (float) widthOutLine / 100 * 23;
-                float totalW2 = (float) widthOutLine / 100 * 16;
+                float checkW2 = (float) widthOutLine / 100 * 10;
+                float nameW2 = (float) widthOutLine / 100 * 26;
+                float phoneW2 = (float) widthOutLine / 100 * 19;
+                float totalW2 = (float) widthOutLine / 100 * 13;
                 float timeW2 = (float) widthOutLine / 100 * 21;
 
-                int nameW = Math.round(nameW2) + 1;
+                int checkW = Math.round(checkW2) + 1;
+                int nameW = Math.round(nameW2);
                 int phoneW = Math.round(phoneW2);
                 int totalW = Math.round(totalW2);
                 int timeW = Math.round(timeW2);
-                int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+                int deleteW = widthOutLine - (checkW + nameW + phoneW + totalW + timeW);
 
                 if (height > heightGet - 251) {
                     boxListBooked.setPreferredSize(new Dimension(widthGet - 130 - 270, heightGet - 142));
@@ -365,6 +387,36 @@ public class BookedTicket extends JPanel {
                 boxListBooked.revalidate();
             }
         });
+
+//        addMouseMotionListener(new MouseAdapter() {
+//            public void mouseEntered(MouseEvent e) {
+//                if (rePP == 0) {
+//                    bgBooked.validate();
+//                    bgBooked.repaint();
+//                    rePP++;
+//                }
+//            }
+//        });
+        this.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent e) {
+                System.out.println("hihi");
+                if (rePP == 0) {
+                    bgBooked.validate();
+                    bgBooked.repaint();
+                    rePP++;
+                }
+            }
+        });
+        hi.addMouseMotionListener(new MouseAdapter() {
+            public void mouseMoved(MouseEvent e) {
+                System.out.println("hihi");
+                if (rePP == 0) {
+                    bgBooked.validate();
+                    bgBooked.repaint();
+                    rePP++;
+                }
+            }
+        });
     }
 
     public class Line extends JLabel {
@@ -379,9 +431,10 @@ public class BookedTicket extends JPanel {
 
     public class ListBookedB extends JPanel {
 
-        JPanel boxButtonDeleteT, boxButtonDeleteTHover;
+        JPanel boxButtonDeleteT, boxButtonDeleteTHover, boxButtonCheckT, boxButtonCheckTHover;
 
         public ListBookedB(KhachHangDTO khachHang) {
+            MatteBorder borderBlack = new MatteBorder(1, 1, 1, 1, new Color(0, 0, 0));
 
             int widthArea = widthGet - 130 - 270;
             int width;
@@ -390,24 +443,88 @@ public class BookedTicket extends JPanel {
             } else {
                 width = widthArea;
             }
-            int widthOutLine = width - 4;
+            int widthOutLine = width - 5;
 
-            float nameW2 = (float) widthOutLine / 100 * 29;
-            float phoneW2 = (float) widthOutLine / 100 * 23;
-            float totalW2 = (float) widthOutLine / 100 * 16;
+            float checkW2 = (float) widthOutLine / 100 * 10;
+            float nameW2 = (float) widthOutLine / 100 * 26;
+            float phoneW2 = (float) widthOutLine / 100 * 19;
+            float totalW2 = (float) widthOutLine / 100 * 13;
             float timeW2 = (float) widthOutLine / 100 * 21;
 
+            int checkW = Math.round(checkW2);
             int nameW = Math.round(nameW2);
             int phoneW = Math.round(phoneW2);
             int totalW = Math.round(totalW2);
             int timeW = Math.round(timeW2);
-            int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+            int deleteW = widthOutLine - (checkW + nameW + phoneW + totalW + timeW);
 
             this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
             this.setPreferredSize(new Dimension(width, 40));
             this.setBackground(new Color(239, 241, 242));
             MatteBorder borderLR = new MatteBorder(0, 1, 0, 1, new Color(219, 220, 221));
             this.setBorder(borderLR);
+
+            JPanel boxButtonCheck = new JPanel(new GridBagLayout());
+            boxButtonCheck.setPreferredSize(new Dimension(checkW, 38));
+            boxButtonCheck.setBackground(new Color(239, 241, 242));
+
+            boxButtonCheckT = new JPanel(new BorderLayout());
+            boxButtonCheckT.setPreferredSize(new Dimension(24, 24));
+            boxButtonCheckT.setBackground(new Color(39, 241, 242));
+
+            boxButtonCheckTHover = new JPanel(new BorderLayout());
+            boxButtonCheckTHover.setPreferredSize(new Dimension(24, 24));
+            boxButtonCheckTHover.setBackground(new Color(39, 241, 242));
+
+            JButton check = new JButton();
+            check.setPreferredSize(new Dimension(24, 24));
+            check.setBackground(new Color(0, 0, 0, 0));
+            check.setRolloverEnabled(false);
+            check.setBorderPainted(false);
+            check.setFocusPainted(false);
+            check.setContentAreaFilled(false);
+            check.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/verified.png"));
+                boxButtonCheckT = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            }
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/verified-hover.png"));
+                boxButtonCheckTHover = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            };
+
+            check.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    boxButtonCheckTHover.add(check);
+                    boxButtonCheck.remove(boxButtonCheckT);
+                    boxButtonCheck.add(boxButtonCheckTHover);
+                    boxButtonCheck.validate();
+                    boxButtonCheck.repaint();
+                }
+            });
+
+            check.addMouseListener(new MouseAdapter() {
+                public void mouseExited(MouseEvent e) {
+                    boxButtonCheckT.add(check);
+                    boxButtonCheck.remove(boxButtonCheckTHover);
+                    boxButtonCheck.add(boxButtonCheckT);
+                    boxButtonCheck.validate();
+                    boxButtonCheck.repaint();
+                }
+            });
+
+            boxButtonCheckT.add(check);
+            boxButtonCheck.add(boxButtonCheckT);
+
+            Line line0 = new Line();
 
             JLabel name = new JLabel(khachHang.getHoTen());
             name.setPreferredSize(new Dimension(nameW, 38));
@@ -509,6 +626,8 @@ public class BookedTicket extends JPanel {
             boxButtonDeleteT.add(delete);
             boxButtonDelete.add(boxButtonDeleteT);
 
+            this.add(boxButtonCheck);
+            this.add(line0);
             this.add(name);
             this.add(line1);
             this.add(phone);
@@ -539,7 +658,7 @@ public class BookedTicket extends JPanel {
 
     public class ListBookedW extends JPanel {
 
-        JPanel boxButtonDeleteT, boxButtonDeleteTHover;
+        JPanel boxButtonDeleteT, boxButtonDeleteTHover, boxButtonCheckT, boxButtonCheckTHover;
 
         public ListBookedW(KhachHangDTO khachHang) {
 
@@ -550,24 +669,88 @@ public class BookedTicket extends JPanel {
             } else {
                 width = widthArea;
             }
-            int widthOutLine = width - 4;
+            int widthOutLine = width - 5;
 
-            float nameW2 = (float) widthOutLine / 100 * 29;
-            float phoneW2 = (float) widthOutLine / 100 * 23;
-            float totalW2 = (float) widthOutLine / 100 * 16;
+            float checkW2 = (float) widthOutLine / 100 * 10;
+            float nameW2 = (float) widthOutLine / 100 * 26;
+            float phoneW2 = (float) widthOutLine / 100 * 19;
+            float totalW2 = (float) widthOutLine / 100 * 13;
             float timeW2 = (float) widthOutLine / 100 * 21;
 
+            int checkW = Math.round(checkW2);
             int nameW = Math.round(nameW2);
             int phoneW = Math.round(phoneW2);
             int totalW = Math.round(totalW2);
             int timeW = Math.round(timeW2);
-            int deleteW = widthOutLine - (nameW + phoneW + totalW + timeW);
+            int deleteW = widthOutLine - (checkW + nameW + phoneW + totalW + timeW);
 
             this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
             this.setPreferredSize(new Dimension(width, 40));
             this.setBackground(new Color(255, 255, 255));
             MatteBorder borderLR = new MatteBorder(0, 1, 0, 1, new Color(219, 220, 221));
             this.setBorder(borderLR);
+
+            JPanel boxButtonCheck = new JPanel(new GridBagLayout());
+            boxButtonCheck.setPreferredSize(new Dimension(checkW, 38));
+            boxButtonCheck.setBackground(new Color(255, 255, 255));
+
+            boxButtonCheckT = new JPanel(new BorderLayout());
+            boxButtonCheckT.setPreferredSize(new Dimension(24, 24));
+            boxButtonCheckT.setBackground(new Color(255, 255, 255));
+
+            boxButtonCheckTHover = new JPanel(new BorderLayout());
+            boxButtonCheckTHover.setPreferredSize(new Dimension(24, 24));
+            boxButtonCheckTHover.setBackground(new Color(255, 255, 255));
+
+            JButton check = new JButton();
+            check.setPreferredSize(new Dimension(24, 24));
+            check.setBackground(new Color(0, 0, 0, 0));
+            check.setRolloverEnabled(false);
+            check.setBorderPainted(false);
+            check.setFocusPainted(false);
+            check.setContentAreaFilled(false);
+            check.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/verified.png"));
+                boxButtonCheckT = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            }
+
+            try {
+                Image imgButtonLogin = null;
+                imgButtonLogin = ImageIO.read(new File("images/verified-hover.png"));
+                boxButtonCheckTHover = new ImagePanel(imgButtonLogin, 24, 24);
+            } catch (IOException | HeadlessException exp) {
+                exp.printStackTrace();
+            };
+
+            check.addMouseListener(new MouseAdapter() {
+                public void mouseEntered(MouseEvent e) {
+                    boxButtonCheckTHover.add(check);
+                    boxButtonCheck.remove(boxButtonCheckT);
+                    boxButtonCheck.add(boxButtonCheckTHover);
+                    boxButtonCheck.validate();
+                    boxButtonCheck.repaint();
+                }
+            });
+
+            check.addMouseListener(new MouseAdapter() {
+                public void mouseExited(MouseEvent e) {
+                    boxButtonCheckT.add(check);
+                    boxButtonCheck.remove(boxButtonCheckTHover);
+                    boxButtonCheck.add(boxButtonCheckT);
+                    boxButtonCheck.validate();
+                    boxButtonCheck.repaint();
+                }
+            });
+
+            boxButtonCheckT.add(check);
+            boxButtonCheck.add(boxButtonCheckT);
+
+            Line line0 = new Line();
 
             JLabel name = new JLabel(khachHang.getHoTen());
             name.setPreferredSize(new Dimension(nameW, 38));
@@ -685,6 +868,8 @@ public class BookedTicket extends JPanel {
             boxButtonDeleteT.add(delete);
             boxButtonDelete.add(boxButtonDeleteT);
 
+            this.add(boxButtonCheck);
+            this.add(line0);
             this.add(name);
             this.add(line1);
             this.add(phone);

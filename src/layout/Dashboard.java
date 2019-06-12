@@ -71,6 +71,7 @@ public class Dashboard extends JPanel {
             exp.printStackTrace();
         }
         
+
         selectTicketPanel = new SelectTicketPanel();
         JLabel test = new JLabel("Menu quản trị");
         UIManager.put("ScrollBar.background", new Color(0, 0, 0, 0));

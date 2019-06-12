@@ -33,6 +33,18 @@ public class TuyenBUS {
         return res;
     }
 
+    public static ArrayList<TuyenDTO> getAllByStart(String startingPoint, LocalDateTime time) {
+        return TuyenDAO.getAllByStart(startingPoint, time);
+    }
+
+    public static ArrayList<TuyenDTO> getAllByDest(String dest, LocalDateTime time) {
+        return TuyenDAO.getAllByDest(dest, time);
+    }
+
+    public static ArrayList<TuyenDTO> getAllByTime(LocalDateTime time) {
+        return TuyenDAO.getAllByTime(time);
+    }
+
     public static int deleteTicket(String maTuyen) {
         int res = -1;
 

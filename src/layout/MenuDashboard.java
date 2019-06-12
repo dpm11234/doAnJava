@@ -24,6 +24,10 @@ import javax.swing.border.MatteBorder;
 import javax.swing.text.JTextComponent;
 
 import static layout.Content.*;
+import static layout.Login.hello;
+import static layout.Navbar.navBackHome;
+import static layout.Navbar.navIsLogin;
+import static layout.Navbar.titleSpace;
 
 
 /**
@@ -109,6 +113,22 @@ public class MenuDashboard extends JPanel {
                 nameCreateTicket.setIcon(new ImageIcon(new ImageIcon("images/notes.png").getImage().getScaledInstance(24, 24, Image.SCALE_DEFAULT)));
             }
         });
+        
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
+        
+        JLabel createTicketTicket = new JLabel("Tạo Tuyến Mới");
+        createTicketTicket.setPreferredSize(new Dimension(150, 60));
+        createTicketTicket.setVerticalAlignment(JLabel.CENTER);
+        createTicketTicket.setHorizontalAlignment(JLabel.CENTER);
+        createTicketTicket.setFont(fontTextTitle);
+        createTicketTicket.setForeground(new Color(140, 140, 140));
+        
+        JLabel panelTicketTitle = new JLabel("Quản Lý Danh Sách Vé");
+        panelTicketTitle.setPreferredSize(new Dimension(150, 60));
+        panelTicketTitle.setVerticalAlignment(JLabel.CENTER);
+        panelTicketTitle.setHorizontalAlignment(JLabel.CENTER);
+        panelTicketTitle.setFont(fontTextTitle);
+        panelTicketTitle.setForeground(new Color(140, 140, 140));
 
         createTicket.addMouseListener(new MouseAdapter() {
             @Override
@@ -120,6 +140,12 @@ public class MenuDashboard extends JPanel {
 
                 areaPanel.validate();
                 areaPanel.repaint();
+                navbar.removeAll();
+                navbar.add(navIsLogin, BorderLayout.EAST);
+                navbar.add(createTicketTicket, BorderLayout.CENTER);
+                navbar.add(hello, BorderLayout.WEST);
+                navbar.validate();
+                navbar.repaint();
             }
         });
 
@@ -133,6 +159,12 @@ public class MenuDashboard extends JPanel {
 
                 areaPanel.validate();
                 areaPanel.repaint();
+                navbar.removeAll();
+                navbar.add(navIsLogin, BorderLayout.EAST);
+                navbar.add(panelTicketTitle, BorderLayout.CENTER);
+                navbar.add(hello, BorderLayout.WEST);
+                navbar.validate();
+                navbar.repaint();
             }
         });
         

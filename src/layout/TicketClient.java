@@ -26,6 +26,9 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,6 +38,8 @@ import javax.swing.border.MatteBorder;
 import static layout.BookedTicket.spaceTop;
 
 import static layout.Content.*;
+import static layout.Login.hello;
+import static layout.Navbar.navIsLogin;
 
 /**
  *
@@ -68,7 +73,7 @@ public class TicketClient extends JPanel {
         leftTop.setPreferredSize(new Dimension(258, 27));
         leftTop.setBackground(new Color(0, 0, 0, 0));
 
-        // giá vé
+        // giĂ¡ vĂ©
         price = new JLabel(tuyen.getGia() + "");
         price.setFont(fontPrice);
         price.setPreferredSize(new Dimension(130, 27));
@@ -85,7 +90,7 @@ public class TicketClient extends JPanel {
         priceJPanel.add(priceSpace, BorderLayout.WEST);
         priceJPanel.add(price, BorderLayout.CENTER);
 
-        // Số ghế trống
+        // Sá»‘ gháº¿ trá»‘ng
         JPanel chairJPanel = new JPanel(new BorderLayout());
         chairJPanel.setBackground(new Color(0, 0, 0, 0));
 
@@ -112,7 +117,7 @@ public class TicketClient extends JPanel {
         leftCenterInfo.setPreferredSize(new Dimension(258, 27));
         leftCenterInfo.setBackground(new Color(0, 0, 0, 0));
 
-        // Tuyến xe
+        // Tuyáº¿n xe
         JPanel buses = new JPanel(new BorderLayout());
         buses.setPreferredSize(new Dimension(258, 27));
         buses.setBackground(new Color(0, 0, 0, 0));
@@ -140,7 +145,7 @@ public class TicketClient extends JPanel {
         buses.add(arrow, BorderLayout.CENTER);
         buses.add(destination, BorderLayout.EAST);
 
-        // Thời gian khởi hành
+        // Thá»�i gian khá»Ÿi hĂ nh
         JPanel time = new JPanel(new BorderLayout());
         time.setPreferredSize(new Dimension(258, 27));
         time.setBackground(new Color(0, 0, 0, 0));
@@ -156,7 +161,7 @@ public class TicketClient extends JPanel {
         day.setVerticalAlignment(JLabel.CENTER);
         day.setHorizontalAlignment(JLabel.CENTER);
 
-        // format giờ
+        // format giá»�
 //        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 //        String timeStart = date.format(timeFormatter);
 
@@ -176,7 +181,7 @@ public class TicketClient extends JPanel {
         time.add(oclock, BorderLayout.CENTER);
         time.add(hours, BorderLayout.EAST);
 
-        // Tên nhà xe
+        // TĂªn nhĂ  xe
         JPanel company = new JPanel(new GridBagLayout());
         company.setPreferredSize(new Dimension(258, 30));
         company.setBackground(new Color(244, 244, 244, 0));
@@ -344,7 +349,7 @@ public class TicketClient extends JPanel {
         rightCenter.setPreferredSize(new Dimension(218, 27));
         rightCenter.setBackground(new Color(0, 0, 0, 0));
 
-        // Loại xe
+        // Loáº¡i xe
         JLabel typeBus = new JLabel("");
         typeBus.setPreferredSize(new Dimension(122, 33));
         typeBus.setIcon(new ImageIcon(new ImageIcon("images/32c.png").getImage().getScaledInstance(64, 33, Image.SCALE_DEFAULT)));
@@ -371,6 +376,22 @@ public class TicketClient extends JPanel {
 
         right.add(rightTop, BorderLayout.NORTH);
         right.add(rightCenter, BorderLayout.CENTER);
+        
+        Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 18);
+        
+        JLabel titleEdit = new JLabel("Chỉnh Sửa Tuyến");
+        titleEdit.setPreferredSize(new Dimension(150, 60));
+        titleEdit.setVerticalAlignment(JLabel.CENTER);
+        titleEdit.setHorizontalAlignment(JLabel.CENTER);
+        titleEdit.setFont(fontTextTitle);
+        titleEdit.setForeground(new Color(140, 140, 140));
+        
+        JLabel titleListBooked = new JLabel("Danh Sách Khách Đặt Vé");
+        titleListBooked.setPreferredSize(new Dimension(150, 60));
+        titleListBooked.setVerticalAlignment(JLabel.CENTER);
+        titleListBooked.setHorizontalAlignment(JLabel.CENTER);
+        titleListBooked.setFont(fontTextTitle);
+        titleListBooked.setForeground(new Color(140, 140, 140));
 
         clickEdit.addActionListener(new ActionListener() {
             @Override
@@ -380,6 +401,12 @@ public class TicketClient extends JPanel {
                 areaPanel.add(editTicket);
                 areaPanel.validate();
                 areaPanel.repaint();
+                navbar.removeAll();
+                navbar.add(navIsLogin, BorderLayout.EAST);
+                navbar.add(titleEdit, BorderLayout.CENTER);
+                navbar.add(hello, BorderLayout.WEST);
+                navbar.validate();
+                navbar.repaint();
             }
         });
         
@@ -391,10 +418,16 @@ public class TicketClient extends JPanel {
                 areaPanel.add(bookedTicket);
                 areaPanel.validate();
                 areaPanel.repaint();
-                spaceTop.validate();
-                spaceTop.repaint();
-                areaPanel.validate();
-                areaPanel.repaint();
+//                spaceTop.validate();
+//                spaceTop.repaint();
+//                areaPanel.validate();
+//                areaPanel.repaint();
+                navbar.removeAll();
+                navbar.add(navIsLogin, BorderLayout.EAST);
+                navbar.add(titleListBooked, BorderLayout.CENTER);
+                navbar.add(hello, BorderLayout.WEST);
+                navbar.validate();
+                navbar.repaint();
             }
             
         });

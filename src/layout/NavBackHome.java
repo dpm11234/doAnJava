@@ -1,10 +1,6 @@
 package layout;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -40,7 +36,7 @@ public class NavBackHome extends JPanel{
     
     public void addControls() {
         btnBackLogin = new JButton("Quay Về");
-        
+        this.setCursor(new Cursor(Cursor.HAND_CURSOR));
         btnBackLogin.setBackground(new Color(0, 115, 211));
         btnBackLogin.setForeground(Color.white);
         btnBackLogin.setRolloverEnabled(false);
