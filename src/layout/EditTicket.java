@@ -90,6 +90,7 @@ public class EditTicket extends JPanel {
         this.tuyen = tuyen;
         indexFrom = setIndex(tuyen.getDiemXuatPhat());
         indexTo = setIndex(tuyen.getDiemDen());
+        indexKind = setIndexKind(tuyen.getTongGhe());
         JPanel loginBg = new JPanel();
         try {
             Image imgLogin = null;
@@ -368,6 +369,28 @@ public class EditTicket extends JPanel {
                 return 4;
             case "Tây Ninh":
                 return 5;
+        }
+        return -1;
+    }
+
+    public int setIndexKind(int value) {
+        switch (value) {
+            case 16:
+                return 0;
+            case 24:
+                return 1;
+            case 29:
+                return 2;
+            case 34:
+                return 3;
+            case 36:
+                return 4;
+            case 39:
+                return 5;
+            case 47:
+                return 6;
+            case 52:
+                return 7;
         }
         return -1;
     }
