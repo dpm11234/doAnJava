@@ -194,8 +194,7 @@ public class PickTicket extends JPanel {
                         navbar.validate();
                         navbar.repaint();
                         areaPanel.removeAll();
-                        homeSelect.validate();
-                        homeSelect.repaint();
+                        homeSelect = new HomeSelect(startingPoint, dest, timeStart);
                         areaPanel.add(homeSelect);
                         areaPanel.validate();
                         areaPanel.repaint();
@@ -218,7 +217,7 @@ public class PickTicket extends JPanel {
         khachHang.setSdt(inputPhone.getText());
         khachHang.setThoiGianDat(Timestamp.valueOf(LocalDateTime.now()));
         khachHang.setSoVeDat(Integer.parseInt(list[index]));
-
+        
         return KhachHangBUS.addCustomer(khachHang);
     }
 
