@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import static layout.SlideBar.*;
-
+import static util.Session.*;
 // import UI
 
 import createUI.DatePicker;
@@ -239,7 +239,9 @@ public class SelectTicket extends JPanel {
                 navbar.validate();
                 navbar.repaint();
                 currentFrom = selected;
-
+                startingPoint = list[selected];
+                dest = list2[currentTo];
+                timeStart = dateTime;
             }
 
         });
@@ -277,6 +279,9 @@ public class SelectTicket extends JPanel {
                 navbar.validate();
                 navbar.repaint();
                 currentTo = selected;
+                startingPoint = list[currentFrom];
+                dest = list2[selected];
+                timeStart = dateTime;
             }
         });
 
@@ -302,6 +307,9 @@ public class SelectTicket extends JPanel {
                     navbar.add(navLogin, BorderLayout.EAST);
                     navbar.validate();
                     navbar.repaint();
+                    startingPoint = list[currentFrom];
+                    dest = list2[currentTo];
+                    timeStart = dateTime;
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
