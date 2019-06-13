@@ -194,6 +194,7 @@ public class PickTicket extends JPanel {
                         navbar.validate();
                         navbar.repaint();
                         areaPanel.removeAll();
+                        homeSelect = new HomeSelect(startingPoint, dest, timeStart);
                         areaPanel.add(homeSelect);
                         areaPanel.validate();
                         areaPanel.repaint();
@@ -224,7 +225,7 @@ public class PickTicket extends JPanel {
         }
 
         khachHang.setSoVeDat(Integer.parseInt(list[index]));
-
+        
         return KhachHangBUS.addCustomer(khachHang);
     }
 
