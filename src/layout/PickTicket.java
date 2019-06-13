@@ -194,6 +194,8 @@ public class PickTicket extends JPanel {
                         navbar.validate();
                         navbar.repaint();
                         areaPanel.removeAll();
+                        homeSelect.validate();
+                        homeSelect.repaint();
                         areaPanel.add(homeSelect);
                         areaPanel.validate();
                         areaPanel.repaint();
