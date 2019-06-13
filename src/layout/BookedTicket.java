@@ -195,7 +195,6 @@ public class BookedTicket extends JPanel {
         Line line0 = new Line();
 
         JLabel name = new JLabel("Tên");
-        System.out.println(nameW);
         name.setPreferredSize(new Dimension(nameW, 38));
         name.setHorizontalAlignment(JLabel.CENTER);
         name.setForeground(new Color(117, 120, 122));

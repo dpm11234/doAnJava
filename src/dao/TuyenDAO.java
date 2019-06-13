@@ -116,7 +116,6 @@ public class TuyenDAO {
         String sql = "SELECT * FROM TUYEN WHERE YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         helper.open();
-        System.out.println(sql);
         ResultSet resultSet = null;
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
         try {
@@ -259,7 +258,6 @@ public class TuyenDAO {
         String sql = "SELECT * FROM TUYEN WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND YEAR(TGKHOIHANH) >= '" + now.getYear() + "' AND MONTH(TGKHOIHANH) >= '" + now.getMonthValue() + "' AND DAY(TGKHOIHANH) >= '" + now.getDayOfMonth() + "' AND TGKHOIHANH >='" + timestamp + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-        System.out.println(sql);
         helper.open();
 
         ResultSet resultSet = helper.excuteQuery(sql);
@@ -324,7 +322,6 @@ public class TuyenDAO {
         String sql = "SELECT * FROM TUYEN, NHAXE WHERE DIEMDEN = N'" + destination + "' AND DIEMXUATPHAT = N'" + startingPoint + "' AND YEAR(TGKHOIHANH) = '" + time.getYear() + "' AND MONTH(TGKHOIHANH) = '" + time.getMonthValue() + "' AND DAY(TGKHOIHANH) = '" + time.getDayOfMonth() + "' AND MANX = '" + ssNhaXe.getMaNX() + "' ORDER BY TGKHOIHANH ASC;";
         DataAccessHelper helper = new DataAccessHelper();
         ArrayList<TuyenDTO> danhSachTuyen = new ArrayList<>();
-        System.out.println(sql);
         helper.open();
 
         ResultSet resultSet = helper.excuteQuery(sql);

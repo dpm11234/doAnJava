@@ -85,7 +85,6 @@ public class AddTicket extends JPanel {
     Input inputTime, inputLicensePlate, inputPrice, inputSet;
 
     public AddTicket() {
-        System.out.println(frame.getInsets());
         this.setLayout(new BorderLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
