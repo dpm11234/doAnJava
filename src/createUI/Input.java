@@ -70,7 +70,6 @@ public class Input extends JPanel {
 
                 } else {
                     if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
-                        System.out.println(e.getKeyCode());
                         checkKey = true;
                     }
                 }
