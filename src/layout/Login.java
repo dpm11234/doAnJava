@@ -480,8 +480,6 @@ public class Login extends JPanel {
                     isLogin = true;
                     ssNhaXe = nhaXe;
                     return true;
-                } else {
-                    System.out.println("Pass sai!");
                 }
             }
         }

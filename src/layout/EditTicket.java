@@ -288,7 +288,6 @@ public class EditTicket extends JPanel {
                 int check = JOptionPane.showConfirmDialog(null, "Bạn có chắc chắn xóa?", "Thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (check == 0) {
                     int res = TuyenBUS.deleteTicket(tuyen.getMaTuyen());
-                    System.out.println(res);
                     if (res == 0) {
                         JOptionPane.showMessageDialog(null, "Xóa thành công", "Thông báo", 1);
                         areaPanel.removeAll();

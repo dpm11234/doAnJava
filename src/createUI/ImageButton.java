@@ -34,7 +34,6 @@ public class ImageButton extends JButton {
             super.invalidate();
             int width = getWidth();
             int height = getHeight();
-            System.out.println(width);
 
             if (width > 0 && height > 0) {
                 scaled = img.getScaledInstance(getWidth(), getHeight(),

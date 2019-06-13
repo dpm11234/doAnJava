@@ -138,7 +138,6 @@ public class SelectTicketPanel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 int selected = selectTo.get().getSelectedIndex();
                 JFormattedTextField textField = datePicker.getTextField();
-                System.out.println(selected);
                 Date date = new Date();
                 Timestamp dateTimestamp = null;
                 LocalDateTime dateTime = null;
@@ -202,8 +201,6 @@ public class SelectTicketPanel extends JPanel {
                 }
 
                 ArrayList<TuyenDTO> danhSachTuyen = null;
-                System.out.println(currentFrom);
-                System.out.println(currentTo);
                 if(currentTo == 0) {
                     danhSachTuyen = TuyenBUS.getAllByStart(list[currentFrom], dateTime);
                     if(currentFrom == 0) {
