@@ -10,4 +10,5 @@ public class Session {
     public static String startingPoint = null;
     public static String dest = null;
     public static LocalDateTime timeStart = null;
+
 }

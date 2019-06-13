@@ -204,6 +204,9 @@ public class PickTicket extends JPanel {
                     case -3:
                         JOptionPane.showMessageDialog(null, "Số điện thoại không hợp lệ", "Thất bại", JOptionPane.ERROR_MESSAGE);
                         break;
+                    case -4:
+                        int seat = TuyenBUS.countemptySeat(tuyen.getMaTuyen());
+                        JOptionPane.showMessageDialog(null, "Xe chỉ còn " + seat + " ghế", "Thất bại", 0);
                 }
             }
         });
@@ -215,6 +218,11 @@ public class PickTicket extends JPanel {
         khachHang.setHoTen(inputName.getText());
         khachHang.setSdt(inputPhone.getText());
         khachHang.setThoiGianDat(Timestamp.valueOf(LocalDateTime.now()));
+
+        if(Integer.parseInt(list[index]) > TuyenBUS.countemptySeat(tuyen.getMaTuyen())) {
+            return -4;
+        }
+
         khachHang.setSoVeDat(Integer.parseInt(list[index]));
 
         return KhachHangBUS.addCustomer(khachHang);
