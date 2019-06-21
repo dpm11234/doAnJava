@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4fdc7b1c-1ca2-43ab-bda8-382e7fd2ebef">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <parameter name="MATUYEN" class="java.lang.String"/>
+    <queryString>
+		<![CDATA[select ID, MANX, MATUYEN, HOTEN, SDT, SOVEDAT, THOIGIANDAT from KHACHHANG where MATUYEN = $P{MATUYEN}]]>
+    </queryString>
+    <field name="ID" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="MANX" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="MATUYEN" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="HOTEN" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="SDT" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="SOVEDAT" class="java.lang.Integer">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="THOIGIANDAT" class="java.sql.Timestamp">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="14" width="501" height="46" uuid="28cab9cf-0fab-4481-a999-eb69f25a1984"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="32" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Danh sách khách đặt vé]]></text>
+            </staticText>
+        </band>
+    </title>
+    <pageHeader>
+        <band height="35" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="61" splitType="Stretch">
+            <staticText>
+                <reportElement x="20" y="22" width="34" height="20" uuid="cb175125-1622-43dd-9a88-0a3175e921a6"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Mã KH]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="69" y="22" width="55" height="20" uuid="3ee511e6-e138-4893-b183-0a0bff36b45d"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Mã nhà xe]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="139" y="22" width="45" height="20" uuid="eba681f3-7547-4d8b-a02f-60aa3edbf9f7"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Mã tuyến]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="221" y="22" width="51" height="20" uuid="1b23f4e5-3707-4653-99c9-af91021bfe02"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Họ và tên]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="303" y="22" width="65" height="20" uuid="21d9f33a-26ba-481e-a5ab-6453a140ef02"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Số điện thoại]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="384" y="22" width="48" height="20" uuid="ef5bdfdc-197d-4633-9f1a-41a49ce53284"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Số vé đặt]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="445" y="22" width="79" height="20" uuid="90bdb355-7e36-463d-8468-948a4d0d0bbd"/>
+                <textElement verticalAlignment="Middle"/>
+                <text><![CDATA[Thời gian đặt]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="27" splitType="Stretch">
+            <textField>
+                <reportElement x="20" y="0" width="34" height="20" uuid="01cfff4f-6c4f-485e-ad3c-f3cd9f295b96"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="69" y="0" width="55" height="20" uuid="bc657772-a049-43d9-9e9b-fccd33b81d22"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{MANX}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="139" y="0" width="60" height="20" uuid="2dd8e8d7-4d96-4f36-b217-3421992849b6"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{MATUYEN}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="221" y="0" width="73" height="20" uuid="2b5d6202-9670-4c2d-ab5f-5d71f40c64a0"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{HOTEN}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="303" y="0" width="65" height="20" uuid="1aad61fc-94b1-40e2-b00f-818cf76b9d5e"/>
+                <textElement verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{SDT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="384" y="0" width="48" height="20" uuid="1cab0e57-839a-4740-a28b-db55876dd3f6"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{SOVEDAT}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="445" y="0" width="97" height="20" uuid="5db36e84-7d83-422f-8739-b6a496a2d510"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{THOIGIANDAT}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

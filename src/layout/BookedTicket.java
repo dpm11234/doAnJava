@@ -28,12 +28,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultButtonModel;
 import javax.swing.ImageIcon;
@@ -49,7 +50,11 @@ import static layout.Content.areaPanel;
 import static layout.Main.heightGet;
 import static layout.Main.widthGet;
 import static layout.Content.*;
-import static layout.MenuDashboard.createTicket;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -111,7 +116,6 @@ public class BookedTicket extends JPanel {
         spaceTop = new JPanel(new BorderLayout());
         spaceTop.setPreferredSize(new Dimension(800, 30));
         spaceTop.setBackground(new Color(255, 255, 255, 0));
-        //spaceTop.setIcon(new ImageIcon(new ImageIcon("images/10x10.png").getImage().getScaledInstance(800, 30, Image.SCALE_DEFAULT)));
 
         JPanel infoTicket = new JPanel(new BorderLayout());
         infoTicket.setPreferredSize(new Dimension(widthGet - 130 - 270, 40));
@@ -145,7 +149,7 @@ public class BookedTicket extends JPanel {
         infoTicketLeft.add(to, BorderLayout.EAST);
 
         JPanel infoTicketRight = new JPanel(new BorderLayout());
-        infoTicketRight.setPreferredSize(new Dimension(170, 40));
+        infoTicketRight.setPreferredSize(new Dimension(220, 40));
         infoTicketRight.setBackground(new Color(76, 173, 255));
 
         LocalDateTime dateTime = tuyen.getThoiGianKhoiHanh().toLocalDateTime();
@@ -166,7 +170,28 @@ public class BookedTicket extends JPanel {
         day.setHorizontalAlignment(JLabel.LEFT);
         day.setVerticalAlignment(JLabel.CENTER);
 
-        infoTicketRight.add(time, BorderLayout.WEST);
+        JButton print = new JButton();
+        print.setIcon(new ImageIcon(new ImageIcon("images/printer.png").getImage().getScaledInstance(15, 15, Image.SCALE_DEFAULT)));
+        print.setIconTextGap(10);
+
+        print.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                try {
+                    String jd = "src/report/KhachHangReport.jrxml";
+                    HashMap para = new HashMap();
+                    para.put("MATUYEN", tuyen.getMaTuyen());
+                    JasperReport jr = JasperCompileManager.compileReport(jd);
+                    JasperPrint j = JasperFillManager.fillReport(jr, para, (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/doanjava", "root", ""));
+                    JasperViewer.viewReport(j, false);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        });
+
+        infoTicketRight.add(print, BorderLayout.WEST);
+        infoTicketRight.add(time, BorderLayout.CENTER);
         infoTicketRight.add(day, BorderLayout.EAST);
 
         JLabel totalTickets = new JLabel("Tổng vé: " + tuyen.getTongGhe());
@@ -257,8 +282,6 @@ public class BookedTicket extends JPanel {
         MatteBorder borderInputPass = new MatteBorder(0, 0, 0, 0, new Color(0, 0, 0));
         ka.setBorder(borderInputPass);
         ka.setBackground(new Color(119, 191, 251));
-        
-        
 
         Font fontTextTitle = new Font("SansSerif", Font.PLAIN, 16);
 
@@ -268,7 +291,7 @@ public class BookedTicket extends JPanel {
         noTicket.setHorizontalAlignment(JLabel.CENTER);
         noTicket.setForeground(new Color(100, 100, 100));
         noTicket.setFont(fontTextTitle);
-        
+
         height = danhSachKhachHang.size() * 40;
 
         if (danhSachKhachHang.size() <= 0) {
@@ -538,7 +561,6 @@ public class BookedTicket extends JPanel {
 //                    boxButtonCheck.repaint();
 //                }
 //            });
-
             check.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
@@ -664,7 +686,7 @@ public class BookedTicket extends JPanel {
                     boxButtonDelete.repaint();
                 }
             });
-            
+
             if (khachHang.getKT() == 0) {
                 this.setBackground(new Color(239, 241, 242));
                 boxButtonCheck.setBackground(new Color(239, 241, 242));
@@ -933,7 +955,6 @@ public class BookedTicket extends JPanel {
 
                 }
             });
-            
 
             if (khachHang.getKT() == 0) {
                 this.setBackground(new Color(255, 255, 255));
@@ -974,8 +995,8 @@ public class BookedTicket extends JPanel {
 
         }
     }
-    
-    public class FixedStateButtonModel extends DefaultButtonModel    {
+
+    public class FixedStateButtonModel extends DefaultButtonModel {
 
         @Override
         public boolean isPressed() {
