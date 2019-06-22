@@ -15,9 +15,7 @@ public class DataAccessHelper {
     public void open() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-//            conn = DriverManager
-//                    .getConnection("jdbc:mysql://remotemysql.com:3306/7jjFv7zPcq", "7jjFv7zPcq", "Eba3hfJfFj");
-            conn = DriverManager
+/          conn = DriverManager
                     .getConnection("jdbc:mysql://localhost:3306/doanjava", "root", "");
 
         } catch (Exception e) {
@@ -58,4 +56,7 @@ public class DataAccessHelper {
         return rs;
     }
 
+    public Connection getConn() {
+        return conn;
+    }
 }

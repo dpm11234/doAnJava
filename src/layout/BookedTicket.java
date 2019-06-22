@@ -55,6 +55,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import util.DataAccessHelper;
 
 /**
  *
@@ -177,15 +178,19 @@ public class BookedTicket extends JPanel {
         print.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                DataAccessHelper helper = new DataAccessHelper();
+                helper.open();
                 try {
                     String jd = "src/report/KhachHangReport.jrxml";
                     HashMap para = new HashMap();
                     para.put("MATUYEN", tuyen.getMaTuyen());
                     JasperReport jr = JasperCompileManager.compileReport(jd);
-                    JasperPrint j = JasperFillManager.fillReport(jr, para, (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/doanjava", "root", ""));
+                    JasperPrint j = JasperFillManager.fillReport(jr, para, helper.getConn());
                     JasperViewer.viewReport(j, false);
                 } catch (Exception e) {
                     System.out.println(e);
+                } finally {
+                    helper.close();
                 }
             }
         });
